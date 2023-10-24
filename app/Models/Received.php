@@ -23,4 +23,9 @@ class Received extends Model
         'alloted',
         
      ];
+
+     public function binlocation()
+    {
+        return $this->hasMany(Binlocation::class,'rcid','id');
+    }
 }
