@@ -30,7 +30,7 @@ Register New Pick Order
                </button>
                <ul>
                   <li>Please Use Only Excel file </li>
-                  <li>Download <b><a href="{{asset('pickorder_template.xls')}}">Template</a></b> From here and use that for further proceed</li>
+                  <li>Download <b><a href="{{url('public/pickorder_template.xls')}}">Template</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
             <div class="row">

@@ -78,7 +78,7 @@
                                                             </div>
                                                         </a>
         
-                                                        <form class="delete" method="POST" action="{{ route('pick.destroy', $u->trans_no) }}">
+                                                        <form class="delete" method="POST" action="{{ route('pick.destroy', $u->id) }}">
                                                         @csrf
                                                         @method("DELETE")
                                                         <button type="submit" class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="destroy">

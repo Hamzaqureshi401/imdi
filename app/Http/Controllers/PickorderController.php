@@ -47,11 +47,12 @@ class PickorderController extends Controller
     public function index()
     {
         //
-        $po=Pickorder::select('trans_no', 'user', 'created_at','label_id', 'label_no','invoice_no', 'mc_id', 'rc_id', 'bin_id', 'qty')
+        $po=Pickorder::select('id' ,'trans_no', 'user', 'created_at','label_id', 'label_no','invoice_no', 'mc_id', 'rc_id', 'bin_id', 'qty')
         ->distinct()
         ->orderBy('id','desc')
         ->where('pick_status','0')
         ->get();
+
         return view('admin.pickorders.index',compact('po'));
     }
 
@@ -308,10 +309,21 @@ class PickorderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
 
         $product = Pickorder::find($id);
-        $product->delete();
-        return redirect()->back()->with('message', 'Record Deleted Successfully');
+
+
+        if(!empty($product)){
+            $pallet  = PalletLabel::where('palletno' , $product->label_no)->first();
+            $pallet->avl_qty = $pallet->avl_qty + $product->qty;
+            //dd($product , $id , $pallet->avl_qty, $product->qty , $pallet);
+            $pallet->update();
+            $product->delete();
+            return redirect()->back()->with('message', 'Record Deleted Successfully');
+        }else{
+            return redirect()->back()->with('message', 'Record Not Found!');
+        }
+        
     }
 }
