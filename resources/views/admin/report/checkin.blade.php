@@ -80,8 +80,8 @@
                                         </div>
                                        
                                         <div class="d-block text-end card-footer">
-                                        <input type="reset" id="reset" name="submit" class="btn btn-danger">
-                                        <input type="submit" name="submit" value="Generate Report" class="btn btn-success">
+                                        <input type="reset" id="reset" name="submit" class="btn btn-dark">
+                                        <input type="submit" name="submit" value="Generate Report" class="btn btn-dark">
                                        <br>
                                         </div>
                                     </div>

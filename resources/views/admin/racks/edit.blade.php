@@ -77,7 +77,7 @@ Manage Warehouse Rows / Racks
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label">&nbsp;</label>
                                                         <input type="hidden" name="warehouse" value="{{$wh->warehouse}}" />
-                                                        <input name="submit" type="submit" value="Update"class="form-control btn btn-success">
+                                                        <input name="submit" type="submit" value="Update"class="form-control btn btn-dark">
                                                     </div>
                                                 </div>
                                             </div>

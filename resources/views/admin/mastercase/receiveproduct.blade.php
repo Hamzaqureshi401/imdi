@@ -159,8 +159,8 @@
                                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 400px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 289px;"></div></div></div>
                                         </div>
                                         <div class="d-block text-end card-footer">
-                                        <input type="reset" id="reset" name="submit" class="btn btn-danger">
-                                        <input type="submit" name="submit" value="Save" class="btn btn-success">
+                                        <input type="reset" id="reset" name="submit" class="btn btn-dark">
+                                        <input type="submit" name="submit" value="Save" class="btn btn-dark">
                                         </div>
                                     </div>
                                 </div>

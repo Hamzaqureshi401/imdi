@@ -8086,7 +8086,7 @@ button,
   font-size: 0.8rem;
   margin: 0.75rem 0;
   font-weight: bold;
-  color: #3f6ad8;
+  color: #E32626;
   white-space: nowrap;
   position: relative; }
 
@@ -9079,7 +9079,9 @@ button,
   background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%) !important; }
 
 .bg-night-sky {
-  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%) !important; }
+/*  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%) !important; }*/
+
+  background-image: linear-gradient(to top, #E32626 0%, #E32626 1%, #E32626 100%) !important; }
 
 .bg-slick-carbon {
   background-image: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%) !important;

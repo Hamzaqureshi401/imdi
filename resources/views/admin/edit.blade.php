@@ -81,7 +81,7 @@
                                              </div>
                                          </div>
                                          
-                                         <button type="button" id="create"  class="mt-2 btn btn-primary">Update</button>
+                                         <button type="button" id="create"  class="mt-2 btn btn-dark">Update</button>
                                      </form>
                              </div>
                          </div>

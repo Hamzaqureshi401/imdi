@@ -74,7 +74,7 @@
 
                                 <div class="widget-content-wrapper">
                                 <div class="d-inline-block dropdown">
-                                        <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn " style="background-color: #E32626;">
+                                        <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-dark">
                                             <span class="btn-icon-wrapper pe-2 opacity-7">
                                                 <i class="fa fa-user"></i>
                                             </span>

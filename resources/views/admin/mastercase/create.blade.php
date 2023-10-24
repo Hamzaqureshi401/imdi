@@ -137,7 +137,7 @@ Register New Master Case
                                                         <div class="col-md-4">
                                                             <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
 
-                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-success" >
+                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                                                         
                                                         </div>
                                                         
@@ -171,7 +171,7 @@ Register New Master Case
 
                                           
                                             
-                                            <input type="submit" id="create"  class="mt-2 btn btn-primary" value="Save"/>
+                                            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Save"/>
                                         </form>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ Register New Master Case
         
 
             function addTableRow(data) {
-                var newRow = '<tr id="'+data.upc+'"><th scope="row"><input type="hidden" name="pid[]" value="'+ data.id +'"/>'+ data.upc + '</th><td>'+ data.name + '</td><td><input type="hidden" name="pqty[]" value="'+ data.qty +'"/>'+ data.qty + '</td><td><a class="remove btn btn-danger" >Remove</a></td></tr>';
+                var newRow = '<tr id="'+data.upc+'"><th scope="row"><input type="hidden" name="pid[]" value="'+ data.id +'"/>'+ data.upc + '</th><td>'+ data.name + '</td><td><input type="hidden" name="pqty[]" value="'+ data.qty +'"/>'+ data.qty + '</td><td><a class="remove btn btn-dark" >Remove</a></td></tr>';
                 $('#protable tbody').append(newRow);
                  
             }

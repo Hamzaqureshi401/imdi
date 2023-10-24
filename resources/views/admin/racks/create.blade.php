@@ -55,7 +55,7 @@ Register New Row / Racks
                                                 <div class="col-md-3">
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label">&nbsp;</label>
-                                                        <input name="submit" type="submmit" value="Save"class="form-control btn btn-success">
+                                                        <input name="submit" type="submmit" value="Save"class="form-control btn btn-dark">
                                                     </div>
                                                 </div>
                                             </div>

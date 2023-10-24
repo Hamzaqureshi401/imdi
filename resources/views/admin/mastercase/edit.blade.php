@@ -136,7 +136,7 @@ Manage Master Case
                                                         <div class="col-md-4">
                                                             <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
 
-                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-success" >
+                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                                                         
                                                         </div>
                                                         
@@ -165,7 +165,7 @@ Manage Master Case
                                                                 <tr id="{{$pr->upc}}">
                                                                     <th scope="row"><input type="hidden" name="pid[]" value="{{$pr->id}}"/>{{$pr->upc}}</th>
                                                                     <td>{{$pr->name}}</td><td><input type="hidden" name="pqty[]" value="{{$m->qty}}"/>{{$m->qty}}</td>
-                                                                    <td><a class="remove btn btn-danger" >Remove</a></td>
+                                                                    <td><a class="remove btn btn-dark" >Remove</a></td>
                                                                 </tr>
                                                                 @endforeach
                                                                 
@@ -185,7 +185,7 @@ Manage Master Case
 
                                           
                                             
-                                            <input type="submit" id="create"  class="mt-2 btn btn-primary" value="Save"/>
+                                            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Save"/>
                                         </form>
                                 </div>
                             </div>

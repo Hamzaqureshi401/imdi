@@ -200,7 +200,7 @@ Add Documents for Verification
 
                                                         <label for="examplePassword11" class="form-label"><br></label>
 
-                                                        <button  id="create"  type="button"  class="form-control btn btn-success" >Save</button>
+                                                        <button  id="create"  type="button"  class="form-control btn btn-dark" >Save</button>
 
                                                     </div>
 
@@ -212,7 +212,7 @@ Add Documents for Verification
 
                                                         <label for="examplePassword11" class="form-label"><br></label>
 
-                                                        <input name="Employee_name" id="ename"  type="reset" value="Reset" class="form-control btn btn-danger" required>
+                                                        <input name="Employee_name" id="ename"  type="reset" value="Reset" class="form-control btn btn-dark" required>
 
                                                     </div>
 

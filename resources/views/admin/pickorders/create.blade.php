@@ -57,7 +57,7 @@ Register New Pick Order
                                                 <div class="col-md-4">
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label"> &nbsp</label>
-                                                        <input name="submit" type="submit" Value="Import" class="form-control btn btn-primary" required>
+                                                        <input name="submit" type="submit" Value="Import" class="form-control btn btn-dark" required>
                                                     </div>
                                                 </div>
                                             </div>  
@@ -108,7 +108,7 @@ Register New Pick Order
                                                         <div class="col-md-2">
                                                             <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
 
-                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-success" >
+                                                            <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                                                         
                                                         </div>
                                                         
@@ -142,7 +142,7 @@ Register New Pick Order
 
                                           
                                             
-                                            <input type="submit" id="create"  class="mt-2 btn btn-primary" value="Search"/>
+                                            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/>
                                         </form>
                                 </div>
                             </div>
@@ -206,7 +206,7 @@ Register New Pick Order
 
                                           
                                             
-                                            <input type="submit" id="create"  class="mt-2 btn btn-success" value="Confirm Pick"/>
+                                            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Confirm Pick"/>
                                         </form>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@ Register New Pick Order
         
 
             function addTableRow(data) {
-                var newRow = '<tr id="'+data.upc+'"><th scope="row"><input type="hidden" name="pid[]" value="'+ data.id +'"/>'+ data.upc + '</th><td>'+ data.name + '</td><td><input type="hidden" name="pqty[]" value="'+ data.qty +'"/>'+ data.qty + '</td><td><a class="remove btn btn-danger" >Remove</a></td></tr>';
+                var newRow = '<tr id="'+data.upc+'"><th scope="row"><input type="hidden" name="pid[]" value="'+ data.id +'"/>'+ data.upc + '</th><td>'+ data.name + '</td><td><input type="hidden" name="pqty[]" value="'+ data.qty +'"/>'+ data.qty + '</td><td><a class="remove btn btn-dark" >Remove</a></td></tr>';
                 $('#protable tbody').append(newRow);
                  
             }
@@ -415,7 +415,7 @@ Register New Pick Order
                                         customTableHTML += '<th><input type="hidden" name="pid[]" value="'+so[2]+'">' + jsonData[j][0] + '</th>';
                                         customTableHTML += "<td>" + so[0] + "</td>";
                                         customTableHTML += '<td><input type="hidden" name="pqty[]" value="'+jsonData[j][2]+'">' + jsonData[j][2] + '</td>';
-                                        customTableHTML += '<td><a class="remove btn btn-danger">Remove</a></td>';
+                                        customTableHTML += '<td><a class="remove btn btn-dark">Remove</a></td>';
                                         customTableHTML += "</tr>";
                                         s=0;
                                    }

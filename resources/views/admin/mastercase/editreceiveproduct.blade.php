@@ -197,7 +197,7 @@
                                         </div>
                                         <div class="d-block text-end card-footer">
                                        
-                                       <input type="submit" name="submit" value="Update" class="btn btn-success">
+                                       <input type="submit" name="submit" value="Update" class="btn btn-dark">
                                    </div>
                                     </div>
                                 </div>

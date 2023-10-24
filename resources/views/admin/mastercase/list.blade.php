@@ -20,7 +20,7 @@
                                  </div>
                                  <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
                                                 <div class="btn-group dropdown">
-                                                    <a href="{{route('newreceived')}}" type="button" class="btn btn-success" >
+                                                    <a href="{{route('newreceived')}}" type="button" class="btn btn-dark" >
                                                         Add Receive Product
                                                     </a>
                                                     

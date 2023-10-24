@@ -77,7 +77,7 @@
                                                         <div class="col-md-12">
                                                             <div class="position-relative mb-3">
                                                                 
-                                                                <input type="submit" value="Save" class="form-control btn btn-success">
+                                                                <input type="submit" value="Save" class="form-control btn btn-dark">
                                                             </div>
                                                             
                                                         </div>
@@ -130,7 +130,7 @@
                                                         <div class="col-md-4">
                                                                 <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
 
-                                                                <input name="psave" id="psave" value="Add Mastercase" type="button" class="form-control btn btn-success" >
+                                                                <input name="psave" id="psave" value="Add Mastercase" type="button" class="form-control btn btn-dark" >
                                                             
                                                         </div>
                                                 </div>

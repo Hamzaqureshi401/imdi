@@ -88,7 +88,7 @@
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label">&nbsp;</label>
                                                         <input type="hidden" name="warehouse" value="{{$warehouse}}" />
-                                                        <input name="submit" type="submit" value="Save"class="form-control btn btn-success">
+                                                        <input name="submit" type="submit" value="Save"class="form-control btn btn-dark">
                                                     </div>
                                                 </div>
                                             </div>

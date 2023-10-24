@@ -18,7 +18,7 @@
 
 
 
-                                    <a href="#" class="mm-active">
+                                    <!-- <a href="#" class="mm-active">
 
                                         <i class="metismenu-icon pe-7s-display1"></i>
 
@@ -26,40 +26,10 @@
 
                                         <i class="metismenu-state-icon"></i>
 
-                                    </a>
+                                    </a> -->
                                 </li>
 
-                                @if($permission->contains('permission', '1')) 
-
-                                <li class="app-sidebar__heading">Users</li>
                                 
-                                <li class="{{ (request()->segment(1) == 'user') ? 'mm-active' : '' }}">
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-users"></i>
-                                        Users
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="{{route('user.create')}}" class="{{ (Request::is('user/create')) ? 'mm-active' : '' }}">
-                                                <i class="metismenu-icon"></i>
-                                                New User
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('user.index')}}" class="{{ (Request::is('user')) ? 'mm-active' : '' }}">
-                                                <i class="metismenu-icon"></i>
-                                                User List
-                                            </a>
-                                        </li>
-                                       
-                                        
-                                        
-                                        
-                                    </ul>
-                                </li>
-                                @endif
-
                             @if($permission->contains('permission', '4'))
                                 <li class="app-sidebar__heading">Products</li>
                                 
@@ -423,6 +393,38 @@
 
 
                                 <li class="app-sidebar__heading">Settings</li>
+
+                                @if($permission->contains('permission', '1')) 
+
+                                <!-- <li class="app-sidebar__heading">Users</li> -->
+                                
+                                <li class="{{ (request()->segment(1) == 'user') ? 'mm-active' : '' }}">
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-users"></i>
+                                        Users
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('user.create')}}" class="{{ (Request::is('user/create')) ? 'mm-active' : '' }}">
+                                                <i class="metismenu-icon"></i>
+                                                New User
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('user.index')}}" class="{{ (Request::is('user')) ? 'mm-active' : '' }}">
+                                                <i class="metismenu-icon"></i>
+                                                User List
+                                            </a>
+                                        </li>
+                                       
+                                        
+                                        
+                                        
+                                    </ul>
+                                </li>
+                                @endif
+
 
                                 
 

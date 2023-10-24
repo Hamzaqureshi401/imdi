@@ -44,7 +44,7 @@
                                                 Document List
                                                 <div class="btn-actions-pane-right">
                                                    
-                                                <a id="createbatch"class="btn btn-success">Create Batch</a>
+                                                <a id="createbatch"class="btn btn-dark">Create Batch</a>
                                                                                                            
                                                 </div>
                                             </div>

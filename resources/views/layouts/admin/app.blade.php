@@ -45,11 +45,11 @@
             font-size:16px;
         }
 
-        .custom-color-black {
+        .btn-custom-color-black {
             background-color: #0000;
 
           }
-          .custom-color-black-wht {
+          .btn-custom-color-black-wht {
             background-color: #0000;
             color: #FFF;
             

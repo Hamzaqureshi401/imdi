@@ -203,7 +203,7 @@
 
                                                                         <label for="examplePassword11" class="form-label"><br></label>
 
-                                                                        <input type="submit"  class="form-control btn btn-success" value="Save" />
+                                                                        <input type="submit"  class="form-control btn btn-dark" value="Save" />
 
                                                                     </div>
 
@@ -215,7 +215,7 @@
 
                                                                         <label for="examplePassword11" class="form-label"><br></label>
 
-                                                                        <input name="Employee_name" type="reset" value="Reset" class="form-control btn btn-danger">
+                                                                        <input name="Employee_name" type="reset" value="Reset" class="form-control btn btn-dark">
 
                                                                     </div>
 

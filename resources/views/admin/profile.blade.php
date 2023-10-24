@@ -32,9 +32,9 @@ Profile
                                                 <div class="btn-actions-pane-right">
                                                     <div role="group" class="btn-group-sm nav btn-group">
                                                         @if(Auth::user()->acc_type==0)
-                                                        <a data-bs-toggle="tab" href="#tab-eg1-0" class="btn-shadow btn btn-primary active">Orgnization</a>
+                                                        <a data-bs-toggle="tab" href="#tab-eg1-0" class="btn-shadow btn btn-dark active">Orgnization</a>
                                                         @else
-                                                        <a data-bs-toggle="tab" href="#tab-eg1-1" class="btn-shadow btn btn-primary active">Individual</a>
+                                                        <a data-bs-toggle="tab" href="#tab-eg1-1" class="btn-shadow btn btn-dark active">Individual</a>
                                                        @endif
                                                     </div>
                                                 </div>
@@ -133,7 +133,7 @@ Profile
 
                                                             
                                                                 
-                                                                <button type="button" id="create"  class="mt-2 btn btn-primary">Update</button>
+                                                                <button type="button" id="create"  class="mt-2 btn btn-dark">Update</button>
                                                             </form>
                                                     </div>
                                                     <div class="tab-pane {{ Auth::user()->acc_type==1 ? 'active' : ''}}" id="tab-eg1-1" role="tabpanel">
@@ -189,7 +189,7 @@ Profile
 
                                                             
                                                                 
-                                                                <button type="button" id="create_ind"  class="mt-2 btn btn-primary">Update</button>
+                                                                <button type="button" id="create_ind"  class="mt-2 btn btn-dark">Update</button>
                                                             </form>
                                                     </div>
                                                     

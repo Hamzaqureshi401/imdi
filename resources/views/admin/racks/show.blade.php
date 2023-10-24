@@ -84,7 +84,7 @@
                                      </tbody>
                                      <tfoot>
                                          <tr>
-                                            <td colspan=3><input type="submit" value="Save" class=" form-control btn btn-success"></td>
+                                            <td colspan=3><input type="submit" value="Save" class=" form-control btn btn-dark"></td>
                                             
 
                                          </tr>

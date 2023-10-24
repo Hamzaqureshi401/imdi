@@ -24,7 +24,7 @@
                                  </div>
                                 <div class="btn-actions-pane-right">
                                     
-                                        <a  href="{{route('role.create')}}" class="btn btn-primary ">New Role</a>
+                                        <a  href="{{route('role.create')}}" class="btn btn-dark ">New Role</a>
                                    
                                 </div>
                                 

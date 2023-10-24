@@ -85,7 +85,7 @@ Register New Product
                                                 <div class="col-md-6">
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label"> &nbsp</label>
-                                                        <input name="submit" type="submit" Value="Import" class="form-control btn btn-success" required>
+                                                        <input name="submit" type="submit" Value="Import" class="form-control btn btn-dark" required>
                                                     </div>
                                                 </div>
                                             </div>

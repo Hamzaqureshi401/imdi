@@ -147,7 +147,7 @@
 
                                         <div class="float-start">
 
-                                                <a href="{{route('createaccount')}}" class="btn btn-primary btn-lg">Create New Account </a>
+                                                <a href="{{route('createaccount')}}" class="btn btn-dark btn-lg">Create New Account </a>
 
                                             </div>
 
@@ -155,7 +155,7 @@
 
                                             <div class="float-end">
 
-                                                <input type="submit" name="submit" class="btn btn-success btn-lg"  value="Login to Account">
+                                                <input type="submit" name="submit" class="btn btn-dark btn-lg"  value="Login to Account">
 
                                             </div>
 
