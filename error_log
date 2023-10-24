@@ -1,0 +1,55 @@
+[18-Aug-2023 16:05:43 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:05:43 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:05:53 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:05:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:11:40 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:11:40 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:12:33 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:12:33 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:12:39 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:12:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:15:15 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:15:15 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:17:10 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:17:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:17:14 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:17:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:18:31 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:18:31 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:19:15 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:19:15 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:19:16 UTC] PHP Warning:  require_once(/home2/zitsolutions/test.2zitsolutions.com/public/index.php): Failed to open stream: No such file or directory in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
+[18-Aug-2023 16:19:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/zitsolutions/test.2zitsolutions.com/public/index.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/zitsolutions/test.2zitsolutions.com/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/zitsolutions/test.2zitsolutions.com/index.php on line 21
