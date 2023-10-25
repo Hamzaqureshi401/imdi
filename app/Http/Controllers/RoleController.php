@@ -65,6 +65,7 @@ class RoleController extends Controller
             ['value' => 9, 'permission' => 'Cycle Count'],
             ['value' => 10, 'permission' => 'Transfer'],
             ['value' => 11, 'permission' => 'Return'],
+            ['value' => 12, 'permission' => 'App'],
             // You can add more elements here
         ];
         return view('admin.roles.create',compact('permissions'));
@@ -139,6 +140,8 @@ class RoleController extends Controller
             ['value' => 9, 'permission' => 'Cycle Count'],
             ['value' => 10, 'permission' => 'Transfer'],
             ['value' => 11, 'permission' => 'Return'],
+            ['value' => 12, 'permission' => 'App'],
+
             // You can add more elements here
         ];
         $role=Role::find($id);

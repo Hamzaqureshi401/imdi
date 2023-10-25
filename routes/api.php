@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [ApiController::class, 'login']);
+Route::group(['middleware' => 'appAccess'], function () {
+
 Route::get('products/{id?}', [ApiController::class, 'getproducts']);
 Route::get('mastercases/{id?}', [ApiController::class, 'getmastercases']);
 Route::get('mcproducts/{mcid}', [ApiController::class, 'getmcproducts']);
@@ -55,4 +57,5 @@ Route::get('transfer/placed', [ApiController::class, 'placedtransfers']);
 
 Route::get('markpickedtransfer/{tid}/{user}', [ApiController::class, 'marked_picked_transfer']);
 Route::get('markplacedtransfer/{tid}/{user}', [ApiController::class, 'marked_placed_transfer']);
+});
 

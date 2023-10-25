@@ -128,7 +128,7 @@ Route::get('/mastercases/label/{id}', [MasterController::class, 'label'])->name(
 Route::post('/mastercases/savereceived', [MasterController::class, 'savereceived'])->name('savereceived');
 Route::get('/mastercases/receivedlist', [MasterController::class, 'receivedlist'])->name('receivedlist');
 Route::get('/mastercases/received', [MasterController::class, 'received'])->name('received');
-Route::get('/mastercases/newreceived', [MasterController::class, 'newreceived'])->name('newreceived');
+Route::get('/mastercases/newreceived', [MasterController::class, 'newreceived'])->name('newreceived'); 
 Route::resource('mastercase',MasterController::class);
 // End of Product Routes
 //start of PDF Controller
@@ -149,6 +149,8 @@ Route::resource('transfer',TransferController::class);
 // start of CycleCount
 Route::get('cyclecount/pending', [CycleCountController::class, 'pendingcyclecount'])->name('pendingcyclecount');
 Route::get('cyclecount/completed', [CycleCountController::class, 'completedcyclecount'])->name('completedcyclecount');
+Route::get('/updateBin/{id}', [CycleCountController::class, 'update'])->name('cyclecount.update.bin');
+
 Route::resource('cyclecount',CyclecountController::class);
 // End of Cycle Count 
 

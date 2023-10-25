@@ -5,9 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Cyclecount;
 use Illuminate\Http\Request;
 use App\Models\Cyclecountlocation;
+use Illuminate\Support\Facades\Auth;
+
 
 class CyclecountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if ($user && $user->role) {
+                $permissions = Permission::where('role_id', $user->role)->get();
+                // Add your permission check logic here
+                
+                if (!$permissions->contains('permission', '9')) {
+                    abort(401, 'Unauthorized');
+                }
+            }
+
+            return $next($request);
+        });
+       
+    }
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +80,10 @@ class CyclecountController extends Controller
      */
     public function show($id)
     {
-        
+        //dd(1);
+        $cycleCount = Cyclecount::where('id' , $id)->first();
+        return view("admin.cyclecount.completed_cycle_detail" , compact('cycleCount'));
+    
     }
 
     /**
@@ -81,10 +104,26 @@ class CyclecountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+    $cycleCount = Cyclecountlocation::find($id);
+
+    if ($cycleCount) {
+        $cycleCount->binlocation->labelid = $cycleCount->pallet_no;
+        if($cycleCount->pallet_no > 0){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+        $cycleCount->binlocation->status = $status;
+        $cycleCount->binlocation->save();
+        return redirect()->back()->with('success' , 'Bin Location Updated!');
+    } else {
+        return redirect()->back()->with('error' , 'Cyclecountlocation Not Found!');
+        // Handle the case where the cycle count with the given ID is not found.
     }
+}
+
 
     /**
      * Remove the specified resource from storage.
