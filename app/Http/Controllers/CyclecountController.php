@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cyclecount;
 use Illuminate\Http\Request;
 use App\Models\Cyclecountlocation;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 
 
