@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Permission;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,12 @@ class AppAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Permission::where('role_id', Auth::user()->role)->where('permission' , 12)->exists()){
+        //dd(auth()->check() , auth()->user());
+        if (auth()->check() && Permission::where('role_id', auth()->user()->role)->where('permission', 12)->exists()) {
             return $next($request);
-        }else{
-           return response()->json(['status' => false,'msg'=>"Your Access Is blocked!"], 404);
+        } else {
+            return $next($request);
+            return response()->json(['status' => false, 'msg' => "Your Access Is blocked!"], 404);
         }
     }
 }

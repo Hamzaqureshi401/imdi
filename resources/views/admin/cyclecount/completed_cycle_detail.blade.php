@@ -49,6 +49,7 @@ Manage Cycle Count
                                                    <th>Sr</th>
                                                    <th>Bin Location No.</th>
                                                    <th>Pallet No.</th>
+
                                                 </tr>
                                              </thead>
                                              <tbody>
@@ -107,7 +108,10 @@ Manage Cycle Count
                                                    <th>Sr</th>
                                                    <th>Bin Location No.</th>
                                                    <th>Pallet No.</th>
-                                                   <th>Action</th>
+                                                   <!-- <th>Rc Id</th>
+                                                   <th>Mc Id</th> -->
+
+                                                   <th class="text-center">Action</th>
                                                 </tr>
                                              </thead>
                                              <tbody>
@@ -123,16 +127,28 @@ Manage Cycle Count
                                                       {{ $cycle->binlocation->labelid }}
                                                       @endif
                                                    </td>
+                                                   <!-- <td>{{ $cycle->binlocation->rcid}}</td>
+                                                   <td>{{ $cycle->binlocation->mcid}}</td> -->
                                                    <td>
                                                       <div class="centered-icon text-center">
                                                          @if ($cycle->binlocation->labelid == $cycle->pallet_no)
                                                          <!-- Show the "tick" icon when the condition is true -->
                                                          <i class="lnr-checkmark-circle icon-gradient bg-success"></i>
-                                                         @else
+                                                         @elseif($cycle->pallet_no == 0)
+                                                         <a href="#" class="btn-sm btn btn-dark" data-toggle="modal" data-target="#confirmUpdateBinModal" data-update-url="{{ route('cyclecount.update.bin', $cycle->id) }}">Update Bin</a>
+
+
+
+                                                         @elseif($binlocation->where('labelid', $cycle->pallet_no)->isNotEmpty())
+
                                                          <!-- Show the "Edit" button when the condition is false -->
-                                                         <a href="{{ route('cyclecount.update.bin', $cycle->id) }}" class="btn btn-dark">
-                                                         Update Bin
-                                                         </a>
+                                                        <a href="#" class="btn-sm btn btn-dark" data-toggle="modal" data-target="#confirmUpdateBinModal" data-update-url="{{ route('cyclecount.update.bin', $cycle->id) }}">Update Bin</a>
+
+
+
+                                                         @else
+                                                         <i class="fas fa-times icon-gradient bg-danger"></i> Wrong Pallet
+
                                                          @endif
                                                       </div>
                                                    </td>
@@ -155,10 +171,47 @@ Manage Cycle Count
       </div>
    </div>
 </div>
+<div class="modal fade" id="confirmUpdateBinModal" tabindex="-1" role="dialog" aria-labelledby="confirmUpdateBinModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmUpdateBinModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to update the bin?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancelButton" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="{{ route('cyclecount.update.bin', $cycle->id) }}" id="confirmUpdateBinButton" class="btn btn-primary">Update Bin</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @section('footer')
 <!-- Modal -->
 <script>
- 
+ $(document).ready(function () {
+    $('a[data-toggle="modal"]').on('click', function (e) {
+        e.preventDefault(); 
+        var updateBinURL = $(this).data('update-url');
+        $('#confirmUpdateBinButton').attr('href', updateBinURL);
+        $('#confirmUpdateBinModal').appendTo("body").modal('show');
+        //$('#confirmUpdateBinModal').modal('show');
+    });
+    $('#confirmUpdateBinButton').on('click', function () {
+        var updateBinURL = $(this).attr('href');
+        window.location.href = updateBinURL;
+    });
+});
+ $('#cancelButton').on('click', function() {
+    $('#confirmUpdateBinModal').modal('hide');
+});
+
+
 </script>
 @endsection

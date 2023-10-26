@@ -20,6 +20,7 @@ use App\Http\Controllers\TransferController;
 use App\Http\Controllers\PickorderController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\CyclecountController;
+use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\EmployeeAuthController;
 
 
@@ -196,6 +197,16 @@ Route::middleware('employee.auth')->group(function () {
     Route::get('dashboard', [PdfController::class, 'printchallan'])->name('employee.dashboard');
     // ...
 });
+Route::get('/returnPickOrder', function () {
+    return view('admin.return.return');
+})->name('pick-order.index');
+
+Route::post('/search-transection', [ReturnController::class, 'search'])->name('search.transection');
+Route::get('/get-rack-info/{warehouse}', [ReturnController::class, 'getRackInfo'])->name('get.Rack.Info');
+
+
+
+
 
 
 

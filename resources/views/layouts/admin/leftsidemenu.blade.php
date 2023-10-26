@@ -9,8 +9,7 @@
                             <ul class="vertical-nav-menu">
 
                              
-                            	<li class="app-sidebar__heading">Main Menu </li>
-                            	 <li class="">
+                                 <li class="">
 
                                     
 
@@ -31,7 +30,7 @@
 
                                 
                             @if($permission->contains('permission', '4'))
-                                <li class="app-sidebar__heading">Products</li>
+                                <li class="app-sidebar__heading">Menus</li>
                                 
                                 <li class="{{ (request()->segment(1) == 'product') ? 'mm-active' : '' }}">
                                     <a href="#">
@@ -211,36 +210,20 @@
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
-                                    
+                                  <!--  
                                     <li>
                                             <a href="{{route('pendingcyclecount')}}" class="{{ (Request::is('cyclecount/pending')) ? 'mm-active' : '' }}">
                                                 <i class="metismenu-icon"></i>
                                                 Pending Cycle Count List
                                             </a>
                                     </li>
-
+                                    !-->
                                     <li>
                                             <a href="{{route('completedcyclecount')}}" class="{{ (Request::is('cyclecount/completed')) ? 'mm-active' : '' }}">
                                                 <i class="metismenu-icon"></i>
                                                 Completed Cycle Count List
                                             </a>
                                     </li>
-
-                                    
-                                        
-                                        
-
-                                        
-                                        
-                                        
-                                        
-                                        
-
-                                        
-                                       
-                                        
-                                        
-                                        
                                     </ul>
                                 </li>
 
@@ -386,6 +369,18 @@
 
 
                             </li>
+                            
+                             <li>
+                                            <a href="{{route('pick-order.index')}}" class="{{ (Request::is('returnPickOrder')) ? 'mm-active' : '' }}">
+
+                                        <i class="metismenu-icon pe-7s-user "></i>
+
+                                        Return 
+
+                                        <i class="metismenu-state-icon"></i>
+
+                                    </a>
+                                        </li>
                             
 
                                 

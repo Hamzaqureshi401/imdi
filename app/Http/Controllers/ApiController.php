@@ -43,6 +43,27 @@ class ApiController extends Controller
             return response()->json(['status' => false,'msg'=>"Failed to Login"], 200);
         }
 
+        // $credentials = $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required'
+        // ]);
+        // if (Auth::attempt($credentials)) {
+        //     $user = Auth::user();
+        //     $token = md5(time()) . '.' . md5($request->email);
+        //     $user->forcefill([
+        //         'api_token' => $token
+        //     ])->save();
+        //     return response()->json([
+        //         'code' => '200' , 
+        //         'status'=>'success' , 
+        //         'message'=>'User Login Successfully!' , 
+        //         'data' => $user
+        //     ]);
+        // }
+        // return response()->json([
+        //     'message' => 'Credentials Do no match'
+        // ]);
+
     }
  
     function startcyclecount(Request $request)
@@ -105,6 +126,7 @@ class ApiController extends Controller
    
     function getmastercases($id=0)
    {
+    //dd(Auth::user()->role);
         if($id==0)
         {
             $mc=Mastercase::get();

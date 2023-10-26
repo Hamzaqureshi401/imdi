@@ -17,4 +17,7 @@ class PalletLabel extends Model
         'status',
                
      ];
+     public function wareHouse(){
+         return $this->belongsTo(Warehouse::class,'warehouse','id');
+     }
 }

@@ -15,4 +15,9 @@ class Rackinfo extends Model
         'format',
         'user',
      ];
+
+     public function binlocation(){
+
+        return $this->hasMany(Binlocation::class,'row_id','id');
+    }
 }

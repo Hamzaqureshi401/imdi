@@ -21,4 +21,11 @@ class Pickorder extends Model
         'pick_by',
         'pick_date',      
      ];
+
+     public function masterCase(){
+         return $this->belongsTo(Mastercase::class,'mc_id','id');
+     }
+     public function palletlabel(){
+         return $this->hasOne(PalletLabel::class,'id','label_id');
+     }
 }

@@ -6,7 +6,9 @@ use App\Models\Cyclecount;
 use Illuminate\Http\Request;
 use App\Models\Cyclecountlocation;
 use App\Models\Permission;
+use App\Models\Binlocation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class CyclecountController extends Controller
@@ -83,7 +85,8 @@ class CyclecountController extends Controller
     {
         //dd(1);
         $cycleCount = Cyclecount::where('id' , $id)->first();
-        return view("admin.cyclecount.completed_cycle_detail" , compact('cycleCount'));
+        $binlocation = Binlocation::get();
+        return view("admin.cyclecount.completed_cycle_detail" , compact('cycleCount' , 'binlocation'));
     
     }
 
@@ -108,15 +111,22 @@ class CyclecountController extends Controller
     public function update(Request $request, $id){
 
     $cycleCount = Cyclecountlocation::find($id);
+    $p = $cycleCount->pallet_no;
 
     if ($cycleCount) {
         $cycleCount->binlocation->labelid = $cycleCount->pallet_no;
         if($cycleCount->pallet_no > 0){
-            $status = 1;
+           $cycleCount->binlocation->status = 1;
+           $query =  Binlocation::get();
+           $binlocation = $query->where('labelid' , $p)->first();
+           $cycleCount->binlocation->rcid = $binlocation->rcid;
+           $cycleCount->binlocation->mcid = $binlocation->mcid;
         }else{
-            $status = 0;
+            $cycleCount->binlocation->status = 0;
+            $cycleCount->binlocation->rcid = 0;
+            $cycleCount->binlocation->mcid = 0;
         }
-        $cycleCount->binlocation->status = $status;
+        
         $cycleCount->binlocation->save();
         return redirect()->back()->with('success' , 'Bin Location Updated!');
     } else {

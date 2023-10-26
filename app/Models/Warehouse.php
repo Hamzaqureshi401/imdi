@@ -13,4 +13,9 @@ class Warehouse extends Model
         'address',
         'is_active',
      ];
+
+     public function rackInfo(){
+
+        return $this->hasMany(Rackinfo::class,'warehouse','id');
+    }
 }

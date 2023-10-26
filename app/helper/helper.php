@@ -265,12 +265,22 @@ function getbinlocations($row_id)
 function get_pl_location($id)
 {
 	$b=Binlocation::where('labelid',$id)->first();
-	return $b->name;
+	if(!empty($b)){
+		return $b->name;
+	}else{
+		return 'Not Found!';
+	}
+	
 }
 function get_bin_location($id)
 {
+	//dd($id);
 	$b=Binlocation::where('labelid',$id)->first();
-	return $b->id;
+	if(!empty($b)){
+		return $b->id;
+	}else{
+		return 'Record not Found!';
+	}
 }
 function getbindetail($id)
 {
