@@ -204,6 +204,12 @@ Route::get('/returnPickOrder', function () {
 Route::post('/search-transection', [ReturnController::class, 'search'])->name('search.transection');
 Route::get('/get-rack-info/{warehouse}', [ReturnController::class, 'getRackInfo'])->name('get.Rack.Info');
 
+Route::get('Return/confirmed', [ReturnController::class, 'confirmedreturn'])->name('confirmedreturn');
+Route::get('Return/pending', [ReturnController::class, 'pendingreturn'])->name('pendingreturn');
+Route::get('Return/view', [ReturnController::class, 'view'])->name('return_list');
+Route::post('/storeTransection', [ReturnController::class, 'storeTransection'])->name('store.Transection');
+
+
 
 
 

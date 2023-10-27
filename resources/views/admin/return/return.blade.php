@@ -14,6 +14,11 @@ Return Transection
          </div>
       </div>
       <div class="card-body">
+          @if(session('message'))
+         <div class="alert alert-success">
+            {{ session('message') }}
+         </div>
+         @endif
          <div style="display:none;" class="alert alert-danger alert-dismissible fade show print-error-msg" role="alert">
             </button>
             <ul>

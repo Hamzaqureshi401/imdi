@@ -28,4 +28,7 @@ class Pickorder extends Model
      public function palletlabel(){
          return $this->hasOne(PalletLabel::class,'id','label_id');
      }
+     public function binlocation(){
+         return $this->hasOne(Binlocation::class,'id','bin_id');
+     }
 }
