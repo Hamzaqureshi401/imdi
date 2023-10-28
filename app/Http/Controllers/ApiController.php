@@ -26,43 +26,43 @@ class ApiController extends Controller
     function login(Request $request)
     {
       
-         $credentials = $request->only(['email', 'password']);
+        //  $credentials = $request->only(['email', 'password']);
     
-          if (Auth::attempt($credentials)) {
+        //   if (Auth::attempt($credentials)) {
               
-           $result["status"]=true;
-           $result["msg"]="Login Successfull";
-           $result["id"]=Auth::user()->id;     
-           $result["name"]=Auth::user()->name;
-           $result["role"]=Auth::user()->role;
+        //    $result["status"]=true;
+        //    $result["msg"]="Login Successfull";
+        //    $result["id"]=Auth::user()->id;     
+        //    $result["name"]=Auth::user()->name;
+        //    $result["role"]=Auth::user()->role;
          
-           return response()->json($result, 200);
+        //    return response()->json($result, 200);
            
-        }
-        else{
-            return response()->json(['status' => false,'msg'=>"Failed to Login"], 200);
-        }
-
-        // $credentials = $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required'
-        // ]);
-        // if (Auth::attempt($credentials)) {
-        //     $user = Auth::user();
-        //     $token = md5(time()) . '.' . md5($request->email);
-        //     $user->forcefill([
-        //         'api_token' => $token
-        //     ])->save();
-        //     return response()->json([
-        //         'code' => '200' , 
-        //         'status'=>'success' , 
-        //         'message'=>'User Login Successfully!' , 
-        //         'data' => $user
-        //     ]);
         // }
-        // return response()->json([
-        //     'message' => 'Credentials Do no match'
-        // ]);
+        // else{
+        //     return response()->json(['status' => false,'msg'=>"Failed to Login"], 200);
+        // }
+
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = md5(time()) . '.' . md5($request->email);
+            $user->forcefill([
+                'api_token' => $token
+            ])->save();
+            return response()->json([
+                'code' => '200' , 
+                'status'=>'success' , 
+                'message'=>'User Login Successfully!' , 
+                'data' => $user
+            ]);
+        }
+        return response()->json([
+            'message' => 'Credentials Do no match'
+        ]);
 
     }
  
