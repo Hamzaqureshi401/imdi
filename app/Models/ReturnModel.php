@@ -18,11 +18,23 @@ class ReturnModel extends Model
         'rc_id',
         'bin_id',
         'qty',
-        'return_by',
+        'warehouse_id',
         'return_date',
         'user',
-        'return_status',
+        'item_condition',
         'return_qty',
         
      ];
+
+     public function masterCase(){
+
+        return $this->belongsTo(Mastercase::class,'mc_id','id');
+    }
+    public function binlocation(){
+
+        return $this->belongsTo(Binlocation::class,'bin_id','id');
+    }
+     public function warehouse(){
+        return $this->belongsTo(Warehouse::class);
+    }
 }

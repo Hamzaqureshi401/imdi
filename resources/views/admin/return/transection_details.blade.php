@@ -51,7 +51,7 @@
 
                                                    <th>Quantity</th>
                                                    <th>Select Whare House</th>
-                                                   <th>Whare Location</th>
+                                                   <th>Item Condition</th>
                                                    <th>Return MS Qty </th>
                                                    <th>Action</th>
                                                 </tr>
@@ -87,7 +87,7 @@
 
                                                       <input type="hidden" name="user[]" value="{{ Auth::id() }}">
 
-                                                      <input type="hidden" name="return_status[]" value="">
+                                                      <input type="hidden" name="return_status[]" value="0">
 
                                                       
 
@@ -105,8 +105,8 @@
                                                       <td>{{ $result->qty }}</td>
                                                       <td>
                                                          <div class="form-group">
-                                                            <select name="warehouse_select[]" class="form-control warehouse_select" data-id="{{ $result->id }}">
-                                                               <option>Select Warehouse</option>
+                                                            <select name="warehouse_id[]" class="form-control warehouse_select" data-id="{{ $result->id }}">
+                                                               <option value="">Select Warehouse</option>
                                                                @foreach($warehouses as $warehouse)
                                                                
                                                                <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse }}</option>
@@ -114,7 +114,16 @@
                                                             </select>
                                                          </div>
                                                       </td>
-                                                      <td id="rack_info_cell-{{ $result->id }}"></td>
+                                                      <!-- <td id="rack_info_cell-{{ $result->id }}"></td> -->
+                                                      <td>
+                                                         <div class="form-group">
+                                                            <select name="item_condition[]" class="form-control">
+                                                               <option value="">Select Condition</option>
+                                                               <option value="Demage">Demage</option>
+                                                               <option value="Original">Original</option>
+                                                            </select>
+                                                         </div>
+                                                      </td>
                                                       <td>
                                                          <div class="form-group">
                                                             <input type="number" class="form-control" name="return_qty[]">
@@ -150,32 +159,25 @@
 </div>
 <!-- Modal -->
 <script>
-   $(document).ready(function() {
-       $('.warehouse_select').on('change', function() {
-           var selectedWarehouse = $(this).val();
-           var rowId = $(this).data('id');
-           var rackInfoCell = $('#rack_info_cell-' + rowId);
-           if (selectedWarehouse) {
-               $.ajax({
-                   type: 'GET',
-                   url: '/get-rack-info/' + selectedWarehouse, 
-                   success: function(data) {
-                       rackInfoCell.html(data);
-                   },
-                   error: function(xhr, status, error) {
-                       console.error(error);
-                   }
-               });
-           } else {
-               rackInfoCell.html('');
-           }
-       });
-   });
    // $(document).ready(function() {
-   //     // Attach a click event handler to the button with the ID "submitForm"
-   //     $('#submitForm').click(function() {
-   //         // Trigger the form submission
-   //         $('#form').submit();
+   //     $('.warehouse_select').on('change', function() {
+   //         var selectedWarehouse = $(this).val();
+   //         var rowId = $(this).data('id');
+   //         var rackInfoCell = $('#rack_info_cell-' + rowId);
+   //         if (selectedWarehouse) {
+   //             $.ajax({
+   //                 type: 'GET',
+   //                 url: '/get-rack-info/' + selectedWarehouse, 
+   //                 success: function(data) {
+   //                     rackInfoCell.html(data);
+   //                 },
+   //                 error: function(xhr, status, error) {
+   //                     console.error(error);
+   //                 }
+   //             });
+   //         } else {
+   //             rackInfoCell.html('');
+   //         }
    //     });
    // });
 </script>

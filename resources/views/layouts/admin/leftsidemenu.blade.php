@@ -251,6 +251,7 @@
 
                                         </a>
                                 @endif
+                                
 
                                
                                 
@@ -332,57 +333,53 @@
                                                 Pending Transfer List
                                             </a>
                                     </li>
-
                                     <li>
                                             <a href="{{route('pickedtransfer')}}" class="{{ (Request::is('transfer/picked')) ? 'mm-active' : '' }}">
                                                 <i class="metismenu-icon"></i>
                                                 Picked Transfer List
                                             </a>
                                     </li>
-
                                     <li>
                                             <a href="{{route('placedtransfer')}}" class="{{ (Request::is('transfer/placed')) ? 'mm-active' : '' }}">
                                                 <i class="metismenu-icon"></i>
                                                 Placed Transfer List
                                             </a>
                                     </li>
-                                        
-                                        
-
-                                        
-                                        
-                                        
-                                        
-                                        
-
-                                        
-                                       
-                                        
-                                        
-                                        
                                     </ul>
                                 </li>
                                 @endif
-                              
-
-                                        
-
-
                             </li>
-                            
-                             <li>
-                                            <a href="{{route('pick-order.index')}}" class="{{ (Request::is('returnPickOrder')) ? 'mm-active' : '' }}">
-
-                                        <i class="metismenu-icon pe-7s-user "></i>
-
-                                        Return 
-
-                                        <i class="metismenu-state-icon"></i>
-
+                    
+                    
+                            <li class="{{ (request()->segment(1) == 'transfer') ? 'mm-active' : '' }}">
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-angle-right-circle"></i>
+                                        Return
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
-                                        </li>
-                            
-
+                                    
+                                <ul>    
+                                    <li>
+                                          <a href="{{route('pick-order.index')}}" class="{{ (Request::is('returnPickOrder')) ? 'mm-active' : '' }}">
+                                            <i class="metismenu-icon"></i>
+                                            Return 
+                                          </a>
+                                    </li>
+                                    <li>
+                                            <a href="{{route('pendingreturn')}}" class="{{ (Request::is('Return/pending')) ? 'mm-active' : '' }}">
+                                                <i class="metismenu-icon"></i>
+                                                Pending Return List
+                                            </a>
+                                    </li>
+                                    <li>
+                                            <a href="{{route('confirmedreturn')}}" class="{{ (Request::is('Return/confirmed')) ? 'mm-active' : '' }}">
+                                                <i class="metismenu-icon"></i>
+                                                Confirmed Return List
+                                            </a>
+                                    </li>
+                                </ul>
+                            </li>
+                                
                                 
 
 
