@@ -44,10 +44,10 @@
                                        <td>{{ $r->return_date }}</td>
                                        <td>{{ $r->trans_no }}</td>
                                        <td>{{ $r->invoice_no }}</td>
-                                       <td>{{ $r->masterCase->name }}</td>
+                                       <td>{{ $r->masterCase->name ?? '--'}}</td>
                                        <td>{{ $r->return_qty }}</td>
                                        <td>{{ $r->qty }}</td>
-                                       <td>{{ $r->warehouse->warehouse }}</td>
+                                       <td>{{ $r->warehouse->warehouse ?? '--'}}</td>
                                        <td>{{ $r->item_condition }}</td>
                         
                                        </tr>
