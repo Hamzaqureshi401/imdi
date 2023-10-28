@@ -68,8 +68,4 @@ Route::get('pendingreturn', [ReturnController::class, 'pendingreturn']);
 });
 });
 
-Route::get('/get-rack-info/{warehouse}', [ReturnController::class, 'getRackInfo'])->name('get.Rack.Info');
 
-Route::get('Return/confirmed', [ReturnController::class, 'confirmedreturn'])->name('confirmedreturn');
-Route::get('Return/pending', [ReturnController::class, 'pendingreturn'])->name('pendingreturn');
-Route::get('Return/view', [ReturnController::class, 'view'])->name('return_list');
