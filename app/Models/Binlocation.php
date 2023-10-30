@@ -18,4 +18,7 @@ class Binlocation extends Model
         'rcid',
         'custom',  
      ];
+     public function palletLabel(){
+         return $this->hasOne(PalletLabel::class,'palletno','labelid');
+     }
 }

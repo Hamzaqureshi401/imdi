@@ -11,6 +11,6 @@ class Cyclecountlocation extends Model
 
     public function binlocation(){
 
-        return $this->hasOne(Binlocation::class,'name','bl_name');
+        return $this->hasOne(Binlocation::class,'id','bl_id');
     }
 }

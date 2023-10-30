@@ -108,8 +108,9 @@ Manage Cycle Count
                                                    <th>Sr</th>
                                                    <th>Bin Location No.</th>
                                                    <th>Pallet No.</th>
-                                                   <!-- <th>Rc Id</th>
-                                                   <th>Mc Id</th> -->
+                                                   <th>Qty</th>
+                                                    <th>Rc Id</th>
+                                                   <th>Mc Id</th> 
 
                                                    <th class="text-center">Action</th>
                                                 </tr>
@@ -127,8 +128,9 @@ Manage Cycle Count
                                                       {{ $cycle->binlocation->labelid }}
                                                       @endif
                                                    </td>
-                                                   <!-- <td>{{ $cycle->binlocation->rcid}}</td>
-                                                   <td>{{ $cycle->binlocation->mcid}}</td> -->
+                                                   <td>{{ $cycle->binlocation->palletLabel->avl_qty ?? '--' }}</td>
+                                                    <td>{{ $cycle->binlocation->rcid}}</td>
+                                                   <td>{{ $cycle->binlocation->mcid}}</td> 
                                                    <td>
                                                       <div class="centered-icon text-center">
                                                          @if ($cycle->binlocation->labelid == $cycle->pallet_no)

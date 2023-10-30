@@ -108,7 +108,7 @@ class CyclecountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id){ 
 
     $cycleCount = Cyclecountlocation::find($id);
     $p = $cycleCount->pallet_no;
@@ -126,8 +126,13 @@ class CyclecountController extends Controller
             $cycleCount->binlocation->rcid = 0;
             $cycleCount->binlocation->mcid = 0;
         }
-        
+        //dd($cycleCount->binlocation->first()->palletLabel);
+        if(!empty($cycleCount->binlocation->first()->palletLabel)){
+            $cycleCount->binlocation->first()->palletLabel->avl_qty = 0;
+            $cycleCount->binlocation->first()->palletLabel->save();
+        }
         $cycleCount->binlocation->save();
+        
         return redirect()->back()->with('success' , 'Bin Location Updated!');
     } else {
         return redirect()->back()->with('error' , 'Cyclecountlocation Not Found!');
