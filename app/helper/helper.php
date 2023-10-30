@@ -297,7 +297,11 @@ function getlabelinfo($labelno)
 function getmastercase($id)
 {
 $m=Mastercase::where('id',$id)->first();
-return $m->name." [".$m->upc."]";
+if(empty($m)){
+    return '';
+}else{
+return $m->name." [".$m->upc."]";    
+}
 }
 
 function getmastercasefull($id)
