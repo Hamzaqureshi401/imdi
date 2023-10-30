@@ -48,7 +48,7 @@ Register New Row / Racks
                                                 <div class="col-md-3">
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label">Format:</label>
-                                                        <input name="format" id="pname" placeholder="Enter Row Format" type="text" class="form-control" pattern=".*\*.*" required title="Input must contain '*'" required>
+                                                        <input name="format" id="pname" placeholder="FIR-A*-U" type="text" class="form-control" pattern=".*\*.*" required title="Input must contain '*'" required>
                                                     </div>
                                                 </div>
 

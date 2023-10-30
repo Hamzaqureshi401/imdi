@@ -15,4 +15,8 @@ class Rcproduct extends Model
         'retail_price',
         'expiry',
      ];
+
+     public function product(){
+        return $this->belongsTo(Product::class, 'p_id');
+     }
 }

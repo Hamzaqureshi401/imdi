@@ -168,12 +168,18 @@ class RackController extends Controller
         //
         //
         $this->validate($request,[
-            'title'=>'required',
+            'rowtitle'=>'required',
+            'length'=>'required',
+            'format'=>'required',
          ]);
+
+        //dd($request->all());
 
             
          $res=Rackinfo::where('warehouse',$request->warehouse)
          ->where('rowtitle',$request->rowtitle)->count();
+
+         
            
         if($res==0)
         {
@@ -197,6 +203,8 @@ class RackController extends Controller
                     $b->custom="0";
                     $b->save();
                 }
+
+                dd($b);
             
             return redirect()->back()->with('message', 'Record Updated Successfully');
         }

@@ -52,7 +52,7 @@ Manage Warehouse Rows / Racks
                                     @csrf
                                          
 
-                                    <div class="row">
+                                    <div class="row"> 
                                                 <div class="col-md-3">
                                                     <div class="position-relative mb-3">
                                                         <label for="exampleEmail11" class="form-label">Row Title:</label>
@@ -68,7 +68,7 @@ Manage Warehouse Rows / Racks
                                                 <div class="col-md-3">
                                                     <div class="position-relative mb-3">
                                                         <label for="examplePassword11" class="form-label">Format:</label>
-                                                        <input name="format" id="pname" value="{{$wh->format}}" placeholder="Enter Row Format" type="text" class="form-control" required>
+                                                        <input name="format" id="pname" value="{{$wh->format}}" placeholder="FIR-A*-U" type="text" class="form-control" required>
                                                             <span class="text-danger">Please use * where You want series</span>
                                                     </div>
                                                 </div>

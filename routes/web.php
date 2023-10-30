@@ -208,6 +208,8 @@ Route::get('Return/confirmed', [ReturnController::class, 'confirmedreturn'])->na
 Route::get('Return/pending', [ReturnController::class, 'pendingreturn'])->name('pendingreturn');
 Route::get('Return/view', [ReturnController::class, 'view'])->name('return_list');
 Route::post('/storeTransection', [ReturnController::class, 'storeTransection'])->name('store.Transection');
+Route::get('/get-other-data/{warehouse}', [HomeController::class, 'getOtherData'])->name('get.other.data');
+
 
 
 
