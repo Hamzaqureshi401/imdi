@@ -59,7 +59,7 @@ class CheckinController extends Controller
         //
        // $rows=Rackinfo::get();
        //return view('admin.checkin.list',compact('rows'));
-       $pr=Received::get();
+       $pr=Received::orderBy('created_at', 'desc')->get();
         
         return view('admin.checkin.unlist_index',compact('pr'));
         

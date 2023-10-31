@@ -9,7 +9,7 @@
                             <ul class="vertical-nav-menu">
 
                              
-                                 <li class="">
+                            	 <li class="">
 
                                     
 
@@ -368,15 +368,10 @@
                                     <li>
                                             <a href="{{route('pendingreturn')}}" class="{{ (Request::is('Return/pending')) ? 'mm-active' : '' }}">
                                                 <i class="metismenu-icon"></i>
-                                                Pending Return List
+                                             Return List
                                             </a>
                                     </li>
-                                    <li>
-                                            <a href="{{route('confirmedreturn')}}" class="{{ (Request::is('Return/confirmed')) ? 'mm-active' : '' }}">
-                                                <i class="metismenu-icon"></i>
-                                                Confirmed Return List
-                                            </a>
-                                    </li>
+                                    
                                 </ul>
                             </li>
                                 

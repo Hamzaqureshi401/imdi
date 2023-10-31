@@ -26,8 +26,7 @@ class ReturnModel extends Model
         
      ];
 
-     public function masterCase(){
-
+    public function masterCase(){
         return $this->belongsTo(Mastercase::class,'mc_id','id');
     }
     public function binlocation(){

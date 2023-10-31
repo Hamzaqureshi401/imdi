@@ -64,7 +64,8 @@
                                              <th>{{$q-$c}}</th>
                                              <td style="text-align:center;">
                                                     <div role="group" class="btn-group-lg btn-group btn-group-toggle">
-
+                                                        
+                                                        
                                                         
                                                         <a href="{{ route('palletlabels',[$u->id,$q,$u->mcid]) }}">
                                                             <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Label">

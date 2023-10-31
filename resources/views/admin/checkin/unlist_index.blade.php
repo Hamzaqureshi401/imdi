@@ -57,7 +57,7 @@
                                          <tr>
                                              <td>{{$i}}</td>                                
                                              <td>{{getwarehouse($u->warehouse)}}</td>
-                                             <td>{{$u->arr_date}}</td>
+                                             <td>{{$u->created_at}}</td>
                                              <td>{{$u->order_no}}</td>
                                              <td>{{$u->container_no}}</td>
                                              

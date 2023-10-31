@@ -179,7 +179,7 @@ class RackController extends Controller
          $res=Rackinfo::where('warehouse',$request->warehouse)
          ->where('rowtitle',$request->rowtitle)->count();
 
-         
+
            
         if($res==0)
         {
@@ -204,7 +204,7 @@ class RackController extends Controller
                     $b->save();
                 }
 
-                dd($b);
+               // dd($b);
             
             return redirect()->back()->with('message', 'Record Updated Successfully');
         }

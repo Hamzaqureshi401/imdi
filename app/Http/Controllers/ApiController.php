@@ -12,6 +12,8 @@ use App\Models\Warehouse;
 use App\Models\Cyclecount;
 use App\Models\Mastercase;
 use App\Models\Binlocation;
+use App\Models\ReturnModel;
+use App\Models\StockPlacement;
 use App\Models\PalletLabel;
 use Illuminate\Http\Request;
 use App\Models\Mastercaseproduct;
@@ -102,6 +104,36 @@ class ApiController extends Controller
 
     }
 
+    
+   function returnlist($id=0)
+   {
+    if($id==0)
+    {
+        
+        $list=DB::table('returns')
+            ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
+            ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
+            ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
+            ->orderBy('returns.id', 'desc')
+            ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
+            ->get();
+    }
+    else{
+        $list=DB::table('returns')
+            ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
+            ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
+            ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
+            ->orderBy('returns.id', 'desc')
+            ->where('id',$id)
+            ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
+            ->get();
+
+        
+    }
+
+    return response()->json($list, 200);
+   }
+    
      function cyclecountlocations($ccid)
      {
         $ccl=Cyclecountlocation::where("cc_id",$ccid)->get();
@@ -321,7 +353,7 @@ class ApiController extends Controller
         $c=getassignedpallet($u->id);
         $pend=getassignedpallet_status($u->id,"0");
         $comp=getassignedpallet_status($u->id,"1");
-        if($q!=$c)
+        if($c>0)
         {
             $tempArray = [
                 "id"=>$u->id,
@@ -362,7 +394,7 @@ class ApiController extends Controller
         $pc=$u->ti*$u->hi;
         $q=ceil($u->mc_quantity/$pc);
         $c=getassignedpallet($u->id);
-        if($c>0)
+        if($q!=$c)
         {
             $tempArray = [
                 "id"=>$u->id,
@@ -512,11 +544,27 @@ class ApiController extends Controller
    {
         if($id==0)
         {
-            $trs=Transfer::get();
+           
+            $trs=DB::table('transfers')
+           
+            ->join('binlocations as bp', 'transfers.p_bid', '=', 'bp.id')
+            ->join('binlocations as bn', 'transfers.n_bid', '=', 'bn.id')
+             ->join('warehouses as wp', 'transfers.p_warehouse', '=', 'wp.id')
+            ->join('warehouses as wn', 'transfers.n_warehouse', '=', 'wn.id')
+            ->orderBy('transfers.id', 'desc')
+           ->select('transfers.*','bp.barcode as p_location_barcode','bn.barcode as n_location_barcode','wp.warehouse as p_warehousename','wn.warehouse as n_warehousename') 
+            ->get();
 
         }
         else{
-            $trs=Transfer::where('id',$id)->get();
+           $trs=DB::table('transfers')
+           
+            ->join('binlocations as bp', 'transfers.p_bid', '=', 'bp.id')
+            ->join('binlocations as bn', 'transfers.n_bid', '=', 'bn.id')
+            ->where('transfers.id',$id)
+            ->orderBy('transfers.id', 'desc')
+            ->select('transfers.*','bp.barcode as p_location_barcode','bn.barcode as n_location_barcode') 
+            ->get();
         }
 
     return response()->json($trs, 200);
@@ -531,14 +579,36 @@ class ApiController extends Controller
 
    function pickedtransfers()
    {
-    $trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','0')->get();
+           $trs=DB::table('transfers')
+           
+            ->join('binlocations as bp', 'transfers.p_bid', '=', 'bp.id')
+            ->join('binlocations as bn', 'transfers.n_bid', '=', 'bn.id')
+            
+            ->join('warehouses as wp', 'transfers.p_warehouse', '=', 'wp.id')
+            ->join('warehouses as wn', 'transfers.n_warehouse', '=', 'wn.id')
+            
+            ->orderBy('transfers.id', 'desc')
+            ->select('transfers.*','bp.barcode as p_location_barcode','bn.barcode as n_location_barcode','wp.warehouse as p_warehousename','wn.warehouse as n_warehousename') 
+            ->where('transfers.pick_status','0')->where('transfers.placed_status','0')
+            ->get();
+    //$trs=Transfer::orderBy('id', 'desc')->where('pick_status','0')->where('placed_status','0')->get();
     return response()->json($trs, 200);
 
    }
 
    function placedtransfers()
    {
-    $trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','1')->get();
+        $trs=DB::table('transfers')
+           
+            ->join('binlocations as bp', 'transfers.p_bid', '=', 'bp.id')
+            ->join('binlocations as bn', 'transfers.n_bid', '=', 'bn.id')
+              ->join('warehouses as wp', 'transfers.p_warehouse', '=', 'wp.id')
+            ->join('warehouses as wn', 'transfers.n_warehouse', '=', 'wn.id')
+            ->orderBy('transfers.id', 'desc')
+            ->select('transfers.*','bp.barcode as p_location_barcode','bn.barcode as n_location_barcode','wp.warehouse as p_warehousename','wn.warehouse as n_warehousename')
+            ->where('transfers.pick_status','1')->where('transfers.placed_status','0')
+            ->get();
+    //$trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','0')->get();
     return response()->json($trs, 200);
 
    }
@@ -571,15 +641,117 @@ class ApiController extends Controller
     }
 
    }
+   
+   
+   function getdatafortransfer($barcode)
+   {
+    $bl=Binlocation::where("barcode",$barcode);
+    if($bl->count()>0)
+    {
+        $bl=$bl->first();
+        if($bl->status==1)
+        {
+            $p=getlabelinfo($bl->labelid);
+        return response()->json(["status"=>true,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
+
+        }
+        else{
+            return response()->json(["status"=>false,"msg"=>"Location is Emtpy"], 200);
+        }
+    }
+    else{
+        // No Location is Exist
+        return response()->json(["status"=>false,"msg"=>"Location Does not Exist"], 200);
+    }
+   }
+   
+     function newtransfer(Request $request)
+   {
+
+    $warehouse=$request->warehouse;
+    $location=$request->binlocation;
+    $pid=$request->pid;
+    $bid=$request->bid;
+    $p = PalletLabel::find($pid);
+    $p_warehouse=$p->warehouse;
+    $p_pl_no=$p->palletno;
+    $p_pid=$p->id;
+    $p->warehouse=$warehouse;
+    $p->update();
+
+    
+
+    $trans = new Transfer();
+    $trans->p_warehouse=$p_warehouse;
+    $trans->p_pl_no=$p_pl_no;
+    $trans->p_pid=$p_pid;
+    $trans->p_location=$request->bin_location_name;
+    $trans->p_bid=$bid;
+    $trans->n_warehouse=$warehouse;
+    $trans->n_pl_no=$p->palletno;
+    $trans->n_pid=$p->id;
+    $trans->n_location=$location;
+    $trans->n_bid=$location;
+    $trans->pick_status=0;
+    $trans->placed_status=0;
+    $trans->save();
+
+    Binlocation::where("id",$bid)->update([
+        'labelid'=>'',
+        'mcid'=>'',
+        'rcid'=>'',
+        'status'=>'0'
+
+    ]); 
+
+    // Update of Binlocation
+    Binlocation::where("id",$location)->update([
+        'labelid'=>$p->palletno,
+        'mcid'=>$p->mc_id,
+        'rcid'=>$p->rc_id,
+        'status'=>'1'
+
+    ]);
+    StockPlacement::where('label_id',$pid)->update([
+        'bin_id'=>$location,
+    ]);
+
+    return response()->json($trans, 200);
+
+   }
+
+   
+   
     function getcyclecounts($id=0)
    {
         if($id==0)
         {
-           $cc=Cyclecount::orderBy('id', 'desc')->where('status','1')->get(); 
+           $cc=DB::table('cyclecounts')
+            ->join('users', 'cyclecounts.user', '=', 'users.id')
+            ->join('warehouses', 'cyclecounts.warehouse', '=', 'warehouses.id')
+            ->join('rackinfos', 'cyclecounts.rack', '=', 'rackinfos.id')
+            ->join('binlocations as bs', 'cyclecounts.start_location', '=', 'bs.id')
+            ->join('binlocations as bn', 'cyclecounts.end_location', '=', 'bn.id')
+            ->orderBy('cyclecounts.id', 'desc')
+            ->where('cyclecounts.status','1')
            
+            ->select('cyclecounts.*', 'users.name AS username','rackinfos.rowtitle AS rackname','warehouses.warehouse AS warehouse','bs.name as start_location_name','bn.name as end_location_name')
+            ->get();
+
         }
         else{
-            $cc=Cyclecount::orderBy('id', 'desc')->where('status','1')->where('id',$id)->get();
+            $cc=DB::table('cyclecounts')
+            ->join('users', 'cyclecounts.user', '=', 'users.id')
+            ->join('warehouses', 'cyclecounts.warehouse', '=', 'warehouses.id')
+            ->join('rackinfos', 'cyclecounts.rack', '=', 'rackinfos.id')
+             ->join('binlocations as bs', 'cyclecounts.start_location', '=', 'bs.id')
+            ->join('binlocations as bn', 'cyclecounts.end_location', '=', 'bn.id')
+            ->orderBy('cyclecounts.id', 'desc')
+            ->where('cyclecounts.status','1')
+            ->where('cyclecounts.id',$id)
+            ->select('cyclecounts.*', 'users.name AS username','rackinfos.rowtitle AS rackname','warehouses.warehouse AS warehouse','bs.name as start_location_name','bn.name as end_location_name')
+            ->get();
+            
         }
 
     return response()->json($cc, 200);

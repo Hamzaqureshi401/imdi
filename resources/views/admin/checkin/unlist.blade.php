@@ -60,14 +60,14 @@
                                              <td style="text-align:center;"><center>{!!barcode_gen($u->barcode)!!}</center>
                                              {{$u->barcode}}
                                              </td>
-                                             <td>@if($pl->checkin_status==""|| $pl->checkin_status==NULL)
+                                             <td>@if($pl->checkin_status==""|| $pl->checkin_status==NULL|| $pl->checkin_status==0)
                                                 <b class="text-danger">Pending</b>
                                                 @else
                                                 <b class="text-success">Checked in Completed</b>
                                                 @endif
                                              </td>
                                              <td>
-                                                @if($pl->checkin_status==""|| $pl->checkin_status==NULL)
+                                                @if($pl->checkin_status==""|| $pl->checkin_status==NULL || $pl->checkin_status==0)
                                                 <b class="text-danger">Pending</b>
                                                 @else
                                                 <b class="text-primary">{{$pl->checkin_by}}<br>{{$pl->checkin_date}}</b>
@@ -75,7 +75,7 @@
                                              </td>
                                             
                                              <td style="text-align:center;">
-                                             @if($pl->checkin_status==""|| $pl->checkin_status==NULL)
+                                             @if($pl->checkin_status==""|| $pl->checkin_status==NULL || $pl->checkin_status==0)
                                                     <div role="group" class="btn-group-lg btn-group btn-group-toggle">
 
                                                         

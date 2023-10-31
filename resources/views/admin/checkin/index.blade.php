@@ -130,7 +130,7 @@
                                                                                       @endif
                                                                                        "></i>
                                                                         </div>
-                                                                        <div class="widget-numbers"><h5><b class="rn">{{$b->name}}</b><span class="rv" hidden>{{$b->id}}</span></span></h5></div>
+                                                                        <div class="widget-numbers"><h5><b class="rn">{{$b->name ?? '--'}}</b><span class="rv" hidden>{{$b->id}}</span></span></h5></div>
                                                                         <div class="widget-subheading" style="color:black;"><b>{{$b->barcode}}</b></div>
                                                                         
                                                                         @if($b->status==0)

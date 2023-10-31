@@ -21,6 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [ApiController::class, 'login']);
+
+//test place
+Route::get('ggetdatafortransfer/{barcode}', [ApiController::class, 'getdatafortransfer']);
+Route::post('nnewtransfer', [ApiController::class, 'newtransfer']);
+//test place
 Route::middleware(['auth:api'])->group(function(){
 Route::group(['middleware' => 'appAccess'], function () {
 
@@ -34,6 +39,7 @@ Route::get('binlocation/{id}', [ApiController::class, 'getbinlocation']);
 Route::get('confirmpo/{id}/{user}', [ApiController::class, 'confirmpickorder']);  
 Route::get('getmcpro/{id}', [ApiController::class, 'getmastercase_products']); 
 Route::get('recievedproducts/{id?}', [ApiController::class, 'getrecieved']);
+
 Route::get('assignedcheckin', [ApiController::class, 'getassignedcheckin']);
 Route::get('unassignedcheckin', [ApiController::class, 'getunassignedcheckin']);
 Route::get('assignedcheckinstatus/{id}', [ApiController::class, 'getassignedcheckinstatus']);
@@ -61,7 +67,7 @@ Route::get('markpickedtransfer/{tid}/{user}', [ApiController::class, 'marked_pic
 Route::get('markplacedtransfer/{tid}/{user}', [ApiController::class, 'marked_placed_transfer']);
 Route::get('getdatafortransfer/{barcode}', [ApiController::class, 'getdatafortransfer']);
 
-Route::get('return/pending/{id?}', [ApiController::class, 'getpendingreturn']);
+Route::get('returns/{id?}', [ApiController::class, 'returnlist']);
 Route::get('return/confirmed/{id?}', [ApiController::class, 'getconfirmedreturn']);
     
 Route::get('pendingreturn', [ReturnController::class, 'pendingreturn']);

@@ -237,6 +237,7 @@ class ReportController extends Controller
     public function gen_inventory(Request $request)
     {
         
+        //dd($request->all());
         
         $result = PalletLabel::select(
             'pallet_labels.id', 
@@ -256,6 +257,8 @@ class ReportController extends Controller
         ->leftJoin('binlocations', 'stock_placements.bin_id', '=', 'binlocations.id')
         ->whereNotNull('pallet_labels.avl_qty')
         ->where('pallet_labels.avl_qty', '>', 0);
+        
+       // dd($result);
         // Filter For Warehouse
         if(isset($request->warehouse))
         {
@@ -278,6 +281,7 @@ class ReportController extends Controller
         {
                 $result=$result->where('pallet_labels.palletno',$request->pallet_no);
         }
+        // dd($result);
         // Filter For Bin Location   
         if(isset($request->binlocation))
         {

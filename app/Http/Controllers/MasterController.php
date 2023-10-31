@@ -281,7 +281,7 @@ class MasterController extends Controller
     public function receivedlist()
     {
         //
-        $pr=Received::get();
+        $pr=Received::orderBy('id', 'desc')->get();
         return view('admin.mastercase.list',compact('pr'));
     }
 

@@ -24,8 +24,6 @@ Manage Cycle Count
             <tr>
                <th>Sr #</th>
                <th>Warehouse</th>
-               </th>
-               <th>Rack</th>
                <th>Start Location</th>
                <th>End Location</th>
                <th>Cycle Count By</th>
@@ -47,7 +45,6 @@ Manage Cycle Count
             <tr>
                <td>{{$i}}</td>
                <td>{{getwarehouse($u->warehouse)}}</td>
-               <td></td>
                <td>{{$fbin->name}}</td>
                <td>{{$ebin->name}}</td>
                <td>{{getusername($u->user)}}</td>
