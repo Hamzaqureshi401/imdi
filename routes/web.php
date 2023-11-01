@@ -22,6 +22,8 @@ use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\CyclecountController;
 use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\EmployeeAuthController;
+use App\Http\Controllers\PermissionController;
+
 
 
 /*
@@ -209,6 +211,10 @@ Route::get('Return/pending', [ReturnController::class, 'pendingreturn'])->name('
 Route::get('Return/view', [ReturnController::class, 'view'])->name('return_list');
 Route::post('/storeTransection', [ReturnController::class, 'storeTransection'])->name('store.Transection');
 Route::get('/get-other-data/{warehouse}', [HomeController::class, 'getOtherData'])->name('get.other.data');
+
+Route::get('/setSubPermission/{permission}/{role}', [PermissionController::class, 'setSubPermission'])->name('set.SubPermission');
+Route::post('/updateSubPermission', [PermissionController::class, 'updateSubPermission'])->name('update.SubPermission');
+
 
 
 

@@ -9,6 +9,8 @@ use App\Models\Mastercase;
 use App\Models\Binlocation;
 use App\Models\PalletLabel;
 use App\Models\Pickorder;
+use Illuminate\Support\Facades\Artisan;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +35,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Artisan::call('migrate');
+    
         $data = $this->getDashBoardData();
         $warehouses = Warehouse::get();
+
 
         //dd($data);
        

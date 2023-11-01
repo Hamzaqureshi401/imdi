@@ -5,6 +5,7 @@ use Validator;
 use App\Models\Role;
 use App\Models\Warehouse;
 use App\Models\Permission;
+use App\Models\SubPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -146,6 +147,8 @@ class RoleController extends Controller
         ];
         $role=Role::find($id);
         $permission=Permission::where('role_id',$id)->get();
+
+        //dd($permission->pluck('permission')->toArray());
         return view('admin.roles.edit',compact('permissions','permission','role'));
     }
 
@@ -163,6 +166,10 @@ class RoleController extends Controller
      
             $role = Role::find($id);
             $rid=$role->id;
+            $subPermission = SubPermission::whereIn('permission_id' , Permission::where('role_id',$id)->pluck('id')->toArray())->get();
+            $oldPermission = Permission::whereIn('id' , $subPermission->pluck('permission_id'))->get();
+
+            //dd($subPermission , $oldPermission);
             Permission::where('role_id',$id)->delete();
             for($i=0; $i<count($request->pr); $i++)
             {
@@ -174,6 +181,21 @@ class RoleController extends Controller
                     $p->save();
                 }
                 
+            }
+
+            foreach($oldPermission as $permission){
+                $pr = Permission::where(['permission' => $permission->permission , 'role_id' => $id]);
+            if($pr->exists()){
+                $pr_id = $pr->first()->id;
+                foreach($subPermission->where('permission_id' , $permission->id) as $newPermission){
+
+                    //dd($newPermission , $pr_id);
+                   $newSubpermission =  new subPermission();
+                   $newSubpermission->permission_id = $pr_id;
+                   $newSubpermission->name = $newPermission->name;
+                   $newSubpermission->save();
+                }
+            }
             }
 
             return redirect()->back()->with('message', 'Record Updated Successfully');

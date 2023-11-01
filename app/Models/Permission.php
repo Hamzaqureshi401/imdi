@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    public function getSubPermission(){
+        return $this->hasMany(SubPermission::class, 'id' , 'permission_id');
+    }
 }

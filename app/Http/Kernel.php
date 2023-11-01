@@ -68,5 +68,14 @@ class Kernel extends HttpKernel
         'employee.auth' => \App\Http\Middleware\RedirectIfNotEmployee::class,
         'employee.guest' => \App\Http\Middleware\RedirectIfEmployee::class,
         'appAccess' => \App\Http\Middleware\AppAccess::class,
+
+        'product.add' => \App\Http\Middleware\ProductAddMiddleware::class,
+        'product.update' => \App\Http\Middleware\ProductUpdateMiddleware::class,
+        'product.delete' => \App\Http\Middleware\ProductDeleteMiddleware::class,
+        
+        'mastercase.add' => \App\Http\Middleware\MastercaseAddMiddleware::class,
+        'mastercase.update' => \App\Http\Middleware\MastercaseUpdateMiddleware::class,
+        'mastercase.delete' => \App\Http\Middleware\MastercaseDeleteMiddleware::class,
+
     ];
 }
