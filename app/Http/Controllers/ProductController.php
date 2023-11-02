@@ -33,7 +33,9 @@ class ProductController extends Controller
 
             return $next($request);
         });
-        $this->middleware('product.add')->only(['create']);
+       $this->middleware('product.add')->only(['create']);
+       $this->middleware('product.update')->only(['update' , 'edit']);
+       $this->middleware('product.delete')->only(['delete']);
        
     }
     /**
