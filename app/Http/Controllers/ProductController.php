@@ -74,6 +74,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        dd($this->middleware('product.add') , 1);
         return view('admin.product.create'); 
     }
 
