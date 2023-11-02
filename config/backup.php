@@ -8,7 +8,8 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
+        // 'name' => env('APP_NAME', 'laravel-backup'),
+        'name' => '',
 
         'source' => [
 
@@ -18,7 +19,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+                    // base_path(),
                 ],
 
                 /*
@@ -27,8 +28,8 @@ return [
                  * Directories used by the backup process will automatically be excluded.
                  */
                 'exclude' => [
-                    base_path('vendor'),
-                    base_path('node_modules'),
+                    // base_path('vendor'),
+                    // base_path('node_modules'),
                 ],
 
                 /*
@@ -116,8 +117,17 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
+                //'google',
                 'local',
             ],
+
+        //     'google' => [
+        //     'driver' => 'google-drive',
+        //     'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+        //     'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+        //     'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+        //     'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        // ],
         ],
 
         /*
@@ -165,14 +175,14 @@ return [
          */
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
-        'mail' => [
-            'to' => 'your@example.com',
+        // 'mail' => [
+        //     'to' => 'dbmail@distributorflow.com',
 
-            'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
-            ],
-        ],
+        //     'from' => [
+        //         'address' => env('MAIL_FROM_ADDRESS', 'info@distributorflow.com'),
+        //         'name' => env('MAIL_FROM_NAME', 'distributorflow'),
+        //     ],
+        // ],
 
         'slack' => [
             'webhook_url' => '',
@@ -208,7 +218,7 @@ return [
             'disks' => ['local'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
-                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
+                \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 2000,
             ],
         ],
 
@@ -267,7 +277,7 @@ return [
              * After cleaning up the backups remove the oldest backup until
              * this amount of megabytes has been reached.
              */
-            'delete_oldest_backups_when_using_more_megabytes_than' => 5000,
+            'delete_oldest_backups_when_using_more_megabytes_than' => 20,
         ],
     ],
 
