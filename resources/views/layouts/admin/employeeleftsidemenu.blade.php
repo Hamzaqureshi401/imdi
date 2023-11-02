@@ -15,6 +15,10 @@
                </a> -->
          </li>
          @if($permission->contains('permission', '4'))
+         @php
+         $product = $permission->where('permission', '4')->first()->getSubPermission;
+         $masterCase = $permission->where('permission', '5')->first()->getSubPermission;
+         @endphp
          <li class="app-sidebar__heading">Menus</li>
          <li class="{{ (request()->segment(1) == 'product') ? 'mm-active' : '' }}">
             <a href="#">
@@ -29,12 +33,14 @@
                   Import Products
                   </a>
                </li>
+               @if($product->contains('name' , 'add'))
                <li>
                   <a href="{{route('product.create')}}" class="{{ (Request::is('product/create')) ? 'mm-active' : '' }}">
                   <i class="metismenu-icon"></i>
                   New Product
                   </a>
                </li>
+               @endif
                <li>
                   <a href="{{route('product.index')}}" class="{{ (Request::is('product')) ? 'mm-active' : '' }}">
                   <i class="metismenu-icon"></i>
@@ -52,12 +58,14 @@
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
             </a>
             <ul>
+               @if($masterCase->contains('name' , 'add'))
                <li>
                   <a href="{{route('mastercase.create')}}" class="{{ (Request::is('mastercase/create')) ? 'mm-active' : '' }}">
                   <i class="metismenu-icon"></i>
                   New Master Case
                   </a>
                </li>
+               @endif
                <li>
                   <a href="{{route('mastercase.index')}}" class="{{ (Request::is('mastercase')) ? 'mm-active' : '' }}">
                   <i class="metismenu-icon"></i>

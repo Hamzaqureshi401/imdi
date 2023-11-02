@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Auth;
 
 class BackupController extends Controller
 {
     public function downloadSqlBackup(){
+
+     if(Auth::user()->role != 1){
+        return redirect()->back()->with('message' , 'Unauthenticated Access!');
+     }
 
      Artisan::call('backup:run');
      $output = Artisan::output();

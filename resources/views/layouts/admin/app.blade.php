@@ -26,15 +26,15 @@
 
         <!-- <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
  
-        <link rel="stylesheet" href="{{url('public/admin/vendors/@fortawesome/fontawesome-free/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('admin/vendors/@fortawesome/fontawesome-free/css/all.min.css')}}">
 
-        <link rel="stylesheet" href="{{url('public/admin/vendors/ionicons-npm/css/ionicons.css')}}">
+        <link rel="stylesheet" href="{{asset('admin/vendors/ionicons-npm/css/ionicons.css')}}">
 
-        <link rel="stylesheet" href="{{url('public/admin/vendors/linearicons-master/dist/web-font/style.css')}}">
+        <link rel="stylesheet" href="{{asset('admin/vendors/linearicons-master/dist/web-font/style.css')}}">
 
-        <link rel="stylesheet" href="{{url('public/admin/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css')}}">
+        <link rel="stylesheet" href="{{asset('admin/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css')}}">
 
-        <link href="{{url('public/admin/styles/css/base.css')}}" rel="stylesheet">
+        <link href="{{asset('admin/styles/css/base.css')}}" rel="stylesheet">
         <style>
         td{
             color:black;
@@ -152,8 +152,12 @@
                     </div>
 
             <!-- Start of Side menu -->
-
+            @if(Auth::user()->role == 1)
             @include('layouts.admin.leftsidemenu')
+            @else
+            @include('layouts.admin.employeeleftsidemenu')
+            @endif
+            
 
                    
 
@@ -195,59 +199,59 @@
 
         <!-- plugin dependencies -->
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/jquery/dist/jquery.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/moment/moment.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/moment/moment.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/metismenu/dist/metisMenu.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/metismenu/dist/metisMenu.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/bootstrap4-toggle/js/bootstrap4-toggle.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/bootstrap4-toggle/js/bootstrap4-toggle.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/jquery-circle-progress/dist/circle-progress.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/jquery-circle-progress/dist/circle-progress.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/toastr/build/toastr.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/toastr/build/toastr.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/jquery.fancytree/dist/jquery.fancytree-all-deps.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/jquery.fancytree/dist/jquery.fancytree-all-deps.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/apexcharts/dist/apexcharts.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/apexcharts/dist/apexcharts.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/bootstrap-table/dist/bootstrap-table.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/bootstrap-table/dist/bootstrap-table.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/vendors/slick-carousel/slick/slick.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/vendors/slick-carousel/slick/slick.min.js')}}"></script>
 
         <!-- custome.js -->
 
-        <script type="text/javascript" src="{{url('public/admin/js/charts/apex-charts.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/charts/apex-charts.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/circle-progress.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/circle-progress.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/demo.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/demo.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/scrollbar.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/scrollbar.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/toastr.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/toastr.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/treeview.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/treeview.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/form-components/toggle-switch.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/form-components/toggle-switch.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/tables.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/tables.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/carousel-slider.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/carousel-slider.js')}}"></script>
 
-        <script type="text/javascript" src="{{url('public/admin/js/app.js')}}"></script>
+        <script type="text/javascript" src="{{asset('admin/js/app.js')}}"></script>
 
         @yield('footer')
 
