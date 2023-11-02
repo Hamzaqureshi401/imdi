@@ -39,6 +39,10 @@ class MasterController extends Controller
 
             return $next($request);
         });
+        $this->middleware('mastercase.add')->only(['create']);
+       $this->middleware('mastercase.update')->only(['update' , 'edit']);
+       $this->middleware('mastercase.delete')->only(['delete']);
+       
        
     }
 

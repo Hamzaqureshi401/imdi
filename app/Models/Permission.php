@@ -9,6 +9,6 @@ class Permission extends Model
 {
     use HasFactory;
     public function getSubPermission(){
-        return $this->hasMany(SubPermission::class, 'id' , 'permission_id');
+        return $this->hasMany(SubPermission::class, 'permission_id');
     }
 }

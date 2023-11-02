@@ -33,6 +33,7 @@ class ProductController extends Controller
 
             return $next($request);
         });
+        $this->middleware('product.add')->only(['create']);
        
     }
     /**
@@ -74,7 +75,6 @@ class ProductController extends Controller
     public function create()
     {
         //
-        dd($this->middleware('product.add') , 1);
         return view('admin.product.create'); 
     }
 
