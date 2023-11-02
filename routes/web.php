@@ -23,6 +23,8 @@ use App\Http\Controllers\CyclecountController;
 use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\EmployeeAuthController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\BackupController;
+
 
 
 
@@ -214,6 +216,11 @@ Route::get('/get-other-data/{warehouse}', [HomeController::class, 'getOtherData'
 
 Route::get('/setSubPermission/{permission}/{role}', [PermissionController::class, 'setSubPermission'])->name('set.SubPermission');
 Route::post('/updateSubPermission', [PermissionController::class, 'updateSubPermission'])->name('update.SubPermission');
+
+
+Route::get('/download', [BackupController::class, 'downloadSqlBackup'])->name('download.sql.backup');
+
+
 
 
 
