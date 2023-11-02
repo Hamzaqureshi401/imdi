@@ -23,8 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', [ApiController::class, 'login']);
 
 //test place
-Route::get('ggetdatafortransfer/{barcode}', [ApiController::class, 'getdatafortransfer']);
-Route::post('nnewtransfer', [ApiController::class, 'newtransfer']);
+
 //test place
 Route::middleware(['auth:api'])->group(function(){
 Route::group(['middleware' => 'appAccess'], function () {
@@ -46,7 +45,7 @@ Route::get('assignedcheckinstatus/{id}', [ApiController::class, 'getassignedchec
 Route::get('checkedin/{palletno}/{user}', [ApiController::class, 'checkedin']);
 
 Route::get('racks/{warehouse}', [ApiController::class, 'getrackinfo']);
-Route::get('binlocationbyrack/{rack}', [ApiController::class, 'getbinlocationbyrack']);
+Route::get('binlocationbyrack/{rack}/{status?}', [ApiController::class, 'getbinlocationbyrack']);
 
 Route::post('startcyclecount', [ApiController::class, 'startcyclecount']);
 Route::get('markcyclecount/{id}/{palletno}', [ApiController::class, 'markcyclecount']);

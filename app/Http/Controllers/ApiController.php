@@ -486,10 +486,12 @@ class ApiController extends Controller
 
    }
 
-   function getbinlocationbyrack($rack)
+   function getbinlocationbyrack($rack,$status=2)
    {
-   
+   if($status>=2)
     $bc=Binlocation::where('row_id',$rack);
+    else
+   $bc=Binlocation::where('row_id',$rack)->where('status',$status);
     if($bc->count()>0)
     {
         $bc=$bc->get();
@@ -652,7 +654,8 @@ class ApiController extends Controller
         if($bl->status==1)
         {
             $p=getlabelinfo($bl->labelid);
-        return response()->json(["status"=>true,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
+            $mc=getmastercase($bl->mcid);
+        return response()->json(["status"=>true,"pallet_no"=>$bl->labelid,"mastercase"=>$mc,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
 
         }
         else{
