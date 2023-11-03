@@ -21,6 +21,10 @@ use App\Models\Cyclecountlocation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\lowInventoryMail;
+
+
 
 class ApiController extends Controller
 {
@@ -266,6 +270,8 @@ class ApiController extends Controller
    
     function confirmpickorder($id,$user)
    {
+    //  dd($a , $data);
+
     $po=Pickorder::find($id);
     $pl=PalletLabel::find($po->label_id);
     if($pl->avl_qty<=0)
@@ -282,6 +288,8 @@ class ApiController extends Controller
     $po->pick_date=date("Y-m-d h:i:s a");
     if($po->update())
     {
+        // $data = ['key' => 'value']; // Any data you want to pass to the email view
+        // $a = Mail::to('hamzaqureshi401@gmail.com')->send(new lowInventoryMail($data));
         return response()->json(["status"=>true], 200);
     }
     else{

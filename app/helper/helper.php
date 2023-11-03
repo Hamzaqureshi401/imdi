@@ -35,27 +35,27 @@ function checkpermissions()
 }
 
 
-function get_avl_qty_mc($mcid)
-{
-	$res = PalletLabel::select(DB::raw('SUM(avl_qty) as total_avl_qty'))
-    ->groupBy('mc_id')
-	->where('mc_id',1);
-	if($res->count()>0)
-	{
-		$res=$res->get();
-		foreach($res as $r)
-		{
-		return $r->total_avl_qty;
-		}
+// function get_avl_qty_mc($mcid)
+// {
+// 	$res = PalletLabel::select(DB::raw('SUM(avl_qty) as total_avl_qty'))
+//     ->groupBy('mc_id')
+// 	->where('mc_id',1);
+// 	if($res->count()>0)
+// 	{
+// 		$res=$res->get();
+// 		foreach($res as $r)
+// 		{
+// 		return $r->total_avl_qty;
+// 		}
 
-	}
-	else{
-		$res=-1;
-	}
+// 	}
+// 	else{
+// 		$res=-1;
+// 	}
 
 	
     
-}
+// }
 
 function checkpermissions_controller($role)
 {

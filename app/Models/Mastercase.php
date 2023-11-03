@@ -20,4 +20,8 @@ class Mastercase extends Model
         'hi',
         'ti',
      ];
+
+     public function palletlabel(){
+        return $this->hasMany(palletlabel::class, 'mc_id');
+     }
 }

@@ -215,7 +215,7 @@
          </div>
       </div>
       <div class="card-body">
-         <table class="table table-striped">
+        <!--  <table class="table table-striped">
             <thead>
                <tr>
                   <th>ID</th>
@@ -256,7 +256,39 @@
                </tr>
                @endforeach
             </tbody>
+         </table> -->
+
+          <table style="width: 100%;" id="mytb" class="table table-hover table-striped table-bordered">
+            <thead>
+               <tr>
+                  <th>Sr #</th>
+                  <th>Master Case UPC</th>
+                  <th>Master Case Name</th>
+                  <th>Alert Quantity</th>
+                  <th>Available Quantity</th>
+                  
+               </tr>
+            </thead>
+            <tbody>
+
+               @foreach( $data['reorderReport'] as $u )
+               @if($u->palletlabel->sum('avl_qty') < $u->alert_quantity)
+               <tr>
+                  <td>{{ $loop->index + 1 }}</td>
+                  <td>{{$u->upc}}</td>
+                  <td>{{$u->name}}</td>
+                  <td>{{$u->alert_quantity}}</td>
+                  <td>{{$u->palletlabel->sum('avl_qty') ?? 0}}</td>
+               </tr>
+
+               @endif
+               
+              
+               @endforeach
+            </tbody>
+           
          </table>
+      
       </div>
    </div>
 </div>
