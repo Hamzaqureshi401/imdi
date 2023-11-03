@@ -67,6 +67,7 @@ class RoleController extends Controller
             ['value' => 10, 'permission' => 'Transfer'],
             ['value' => 11, 'permission' => 'Return'],
             ['value' => 12, 'permission' => 'App'],
+            ['value' => 13, 'permission' => 'Reports'],
             // You can add more elements here
         ];
         return view('admin.roles.create',compact('permissions'));
@@ -142,6 +143,7 @@ class RoleController extends Controller
             ['value' => 10, 'permission' => 'Transfer'],
             ['value' => 11, 'permission' => 'Return'],
             ['value' => 12, 'permission' => 'App'],
+            ['value' => 13, 'permission' => 'Reports'],
 
             // You can add more elements here
         ];

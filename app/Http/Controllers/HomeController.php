@@ -50,11 +50,13 @@ class HomeController extends Controller
     public function getDashBoardData(){
 
         $data['received_products']  = Rcproduct::latest()->take(10)->get();
+        $data['master_case']        = Mastercase::latest()->take(10)->get();
         $data['PalletLabel']        = PalletLabel::latest()->take(10)->get();
         $data['Pickorder']          = Pickorder::latest()->take(10)->get();
         $data['Transfer']           = Transfer::latest()->take(10)->get();
         $data['reorderReport']      = Mastercase::where('status','1')->latest()->take(10)->get();
         $data['clouseoutreport']    = Mastercase::where('status','0')->latest()->take(10)->get();
+        $data['all_master_case']    = Mastercase::get();
         //$mc=Mastercase::where('status','0')->get();
 
         
@@ -66,6 +68,8 @@ class HomeController extends Controller
 
         $data['received_products']  = Rcproduct::latest()->take(10)->get();
         $data['PalletLabel']        = PalletLabel::where('warehouse' , $warehouse_id)->latest()->take(10)->get();
+        $data['master_case']        = Mastercase::latest()->take(10)->get();
+        
         $data['Pickorder']          = Pickorder::with(['palletlabel' => function ($query) use ($warehouse_id) {
             $query->where('warehouse', $warehouse_id);
         }])
@@ -75,6 +79,8 @@ class HomeController extends Controller
         $data['Transfer']           = Transfer::latest()->take(10)->get();
         $data['reorderReport']      = Mastercase::where('status','1')->latest()->take(10)->get();
         $data['clouseoutreport']    = Mastercase::where('status','0')->latest()->take(10)->get();
+        $data['all_master_case']    = Mastercase::get();
+        
         
         return view('other_reports' , compact('data'));
 

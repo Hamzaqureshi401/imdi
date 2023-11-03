@@ -20,4 +20,7 @@ class PalletLabel extends Model
      public function wareHouse(){
          return $this->belongsTo(Warehouse::class,'warehouse','id');
      }
+     public function mastercase(){
+         return $this->belongsTo(Mastercase::class,'mc_id');
+     }
 }

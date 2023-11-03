@@ -113,7 +113,7 @@
             </ul>
          </li>
          @endif
-         @if($permission->contains('permission', '9'))
+         @if($permission->contains('permission', '8'))
          <li class="{{ (request()->segment(1) == 'pick') ? 'mm-active' : '' }}">
             <a href="#">
             <i class="metismenu-icon pe-7s-angle-right-circle"></i>
@@ -142,6 +142,8 @@
             </ul>
          </li>
          @endif
+         @if($permission->contains('permission', '9'))
+         
          <li class="{{ (request()->segment(1) == 'cyclecount') ? 'mm-active' : '' }}">
             <a href="#">
             <i class="metismenu-icon pe-7s-angle-right-circle"></i>
@@ -165,14 +167,16 @@
                </li>
             </ul>
          </li>
+         @endif
          <li class="">
-            @if($permission->contains('permission', '11'))
+           <!--  @if($permission->contains('permission', '11'))
             <a href="#" class="">
             <i class="metismenu-icon pe-7s-angle-right-circle "></i>
             Returns  
             <i class="metismenu-state-icon"></i>
             </a>
-            @endif
+            @endif -->
+            @if($permission->contains('permission', '13'))
          <li class="{{ (request()->segment(1) == 'report') ? 'mm-active' : '' }}">
             <a href="#">
             <i class="metismenu-icon pe-7s-angle-right-circle"></i>
@@ -218,6 +222,7 @@
                </li>
             </ul>
          </li>
+         @endif
          @if($permission->contains('permission', '10'))
          <li class="{{ (request()->segment(1) == 'transfer') ? 'mm-active' : '' }}">
             <a href="#">
@@ -254,6 +259,7 @@
          </li>
          @endif
          </li>
+         @if($permission->contains('permission', '11'))
          <li class="{{ (request()->segment(1) == 'transfer') ? 'mm-active' : '' }}">
             <a href="#">
             <i class="metismenu-icon pe-7s-angle-right-circle"></i>
@@ -275,6 +281,7 @@
                </li>
             </ul>
          </li>
+         @endif
          <li class="app-sidebar__heading">Settings</li>
          @if($permission->contains('permission', '1')) 
          <!-- <li class="app-sidebar__heading">Users</li> -->
