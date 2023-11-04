@@ -56,7 +56,8 @@ class HomeController extends Controller
         $data['Transfer']           = Transfer::latest()->take(10)->get();
         $data['reorderReport']      = Mastercase::where('status','1')->latest()->take(10)->get();
         $data['clouseoutreport']    = Mastercase::where('status','0')->latest()->take(10)->get();
-        $data['all_master_case']    = Mastercase::get();
+        $data['all_warehouses']    = Warehouse::with('rackInfo.binlocation')->get();
+        //dd($data['all_warehouses']);
         //$mc=Mastercase::where('status','0')->get();
 
         
@@ -79,7 +80,7 @@ class HomeController extends Controller
         $data['Transfer']           = Transfer::latest()->take(10)->get();
         $data['reorderReport']      = Mastercase::where('status','1')->latest()->take(10)->get();
         $data['clouseoutreport']    = Mastercase::where('status','0')->latest()->take(10)->get();
-        $data['all_master_case']    = Mastercase::get();
+        $data['all_warehouses']    = Warehouse::with('rackInfo.binlocation')->get();
         
         
         return view('other_reports' , compact('data'));

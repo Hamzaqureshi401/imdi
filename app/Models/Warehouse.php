@@ -16,6 +16,6 @@ class Warehouse extends Model
 
      public function rackInfo(){
 
-        return $this->hasMany(Rackinfo::class,'warehouse','id');
+        return $this->hasMany(Rackinfo::class,'warehouse');
     }
 }

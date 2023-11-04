@@ -386,14 +386,21 @@
     </tr>
 </thead>
 <tbody>
-    @foreach ($data['all_master_case'] as $mastercase)
+    @foreach ($data['all_warehouses'] as $warehouse) 
     <tr>
         <td>{{ $loop->index + 1 }}</td>
-        <td>{{ $mastercase->name ?? '--' }}</td>
+        <td>{{ $warehouse->warehouse ?? '--' }}</td>
         @php
-            $totalBinLocations = $mastercase->binlocation->pluck('id')->count();
-            $reservedBinLocations = $mastercase->binlocation->where('rcid', '!=', 0)->where('status', '!=', 0)->pluck('id')->count();
-            $freeBinLocations = $mastercase->binlocation->where('rcid', 0)->where('status', 0)->pluck('id')->count();
+           $totalBinLocations = $warehouse->rackInfo->sum(function ($rackInfo) {
+                return $rackInfo->binlocation->count();
+            });
+            //dd($totalBinLocations);
+            $reservedBinLocations =$warehouse->rackInfo->sum(function ($rackInfo) {
+                return $rackInfo->binlocation->where('status', 1)->count();
+            });
+            $freeBinLocations = $warehouse->rackInfo->sum(function ($rackInfo) {
+                return $rackInfo->binlocation->where('status', 0)->count();
+            });
         @endphp
         <td>{{ $totalBinLocations }}</td>
         <td>{{ $reservedBinLocations }}</td>

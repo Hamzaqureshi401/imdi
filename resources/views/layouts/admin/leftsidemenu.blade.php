@@ -327,6 +327,12 @@
             Profile 
             <i class="metismenu-state-icon"></i>
             </a>
+             @if(Auth::user()->role == 1)
+            <a href="{{ route('download.sql.backup') }}" class="btn btn-sm btn-dark">
+                <i class="fas fa-download" style="color: white;"></i> <!-- Font Awesome download icon -->
+                <span style="color: white;">Download Db Backup</span>
+            </a>
+            @endif
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
             <i class="metismenu-icon pe-7s-back"></i>
             Logout 
