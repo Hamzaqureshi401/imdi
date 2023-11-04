@@ -150,7 +150,7 @@
             </ul>
          </li>
          @endif
-          @if($permission->contains('permission', '9')
+          @if($permission->contains('permission', '9'))
          <li class="{{ (request()->segment(1) == 'cyclecount') ? 'mm-active' : '' }}">
             <a href="#">
             <i class="metismenu-icon pe-7s-angle-right-circle"></i>

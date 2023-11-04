@@ -23,7 +23,7 @@ class AppAccess
         if (auth()->check() && Permission::where('role_id', auth()->user()->role)->where('permission', 12)->exists()) {
             return $next($request);
         } else {
-            return $next($request);
+            //return $next($request);
             return response()->json(['status' => false, 'msg' => "Your Access Is blocked!"], 404);
         }
     }
