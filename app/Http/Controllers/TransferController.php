@@ -302,7 +302,7 @@ class TransferController extends Controller
         $trans->n_warehouse=$warehouse;
         $trans->n_pl_no=$p->palletno;
         $trans->n_pid=$p->id;
-        $trans->n_location=getbinlocation_name($location);
+        $trans->n_location = Binlocation::where('id' , $location)->first()->name ?? '';
         $trans->n_bid=$location;
         $trans->pick_status=0;
         $trans->placed_status=0;

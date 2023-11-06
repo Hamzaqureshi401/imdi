@@ -655,25 +655,34 @@ class ApiController extends Controller
    
    function getdatafortransfer($barcode)
    {
-    $bl=Binlocation::where("barcode",$barcode);
-    if($bl->count()>0)
-    {
-        $bl=$bl->first();
-        if($bl->status==1)
-        {
-            $p=getlabelinfo($bl->labelid);
-            $mc=getmastercase($bl->mcid);
-        return response()->json(["status"=>true,"pallet_no"=>$bl->labelid,"mastercase"=>$mc,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
+    $bl=Binlocation::where("barcode",$barcode)->with('palletLabel.mastercase.mastercaseproduct.product' , 'palletLabel.wareHouse')->first();
+     $bl = [
+    "pallet_no"=>           $bl->labelid,
+    "mastercase"=>          $bl->palletLabel->mastercase->name,
+    "pid"=>                 $bl->palletLabel->id,
+    "bid"=>                 $bl->id,
+    "bin_location_name"=>   $bl->name
+    ];
+    //dd($bl);
+    // if($bl->count()>0)
+    // {
+    //     $bl=$bl->first();
+    //     if($bl->status==1)
+    //     {
+    //         $p=getlabelinfo($bl->labelid); 
+    //         $mc=getmastercase($bl->mcid);
+    //     return response()->json(["status"=>true,"pallet_no"=>$bl->labelid,"mastercase"=>$mc,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
 
-        }
-        else{
-            return response()->json(["status"=>false,"msg"=>"Location is Emtpy"], 200);
-        }
-    }
-    else{
-        // No Location is Exist
-        return response()->json(["status"=>false,"msg"=>"Location Does not Exist"], 200);
-    }
+    //     }
+    //     else{
+    //         return response()->json(["status"=>false,"msg"=>"Location is Emtpy"], 200);
+    //     }
+    // }
+    // else{
+    //     // No Location is Exist
+    //     return response()->json(["status"=>false,"msg"=>"Location Does not Exist"], 200);
+    // }
+     return response()->json(["status"=>true,"data"=>$bl], 200);
    }
    
      function newtransfer(Request $request)
@@ -701,7 +710,7 @@ class ApiController extends Controller
     $trans->n_warehouse=$warehouse;
     $trans->n_pl_no=$p->palletno;
     $trans->n_pid=$p->id;
-    $trans->n_location=$location;
+    $trans->n_location=Binlocation::where('id' , $location)->first()->name ?? '';
     $trans->n_bid=$location;
     $trans->pick_status=0;
     $trans->placed_status=0;

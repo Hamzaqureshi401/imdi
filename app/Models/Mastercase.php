@@ -27,4 +27,7 @@ class Mastercase extends Model
      public function binlocation(){
         return $this->hasMany(Binlocation::class, 'mcid');
      }
+     public function mastercaseproduct(){
+        return $this->hasMany(Mastercaseproduct::class, 'mcid');
+     }
 }
