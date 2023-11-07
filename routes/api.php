@@ -65,6 +65,7 @@ Route::get('transfer/placed', [ApiController::class, 'placedtransfers']);
 Route::get('markpickedtransfer/{tid}/{user}', [ApiController::class, 'marked_picked_transfer']);
 Route::get('markplacedtransfer/{tid}/{user}', [ApiController::class, 'marked_placed_transfer']);
 Route::get('getdatafortransfer/{barcode}', [ApiController::class, 'getdatafortransfer']);
+Route::get('getdatafortransferclone/{barcode}', [ApiController::class, 'getdatafortransferclone']);
 
 Route::get('returns/{id?}', [ApiController::class, 'returnlist']);
 Route::get('return/confirmed/{id?}', [ApiController::class, 'getconfirmedreturn']);

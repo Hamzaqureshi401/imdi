@@ -655,34 +655,43 @@ class ApiController extends Controller
    
    function getdatafortransfer($barcode)
    {
-    $bl=Binlocation::where("barcode",$barcode)->with('palletLabel.mastercase.mastercaseproduct.product' , 'palletLabel.wareHouse')->first();
-     $bl = [
-    "pallet_no"=>           $bl->labelid,
-    "mastercase"=>          $bl->palletLabel->mastercase->name,
-    "pid"=>                 $bl->palletLabel->id,
-    "bid"=>                 $bl->id,
-    "bin_location_name"=>   $bl->name
-    ];
+    $bl=Binlocation::where("barcode",$barcode)->with('palletLabel.mastercase.mastercaseproduct.product' , 'palletLabel.wareHouse')->where('status' , 1)->first();
     //dd($bl);
-    // if($bl->count()>0)
-    // {
-    //     $bl=$bl->first();
-    //     if($bl->status==1)
-    //     {
-    //         $p=getlabelinfo($bl->labelid); 
-    //         $mc=getmastercase($bl->mcid);
-    //     return response()->json(["status"=>true,"pallet_no"=>$bl->labelid,"mastercase"=>$mc,"pid"=>$p->id,"bid"=>$bl->id,"bin_location_name"=>$bl->name], 200);
-
-    //     }
-    //     else{
-    //         return response()->json(["status"=>false,"msg"=>"Location is Emtpy"], 200);
-    //     }
-    // }
-    // else{
-    //     // No Location is Exist
-    //     return response()->json(["status"=>false,"msg"=>"Location Does not Exist"], 200);
-    // }
+    if(empty($bl)){
+        $bl = null;
+    }else{
+        //dd($bl->palletLabel->mastercase->mastercaseproduct);
+      $bl = [
+        "pallet_no" => $bl->labelid,
+        "mastercase" => optional($bl->palletLabel->mastercase)->name,
+        "pid" => optional($bl->palletLabel)->id,
+        "bid" => $bl->id,
+        "bin_location_name" => $bl->name,
+        //"Product_name" => $products,
+    ];
+    }
      return response()->json(["status"=>true,"data"=>$bl], 200);
+   }
+   function getdatafortransferclone($barcode)
+   {
+     $bl=Binlocation::where("barcode",$barcode)->with('palletLabel.mastercase.mastercaseproduct.product' , 'palletLabel.wareHouse')->where('status' , 1)->first();
+    //dd($bl);
+    if(empty($bl)){
+        $bl = null;
+    }else{
+        $products = optional($bl->palletLabel->mastercase->mastercaseproduct)->pluck('product.name')->toArray();
+     $bl = [
+        "pallet_no" => $bl->labelid,
+        "mastercase" => optional($bl->palletLabel->mastercase)->name,
+        "pid" => optional($bl->palletLabel)->id,
+        "bid" => $bl->id,
+        "bin_location_name" => $bl->name,
+        "Product_name" => $products,
+        "palet_avl_qty"    => optional($bl->palletLabel)->avl_qty
+    ];
+    }
+     return response()->json(["status"=>true,"data"=>$bl], 200);
+
    }
    
      function newtransfer(Request $request)
