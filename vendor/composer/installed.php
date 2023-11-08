@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e8d099dec5389d1bf103d0a29aed45490bdb65fd',
+        'reference' => 'ee3224be277f2dc3c057257141486ebc34341c1b',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -176,9 +176,9 @@
             'dev_requirement' => false,
         ),
         'filp/whoops' => array(
-            'pretty_version' => '2.15.3',
-            'version' => '2.15.3.0',
-            'reference' => 'c83e88a30524f9360b11f585f71e6b17313b7187',
+            'pretty_version' => '2.15.4',
+            'version' => '2.15.4.0',
+            'reference' => 'a139776fa3f5985a50b509f2a02ff0f709d2a546',
             'type' => 'library',
             'install_path' => __DIR__ . '/../filp/whoops',
             'aliases' => array(),
@@ -453,7 +453,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e8d099dec5389d1bf103d0a29aed45490bdb65fd',
+            'reference' => 'ee3224be277f2dc3c057257141486ebc34341c1b',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -523,9 +523,9 @@
             'dev_requirement' => false,
         ),
         'maatwebsite/excel' => array(
-            'pretty_version' => '3.1.49',
-            'version' => '3.1.49.0',
-            'reference' => '769209f49ebe3419017114f98bd61e2a7d9af259',
+            'pretty_version' => '3.1.50',
+            'version' => '3.1.50.0',
+            'reference' => 'd79e66391aa306983bb7e234503f5605c3e33348',
             'type' => 'library',
             'install_path' => __DIR__ . '/../maatwebsite/excel',
             'aliases' => array(),
@@ -902,9 +902,9 @@
             'dev_requirement' => false,
         ),
         'ramsey/uuid' => array(
-            'pretty_version' => '4.7.4',
-            'version' => '4.7.4.0',
-            'reference' => '60a4c63ab724854332900504274f6150ff26d286',
+            'pretty_version' => '4.7.5',
+            'version' => '4.7.5.0',
+            'reference' => '5f0df49ae5ad6efb7afa69e6bfab4e5b1e080d8e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../ramsey/uuid',
             'aliases' => array(),
@@ -913,7 +913,7 @@
         'rhumsaa/uuid' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '4.7.4',
+                0 => '4.7.5',
             ),
         ),
         'sebastian/cli-parser' => array(
