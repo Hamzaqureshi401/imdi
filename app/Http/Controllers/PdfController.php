@@ -153,51 +153,65 @@ class PdfController extends Controller
         exit;
     }
 
-    public function binlabel($id)
-    {
-        $label=Binlocation::where('row_id',$id)->get();
-       
-        $this->fpdf->AddPage('P', [120,170]);
-        $b=12;
-        $x=18;
-        $s=1;
-        foreach($label as $l)
-        {
-          
+   public function binlabel($id)
+{
+    // Retrieve the bin locations for a given ID
+    $label = Binlocation::where('row_id', $id)->get();
+   
+    // Add a new PDF page with dimensions 120x170 in portrait mode
+    $this->fpdf->AddPage('P', [120, 170]);
 
-            
-            $this->fpdf->ln();
-            $this->fpdf->SetFont('Arial','',12);
-            $this->fpdf->Cell(100,15,"",1,1,'C');
-            
-            $x= $this->fpdf->GETY();
-            $this->fpdf->SETY($x-7);
-            $this->fpdf->Cell(100,7,$l->barcode,0,1,'C');
-            $this->fpdf->SetFont('Arial','B',16);
-            $this->fpdf->MultiCell(0, 7, $l->name,1,'C');
-            $this->fpdf->ln();
-            $this->fpdf->ln();
-            $this->fpdf->ln();
-            $this->fpdf->ln();
-            
-            $this->fpdf->code128(35,$b, $l->barcode, 50, 7, false);
-            if($s<3)
-            {
-                $b=$b+57;
-                $s++;   
-            }
-            else{
-                $s=1;
-                $b=12;
-            }
-            
-          
-            
-            
-          
+    // Initialize variables for barcode positioning
+    $b = 12; // Initial X-coordinate
+    $x = 18; // Initial Y-coordinate
+    $s = 1; // Counter for positioning
+
+    // Loop through each bin location
+    foreach ($label as $l) {
+        // Move to the next line in the PDF
+        $this->fpdf->ln();
+
+        // Set the font size and draw an empty cell with a border for spacing
+        $this->fpdf->SetFont('Arial', '', 12);
+        $this->fpdf->Cell(100, 15, "", 1, 1, 'C');
+
+        // Get the current Y-coordinate
+        $x = $this->fpdf->GetY();
+
+        // Adjust the Y-coordinate to position the barcode value
+        $this->fpdf->SetY($x - 7);
+
+        // Draw the bin location's barcode value
+        $this->fpdf->Cell(100, 7, $l->barcode, 0, 1, 'C');
+
+        // Set the font size and draw the bin location's name
+        $this->fpdf->SetFont('Arial', 'B', 16);
+        $this->fpdf->MultiCell(0, 7, $l->name, 1, 'C');
+
+        // Add some line breaks for spacing
+        $this->fpdf->ln();
+        $this->fpdf->ln();
+        $this->fpdf->ln();
+        $this->fpdf->ln();
+
+        // Generate and draw a Code 128 barcode at the specified position
+        $this->fpdf->code128(35, $b, $l->barcode, 50, 7, false);
+
+        // Update the X-coordinate for the next barcode
+        if ($s < 3) {
+            $b = $b + 57;
+            $s++;
+        } else {
+            $s = 1;
+            $b = 12;
         }
-        $this->fpdf->Output();
-
-        exit;
     }
+
+    // Output the PDF content
+    $this->fpdf->Output();
+
+    // Exit to prevent any further code execution
+    exit;
+}
+
 }

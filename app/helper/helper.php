@@ -194,8 +194,13 @@ function get_mc_pro_wise($mcid,$qty)
 	{
 		$p=getproduct($m->pid);
 		$res.='<span class="pd">'.$p->name.' ['.$m->qty.'] </span><b>Available: <span class="text-success">('.$m->qty*$qty.')</span></b><br>';
+		$total = $m->qty*$qty;
 	}
-	return $res;
+	$data = [
+		'res' => $res,
+		'total' => $total,
+	];
+	return $data;
 }
 
 function get_mc_pro_wise_excel($mcid,$qty)

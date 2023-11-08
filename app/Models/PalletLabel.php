@@ -23,4 +23,8 @@ class PalletLabel extends Model
      public function mastercase(){
          return $this->belongsTo(Mastercase::class,'mc_id');
      }
+     public function user(){
+         return $this->belongsTo(User::class,'checkin_by');
+     }
+
 }

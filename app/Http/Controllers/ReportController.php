@@ -369,64 +369,15 @@ class ReportController extends Controller
                 
                 
         }
-        $result=$result->orderBy('pallet_labels.warehouse')->orderBy('receiveds.arr_date');
+        $result = $result->orderBy('pallet_labels.warehouse')->orderBy('receiveds.arr_date')->get();
       
-        
-            $thead="<tr>
-            <th>Warehouse Name</th>
-            <th>Entry Date & Time</th>
-            <th>Master Case Name UPC</th>
-            <th>MC Recieved Quantity</th>
-            <th>Available Quantity</th>
-            <th>Product Details</th>
-            <th>Pallet No</th>
-            <th>Bin Location</th>
-           
-            </tr>";
-           
-          
-            if($result->count()>0)
-            {
-               
-                $result=$result->get();
-                $tbody='';
-                foreach($result as $p)
-                {
-                    $tbody.='<tr>
-                        <td>'.getwarehouse($p->warehouse).'</td>
-                        <td>'.$p->created_at->format('Y-m-d h:i:s A').'</td>
-                        <td>'.getmastercase($p->mcid).'</td>
-                        <td>'.$p->mc_quantity.'</td>
-                        <td>'.$p->avl_qty.'</td>
-                       
-                        <td>'.get_mc_pro_wise($p->mcid,$p->avl_qty).'</td>
-                        <td>'.$p->palletno.'</td>
-                        <td>'.$p->name.'</td>
-                        
-                        </tr>';
-                }
-               
-    
-               
-            }
-            else{
-              
-                $tbody='<tr>
-                <td colspan="8" style="text-align:center;"> <b class="text-danger">No Record Found!</b></td>
-                </tr>';
-            }
+        //dd($result->get());  
+         return view('admin.report.inventory_ajax',compact('result')); 
+    }
             
     
-            return response()->json(['status'=>'Successful','message'=>'Record is Created','error'=>'','tbody'=>$tbody ,'thead'=>$thead]);
-    
+            // return response()->json(['status'=>'Successful','message'=>'Record is Created','error'=>'','tbody'=>$tbody ,'thead'=>$thead]);
 
-        
-
-       
-        
-
-    
-    }
 
     public function stockinview()
     {

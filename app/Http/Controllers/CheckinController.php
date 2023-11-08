@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\StockPlacement;
 use Illuminate\Support\Facades\Auth;
 
-class CheckinController extends Controller
+class CheckinController extends ApiController
 {
      /**
      * Create a new controller instance.
@@ -142,7 +142,14 @@ class CheckinController extends Controller
      */
     public function edit($id)
     {
-        //
+     $bin = Binlocation::where('id' , $id)->first();
+     $response = $this->checkedin($bin->labelid,Auth::id());
+     
+     if($response->getStatusCode() === 200){
+        return redirect()->back()->with('message' , 'Updated Successfully!');
+     }else{
+      return redirect()->back()->with('message' , 'Something Went Wrong');  
+     }
     }
 
     /**
