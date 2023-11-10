@@ -22,7 +22,7 @@ class Mastercase extends Model
      ];
 
      public function palletlabel(){
-        return $this->hasMany(Palletlabel::class, 'mc_id');
+        return $this->hasMany(PalletLabel::class,  'mc_id');
      }
      public function binlocation(){
         return $this->hasMany(Binlocation::class, 'mcid');

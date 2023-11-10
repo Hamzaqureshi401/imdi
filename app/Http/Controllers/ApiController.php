@@ -109,33 +109,40 @@ class ApiController extends Controller
     }
 
     
-   function returnlist($id=0)
+   function returnlist($id = null)
    {
-    if($id==0)
-    {
+
+   $list = ReturnModel::with('masterCase.palletlabel.wareHouse')
+    ->when(!empty($id), function ($query) use ($id) {
+        $query->where('id', $id); // Assuming 'id' is the column you want to use for filtering
+    })
+    ->get();
+
+    // if($id==0)
+    // {
         
-        $list=DB::table('returns')
-            ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
-            ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
-            ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
-            ->orderBy('returns.id', 'desc')
-            ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
-            ->get();
-    }
-    else{
-        $list=DB::table('returns')
-            ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
-            ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
-            ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
-            ->orderBy('returns.id', 'desc')
-            ->where('id',$id)
-            ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
-            ->get();
+    //     $list=DB::table('returns')
+    //         ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
+    //         ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
+    //         ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
+    //         ->orderBy('returns.id', 'desc')
+    //         ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
+    //         ->get();
+    // }
+    // else{
+    //     $list=DB::table('returns')
+    //         ->join('mastercases', 'returns.mc_id', '=', 'mastercases.id')
+    //         ->join('pallet_labels', 'returns.label_id', '=', 'pallet_labels.id')
+    //         ->join('warehouses', 'pallet_labels.warehouse', '=', 'warehouses.id')
+    //         ->orderBy('returns.id', 'desc')
+    //         ->where('returns.id',$id)
+    //         ->select('returns.*', 'mastercases.name AS mastercase_name','warehouses.warehouse AS warehouse') 
+    //         ->get();
 
         
-    }
-
-    return response()->json($list, 200);
+    // }
+     return response()->json(["status"=>true,"data"=>$list], 200);
+   
    }
     
      function cyclecountlocations($ccid)
@@ -583,9 +590,17 @@ class ApiController extends Controller
    
    function pendingtransfers()
    {
-    $trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','1')->with('warehouse' , 'user')
-    ->select('transfers.*' , 'warehouse.warehouse' , 'user.name')
-    ->get();      
+    $trs = Transfer::orderBy('id', 'desc')
+    ->where('pick_status', '1')
+    ->select(
+        'transfers.*',
+        'warehouses.warehouse as warehouse', 'users.name as name'
+    )
+    ->join('warehouses', 'transfers.p_warehouse', '=', 'warehouses.id')
+    ->leftJoin('users', 'transfers.pick_by', '=', 'users.id')
+    ->get();
+
+      
     return response()->json($trs, 200);
 
    }
