@@ -379,6 +379,7 @@ class ApiController extends Controller
                 "unassigned"=>$q-$c,
                 "pending"=>$pend,
                 "completed"=>$comp,
+                "location_name" => $u->binlocation->first()->name,
             ];
              $resultArray[] = $tempArray;
         }
