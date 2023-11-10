@@ -255,10 +255,10 @@ Manage Transfer
 <?php $__env->startSection('footer'); ?>
 
 
-    <script type="text/javascript" src="<?php echo e(url('public/admin/js/form-components/input-select.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(url('public/admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('admin/js/form-components/input-select.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('admin/js/sweet-alerts.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script>
        $(document).ready(function(){

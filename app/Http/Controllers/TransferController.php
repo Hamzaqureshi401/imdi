@@ -231,7 +231,7 @@ class TransferController extends Controller
                         <td>'.$p->mc_quantity.'</td>
                         <td>'.$p->palletno.'</td>
                         <td>'.$p->avl_qty.'</td>
-                        <td>'.get_mc_pro_wise($p->mcid,$p->avl_qty).'</td>
+                        <td>'.implode(', ', get_mc_pro_wise($p->mcid, $p->avl_qty)).'</td>
                         <td>'.$p->name.'</td>
                         <td>'.$a.'</td>
                         
