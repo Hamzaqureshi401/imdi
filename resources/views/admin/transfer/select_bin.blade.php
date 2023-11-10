@@ -1,4 +1,3 @@
-<div class="col-md-4">
                      <div class="position-relative mb-3">
                         <label for="exampleEmail11" class="form-label d-block">Bin Location</label>
                         <select name="binlocation"  id="binlocation" class="form-control multiselect-dropdown">
@@ -8,4 +7,3 @@
                            @endforeach
                         </select>
                      </div>
-                  </div>

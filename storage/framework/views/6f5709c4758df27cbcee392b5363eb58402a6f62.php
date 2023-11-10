@@ -59,11 +59,13 @@ Manage Transfer
                <div class="row">
                   <h3 class="text-primary">Transfer to New Location</h3>
                </div>
+               <input name="pid" type="hidden" hidden value="<?php echo e($pl->id); ?>" />
+                                                                
                <div class="row">
                   <div class="col-md-4">
                      <div class="position-relative mb-3">
                         <label for="exampleEmail11" class="form-label d-block">Warehouse</label>
-                        <select name="warehouse"  id="warehouse" class="form-control multiselect-dropdown" required>
+                        <select name="warehouse"  id="warehouse_id" class="form-control multiselect-dropdown" required>
                            <option value="">Select Warehouse</option>
                            <?php $__currentLoopData = $wh; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $w): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                            <option value="<?php echo e($w->id); ?>"><?php echo e($w->warehouse); ?></option>
@@ -71,8 +73,8 @@ Manage Transfer
                         </select>
                      </div>
                   </div>
-                  <div id="show-rack"></div>
-                  <div id="show-binlocation"></div>
+                  <div class="col-md-4" id="show-rack"></div>
+                  <div class="col-md-4" id="show-binlocation"></div>
                   
                </div>
             </div>
@@ -86,26 +88,26 @@ Manage Transfer
 </form>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('footer'); ?>
-<script type="text/javascript" src="<?php echo e(url('public/admin/js/form-components/input-select.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/js/form-components/input-select.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/js/sweet-alerts.js')); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <!-- Your Blade View -->
 
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
     $(document).ready(function() {
         console.log(1);
-        $('#warehouse').change(function() {
+        $('#warehouse_id').change(function() {
             console.log(2);
             var warehouseId = $(this).val();
 
             // AJAX request to fetch rack information
             $.ajax({
                 type: 'GET',
-                url: '/get-rack-info/' + warehouseId,
+                url: '/get-rack-info-wr/' + warehouseId,
                 success: function(data) {
                     $('#show-rack').html(data);
                 },
@@ -115,22 +117,7 @@ Manage Transfer
             });
         });
 
-        // On change of rack, fetch bin location information
-        $(document).on('change', '#rack', function() {
-            var rackId = $(this).val();
-
-            // AJAX request to fetch bin location information
-            $.ajax({
-                type: 'GET',
-                url: '/get-bin-location/' + rackId,
-                success: function(data) {
-                    $('#show-binlocation').html(data);
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
+        // On change of rack, fetch bin location informatio
     });
 </script>
 

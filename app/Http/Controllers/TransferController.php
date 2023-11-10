@@ -12,6 +12,7 @@ use App\Models\Binlocation;
 use App\Models\PalletLabel;
 use Illuminate\Http\Request;
 use App\Models\StockPlacement;
+use App\Models\Rackinfo;
 
 class TransferController extends Controller
 {
@@ -273,6 +274,7 @@ class TransferController extends Controller
 
     public function getRackInfo($id){
         $rack=Rackinfo::where('warehouse',$id)->get();
+       // dd($rack);
          return view('admin.transfer.select_rack',compact('rack')); 
     }
 

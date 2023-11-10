@@ -583,7 +583,9 @@ class ApiController extends Controller
    
    function pendingtransfers()
    {
-    $trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','1')->get();      
+    $trs=Transfer::orderBy('id', 'desc')->where('pick_status','1')->where('placed_status','1')->with('warehouse' , 'user')
+    ->select('transfers.*' , 'warehouse.warehouse' , 'user.name')
+    ->get();      
     return response()->json($trs, 200);
 
    }

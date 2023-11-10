@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transfer extends Model
 {
     use HasFactory;
-    public function warehouse(){
+    public function warehouse(){ 
         return $this->belongsTo(Warehouse::class , 'p_warehouse');
     }
     public function product(){
@@ -25,6 +25,9 @@ class Transfer extends Model
     }
     public function newbinlocation(){
         return $this->belongsTo(Binlocation::class, 'n_bid');
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'pick_by');
     }
 
 }
