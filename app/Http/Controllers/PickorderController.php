@@ -181,7 +181,7 @@ class PickorderController extends Controller
                 
                 <td>'.$r->arr_date.'</td>
                 <td>'.getmastercase($r->mc_id).'<br>Available Quantity(s): <b>'.$r->avl_qty.'</b></td>
-                <td class="mcp">'.get_mc_pro_wise($r->mc_id,$r->avl_qty).'</td>
+                <td class="mcp">'.implode(', ', get_mc_pro_wise($r->mc_id, $r->avl_qty)).'</td>
                 <td>'.getwarehouse($r->warehouse).'</td>
                 <td><input type="hidden" name="lb[]" value="'.$r->labelid.'"/><input type="hidden" name="bid[]" value="'.$r->id.'"/><b>'.$r->labelid.'<br>'.$r->name.'</b></td>
                 <td><input name="invoice[]" id="invoice" type="text"  class="form-control pick-inv" /></td>

@@ -107,11 +107,12 @@
 @endsection
 
 @section('footer')
-<script type="text/javascript" src="{{url('public/admin/js/form-components/input-select.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/js/form-components/input-select.js')}}"></script>
     
-<script type="text/javascript" src="{{url('public/admin/vendors/select2/dist/js/select2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/admin/js/sweet-alerts.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="{{asset('admin/vendors/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/js/sweet-alerts.js')}}"></script>
     <script>
        $(document).ready(function(){
             $("#generate").click(function(){

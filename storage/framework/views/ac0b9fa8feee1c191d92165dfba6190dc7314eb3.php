@@ -31,7 +31,7 @@ Register New Pick Order
                </button>
                <ul>
                   <li>Please Use Only Excel file </li>
-                  <li>Download <b><a href="<?php echo e(url('public/pickorder_template.xls')); ?>">Template</a></b> From here and use that for further proceed</li>
+                  <li>Download <b><a href="<?php echo e(asset('pickorder_template.xls')); ?>">Template</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
             <div class="row">
@@ -162,10 +162,10 @@ Register New Pick Order
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('footer'); ?>
-<script type="text/javascript" src="<?php echo e(url('public/admin/js/form-components/input-select.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/js/form-components/input-select.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/js/sweet-alerts.js')); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
 <script>
