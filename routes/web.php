@@ -219,6 +219,9 @@ Route::post('/updateSubPermission', [PermissionController::class, 'updateSubPerm
 
 
 Route::get('/download', [BackupController::class, 'downloadSqlBackup'])->name('download.sql.backup');
+// routes/web.php
+Route::get('/get-rack-info/{warehouseId?}', [BackupController::class, 'getRackInfo']);
+Route::get('/get-bin-location/{rackId?}',  [BackupController::class, 'getBinLocation']);
 
 
 

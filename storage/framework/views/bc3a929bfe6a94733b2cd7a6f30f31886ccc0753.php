@@ -78,7 +78,7 @@
                                             <span class="btn-icon-wrapper pe-2 opacity-7">
                                                 <i class="fa fa-user"></i>
                                             </span>
-                                            Welcome! <strong><?php echo e(Auth::user()->name); ?>  </strong>
+                                            Welcome! <strong><?php echo e(Auth::user()->name ?? '--'); ?>  </strong>
                                         </button>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right" style="">
                                             <ul class="nav flex-column">

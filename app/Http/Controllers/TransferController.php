@@ -263,13 +263,25 @@ class TransferController extends Controller
 
     public function view($id){
      //
-        //
+        // 
         $wh=Warehouse::where('is_active','1')->get();
+        
         $pl=PalletLabel::where('id',$id)->first();
-        $bin=Binlocation::where('status','0')->get();
-        return view('admin.transfer.transfer',compact('wh','pl','bin'));   
+        return view('admin.transfer.transfer',compact('wh' , 'pl'));   
 
     }
+
+    public function getRackInfo($id){
+        $rack=Rackinfo::where('warehouse',$id)->get();
+         return view('admin.transfer.select_rack',compact('rack')); 
+    }
+
+    public function getBinLocation($id){
+        
+        $bin=Binlocation::where('row_id',$id)->get();
+         return view('admin.transfer.select_bin',compact('bin')); 
+    }
+
    
 
     /**

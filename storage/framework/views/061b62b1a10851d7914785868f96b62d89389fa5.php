@@ -199,59 +199,59 @@
 
         <!-- plugin dependencies -->
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/jquery/dist/jquery.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/jquery/dist/jquery.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/moment/moment.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/moment/moment.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/metismenu/dist/metisMenu.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/metismenu/dist/metisMenu.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/bootstrap4-toggle/js/bootstrap4-toggle.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/bootstrap4-toggle/js/bootstrap4-toggle.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/jquery-circle-progress/dist/circle-progress.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/jquery-circle-progress/dist/circle-progress.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/perfect-scrollbar/dist/perfect-scrollbar.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/perfect-scrollbar/dist/perfect-scrollbar.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/toastr/build/toastr.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/toastr/build/toastr.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/jquery.fancytree/dist/jquery.fancytree-all-deps.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/jquery.fancytree/dist/jquery.fancytree-all-deps.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/apexcharts/dist/apexcharts.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/apexcharts/dist/apexcharts.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/bootstrap-table/dist/bootstrap-table.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/bootstrap-table/dist/bootstrap-table.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/vendors/slick-carousel/slick/slick.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/vendors/slick-carousel/slick/slick.min.js')); ?>"></script>
 
         <!-- custome.js -->
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/charts/apex-charts.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/charts/apex-charts.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/circle-progress.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/circle-progress.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/demo.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/demo.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/scrollbar.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/scrollbar.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/toastr.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/toastr.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/treeview.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/treeview.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/form-components/toggle-switch.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/form-components/toggle-switch.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/tables.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/tables.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/carousel-slider.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/carousel-slider.js')); ?>"></script>
 
-        <script type="text/javascript" src="<?php echo e(asset('admin/js/app.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(url('admin/js/app.js')); ?>"></script>
 
         <?php echo $__env->yieldContent('footer'); ?>
 
