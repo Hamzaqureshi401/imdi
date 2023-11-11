@@ -70,7 +70,7 @@
                                              <td style="text-align:center;">
                                                     <div role="group" class="btn-group-lg btn-group btn-group-toggle">
 
-                                                     <a href="{{ route('confirm.pick.order', ['trans_no' => $u->trans_no, 'user_id' => Auth::id()]) }}" class="btn btn-dark">
+                                                     <a href="{{ route('confirm.pick.order', ['id' => $u->id, 'user_id' => Auth::id()]) }}" class="btn btn-dark">
                                                             Confirm Pick
                                                         </a>
 
