@@ -223,6 +223,8 @@ Route::get('/download', [BackupController::class, 'downloadSqlBackup'])->name('d
 Route::get('/get-rack-info-wr/{warehouseId?}', [TransferController::class, 'getRackInfo'])->name('get.rack.wr');
 Route::get('/get-bin-location-rc/{rackId?}',  [TransferController::class, 'getBinLocation'])->name('get.bin.rc');
 
+Route::get('confirmpo/{id}/{user}', [PickorderController::class, 'confirmpickorderweb'])->name('confirm.pick.order');
+
 
 
 

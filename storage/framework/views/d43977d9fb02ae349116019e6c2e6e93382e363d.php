@@ -1,14 +1,14 @@
-@extends('layouts.admin.app')
 
-@section('header')
 
-@endsection
+<?php $__env->startSection('header'); ?>
 
-@section('title')
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
  Manage Pick Orders
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content') 
+<?php $__env->startSection('content'); ?> 
 <div class="tabs-animation">
                          
                          
@@ -40,29 +40,29 @@
                                          </tr>
                                      </thead> 
                                      <tbody> 
-                                        @php 
+                                        <?php 
                                         $i=1;
-                                        @endphp
-                                        @foreach( $po as $u )
-                                        @php
+                                        ?>
+                                        <?php $__currentLoopData = $po; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $u): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php
                                         $b=getbindetail($u->bin_id);
                                         
-                                        @endphp
+                                        ?>
                                         <tr>
-                                             <td>{{$i}}</td>
+                                             <td><?php echo e($i); ?></td>
                                            
                                          
                                       
-                                             <td style="text-align:center;"><b>{{$u->trans_no}}</b></td>
-                                             <td>{{$u->invoice_no}}</td>
-                                             <td>{{getmastercase($u->mc_id)}}</td>
-                                             <td>{{$u->label_no}}</td>
-                                             <td>{{$b->name}}</td>
-                                             <td>{{getwarehouse_rc($u->rc_id)}}</td>
+                                             <td style="text-align:center;"><b><?php echo e($u->trans_no); ?></b></td>
+                                             <td><?php echo e($u->invoice_no); ?></td>
+                                             <td><?php echo e(getmastercase($u->mc_id)); ?></td>
+                                             <td><?php echo e($u->label_no); ?></td>
+                                             <td><?php echo e($b->name); ?></td>
+                                             <td><?php echo e(getwarehouse_rc($u->rc_id)); ?></td>
                                              
-                                             <td style="text-align:center;"><b>{{$u->qty}}</b></td>
+                                             <td style="text-align:center;"><b><?php echo e($u->qty); ?></b></td>
 
-                                             <td style="text-align:center;">{{getusername($u->user)}}<br>{{ $u->created_at->format('Y-m-d h:i:s a') }}</td>
+                                             <td style="text-align:center;"><?php echo e(getusername($u->user)); ?><br><?php echo e($u->created_at->format('Y-m-d h:i:s a')); ?></td>
                                           
                                              <td  style="text-align:center;" class="text-danger"><b>Not Picked from Location Yet</b></td>
                                              
@@ -70,21 +70,20 @@
                                              <td style="text-align:center;">
                                                     <div role="group" class="btn-group-lg btn-group btn-group-toggle">
 
-                                                     <a href="{{ route('confirm.pick.order', ['trans_no' => $u->trans_no, 'user_id' => Auth::id()]) }}" class="btn btn-dark">
-                                                            Confirm Pick
+                                                       <a href="<?php echo e(route('confirm.pick.order',$u->trans_no , Auth::id())); ?>" class="btn btn-dark">
+                                                           Confirm Pick
                                                         </a>
-
         
 
-                                                        <a href="{{route('pick.show',$u->trans_no)}}">
+                                                        <a href="<?php echo e(route('pick.show',$u->trans_no)); ?>">
                                                             <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="View">
                                                                 <i class="lnr-eye icon-gradient bg-grow-early"></i>
                                                             </div>
                                                         </a>
         
-                                                        <form class="delete" method="POST" action="{{ route('pick.destroy', $u->id) }}">
-                                                        @csrf
-                                                        @method("DELETE")
+                                                        <form class="delete" method="POST" action="<?php echo e(route('pick.destroy', $u->id)); ?>">
+                                                        <?php echo csrf_field(); ?>
+                                                        <?php echo method_field("DELETE"); ?>
                                                         <button type="submit" class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="destroy">
                                                             <i class="lnr-trash icon-gradient bg-amy-crisp"></i>
                                                         </button>
@@ -95,10 +94,10 @@
                                              </td>
                                              
                                          </tr>
-                                         @php 
+                                         <?php 
                                         $i++;
-                                        @endphp
-                                         @endforeach
+                                        ?>
+                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                      </tbody>
                                     
                                  </table>
@@ -107,9 +106,9 @@
                         
                      </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
+<?php $__env->startSection('footer'); ?>
 
 <script>
 $(document).ready(function() {
@@ -125,4 +124,5 @@ $(document).ready(function() {
   });
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/pickorders/index.blade.php ENDPATH**/ ?>

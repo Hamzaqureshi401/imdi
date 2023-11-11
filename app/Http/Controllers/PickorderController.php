@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Mastercaseproduct;
 use Illuminate\Support\Facades\Auth;
 
-class PickorderController extends Controller
+class PickorderController extends ApiController
 {
      /**
      * Create a new controller instance.
@@ -277,6 +277,18 @@ class PickorderController extends Controller
         ->get();
         return view('admin.pickorders.pendlist',compact('po','id'));
     }
+
+   public function confirmpickorderweb($id, $user)
+    {
+        $response = $this->confirmpickorder($id, $user);
+
+        if ($response->getStatusCode() == 200 && $response->getData()->status) {
+            return redirect()->back()->with('message', 'Pick order confirmed successfully.');
+        } else {
+            return redirect()->back()->with('message', 'Failed to confirm pick order.');
+        }
+    }
+
 
     /**
      * Show the form for editing the specified resource.
