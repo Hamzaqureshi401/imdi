@@ -594,10 +594,17 @@ class ApiController extends Controller
     ->where('pick_status', '1')
     ->select(
         'transfers.*',
-        'warehouses.warehouse as warehouse', 'users.name as name'
+        'p_w.warehouse as p_warehouse', 
+        'n_w.warehouse as n_warehouse', 
+        'users.name as picker_name',
+        'pl_by.name as placed_by_name',
+
     )
-    ->join('warehouses', 'transfers.p_warehouse', '=', 'warehouses.id')
+    ->leftjoin('warehouses', 'transfers.p_warehouse', '=', 'warehouses.id')
+    ->leftjoin('warehouses as p_w', 'transfers.p_warehouse', '=', 'warehouses.id')
+    ->leftjoin('warehouses as n_w', 'transfers.n_warehouse', '=', 'warehouses.id')
     ->leftJoin('users', 'transfers.pick_by', '=', 'users.id')
+    ->leftJoin('users as pl_by', 'transfers.placed_by', '=', 'users.id')
     ->get();
 
       
