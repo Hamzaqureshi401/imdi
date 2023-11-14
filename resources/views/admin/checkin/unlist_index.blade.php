@@ -66,9 +66,9 @@ Manage Check In
                         </a>
                      </div>
                      @if(Auth::user()->role == 1)
-                     <a href="{{ route('delete.checkinunlist', $u->id) }}" class="btn btn-sm btn-danger">
+                   <!--   <a href="{{ route('delete.checkinunlist', $u->id) }}" class="btn btn-sm btn-danger">
                            Delete
-                        </a>
+                        </a> -->
                         @endif
                   </td>
                </tr>
