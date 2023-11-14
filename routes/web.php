@@ -65,6 +65,12 @@ Route::resource('product',ProductController::class);
 // Start of warehouse Routes
  
 Route::get('/checkin/unlist/{rcid}', [CheckinController::class, 'unlist'])->name('checkinunlist'); 
+Route::get('/deleteCheckin/{rcid}', [CheckinController::class, 'deleteCheckin'])->name('delete.checkinunlist'); 
+Route::get('/checkin/allPendingCheckInList', [CheckinController::class, 'allPendingCheckInList'])->name('allPendingCheckInList'); 
+Route::get('/checkin/allConfirmedCheckInList', [CheckinController::class, 'allConfirmedCheckInList'])->name('allConfirmedCheckInList'); 
+
+
+
 Route::get('/checkin/list', [CheckinController::class, 'list'])->name('checkinlist'); 
 Route::resource('checkin',CheckinController::class);
 // End of warehouse Routes

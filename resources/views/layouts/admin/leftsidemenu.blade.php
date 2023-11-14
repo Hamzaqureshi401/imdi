@@ -109,6 +109,18 @@
                   <i class="metismenu-icon"></i>
                   Check In List
                   </a>
+               </li> 
+               <li>
+                  <a href="{{route('allPendingCheckInList')}}" class="{{ (Request::is('checkin/allPendingCheckInList')) ? 'mm-active' : '' }}">
+                  <i class="metismenu-icon"></i>
+                  All Pending Check In List
+                  </a>
+               </li>
+               <li>
+                  <a href="{{route('allConfirmedCheckInList')}}" class="{{ (Request::is('checkin/allConfirmedCheckInList')) ? 'mm-active' : '' }}">
+                  <i class="metismenu-icon"></i>
+                  All Confirmed Check In List
+                  </a>
                </li>
             </ul>
          </li>

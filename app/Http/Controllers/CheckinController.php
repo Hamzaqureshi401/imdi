@@ -75,6 +75,34 @@ class CheckinController extends ApiController
        
     }
 
+    public function allPendingCheckInList(){
+
+       $bin = Binlocation::where('status', '1')
+                ->with('palletLabel')
+                ->whereHas('palletLabel', function ($query) {
+                    $query->whereNotNull('checkin_status')
+                          ->where('checkin_status', 0);
+                })
+                ->get();
+
+        
+        return view('admin.checkin.allPendingCheckInList',compact('bin'));
+    }
+
+      public function allConfirmedCheckInList(){
+
+       $bin = Binlocation::where('status', '1')
+                ->with('palletLabel')
+                ->whereHas('palletLabel', function ($query) {
+                    $query->whereNotNull('checkin_status')
+                          ->where('checkin_status', 1);
+                })
+                ->get();
+
+        
+        return view('admin.checkin.allConfirmedCheckInList',compact('bin'));
+    }
+
     
 
     /**
