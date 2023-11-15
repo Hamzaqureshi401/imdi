@@ -149,7 +149,7 @@ class RackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) 
     {
         //
         $wh=Rackinfo::where('id',$id)->first();
@@ -186,7 +186,7 @@ class RackController extends Controller
            
                 $wh = Rackinfo::find($id);
                 $l=$wh->length+1;   
-                $wh->rowtitle = $request->title;
+                $wh->rowtitle = $request->rowtitle;
                 $wh->length = $request->length;
                 $wh->format = $request->format;
                 $wh->update();
