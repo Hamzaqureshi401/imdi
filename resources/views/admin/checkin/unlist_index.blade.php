@@ -78,22 +78,7 @@ Manage Check In
                @endif
                @endforeach
             </tbody>
-            <tfoot>
-               <tr>
-                  <th>Sr #</th>
-                  <th>Warehouse</th>
-                  <th>Arrival Date</th>
-                  <th>Purchase Order No</th>
-                  <th>Container No</th>
-                  <th>Master Case</th>
-                  <th>MasterCase Quantity</th>
-                  <th>Ti*Hi</th>
-                  <th>Label Count</th>
-                  <th>Assigned</th>
-                  <th>Un Assigned</th>
-                  <th style="text-align:center;">Action</th>
-               </tr>
-            </tfoot>
+           
          </table>
       </div>
    </div>

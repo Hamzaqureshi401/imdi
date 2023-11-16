@@ -7,6 +7,7 @@ use App\Models\Permission;
 use App\Models\Binlocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class RackController extends Controller
 {
@@ -47,9 +48,25 @@ class RackController extends Controller
 
     public function managerack($warehouse)
     {
-        //
+        
         $racks=Rackinfo::where('warehouse',$warehouse)->get();
         return view('admin.racks.index',compact('racks','warehouse'));
+    }
+
+     public function print($id , $print)
+    {
+        
+        $data['label'] = Binlocation::where('row_id', $id)->get();
+
+        $data['print_range'] = $print;
+
+        view()->share('data',$data);
+      $pdf = PDF::loadView('admin.racks.print');
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+        
+        
+        return view('admin.racks.print' , compact('data'));
     }
 
     /**

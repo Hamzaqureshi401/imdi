@@ -16,11 +16,11 @@
                              <div class="card-header-tab card-header">
                                  <div class="card-header-title font-size-lg text-capitalize fw-normal">
                                      <i class="header-icon lnr-users me-3 text-muted opacity-6"></i>
-                                     Pending Pick Order List
+                                     Processed Pick Order List
                                  </div>
                                 
                              </div>
-                             <div class="card-body">
+                     <div class="card-body">
                                  <table style="width: 100%;" id="mytb" class="table table-hover table-striped table-bordered">
                                      <thead>
                                          <tr>
@@ -62,34 +62,21 @@
                                              
                                              <td style="text-align:center;"><b><?php echo e($u->qty); ?></b></td>
 
-                                             <td style="text-align:center;"><?php echo e(getusername($u->user)); ?><br><?php echo e($u->created_at->format('Y-m-d h:i:s a')); ?></td>
-                                          
-                                             <td  style="text-align:center;" class="text-danger"><b>Not Picked from Location Yet</b></td>
+                                             <td style="text-align:center;"><?php echo e(getusername($u->user)); ?><br><?php echo e($u->created_at->format('Y-m-d h:i:s a')); ?></td>                          
+                                             <td  style="text-align:center;" class="text-success"><b>Order Picked From Warehouse</b></td>
                                              
                                              
                                              <td style="text-align:center;">
                                                     <div role="group" class="btn-group-lg btn-group btn-group-toggle">
 
-                                                     <a href="<?php echo e(route('confirm.pick.order', ['id' => $u->id, 'user' => Auth::id()])); ?>" class="btn btn-sm btn-dark">
-                                                            Confirm Pick
-                                                        </a>
+                                                       
 
-        
-
-                                                        <a href="<?php echo e(route('pick.show',$u->trans_no)); ?>">
+                                                        <a href="<?php echo e(route('pickdonelist',$u->trans_no)); ?>">
                                                             <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="View">
                                                                 <i class="lnr-eye icon-gradient bg-grow-early"></i>
                                                             </div>
                                                         </a>
-        
-                                                        <form class="delete" method="POST" action="<?php echo e(route('pick.destroy', $u->id)); ?>">
-                                                        <?php echo csrf_field(); ?>
-                                                        <?php echo method_field("DELETE"); ?>
-                                                        <button type="submit" class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="destroy">
-                                                            <i class="lnr-trash icon-gradient bg-amy-crisp"></i>
-                                                        </button>
-                                                        </form>
-
+                                                   
                                                        
                                                     </div>
                                              </td>
@@ -100,7 +87,7 @@
                                         ?>
                                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                      </tbody>
-                                    
+                                     
                                  </table>
                              </div>
                          </div>
@@ -126,4 +113,4 @@ $(document).ready(function() {
 });
 </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/pickorders/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/pickorders/done.blade.php ENDPATH**/ ?>

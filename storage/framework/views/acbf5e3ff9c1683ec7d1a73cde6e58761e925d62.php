@@ -1,10 +1,10 @@
-@extends('layouts.admin.app')
-@section('header')
-@endsection
-@section('title')
+
+<?php $__env->startSection('header'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
 Manage Warehouse Racks
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="tabs-animation">
    <div class="card mb-3">
       <div class="card-header-tab card-header">
@@ -14,37 +14,37 @@ Manage Warehouse Racks
          </div>
       </div>
       <div class="card-body">
-         @if (\Session::has('message'))
+         <?php if(\Session::has('message')): ?>
          <div  class="alert alert-success alert-dismissible fade show print-error-msg" role="alert">
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert">
             </button>
             <ul>
-               <li>{{Session::get('message')}}</li>
+               <li><?php echo e(Session::get('message')); ?></li>
             </ul>
          </div>
-         @endif
-         @if (\Session::has('error'))
+         <?php endif; ?>
+         <?php if(\Session::has('error')): ?>
          <div  class="alert alert-danger alert-dismissible fade show print-error-msg" role="alert">
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert">
             </button>
             <ul>
-               <li>{{Session::get('error')}}</li>
+               <li><?php echo e(Session::get('error')); ?></li>
             </ul>
          </div>
-         @endif
-         @if (count($errors) > 0)
+         <?php endif; ?>
+         <?php if(count($errors) > 0): ?>
          <div  class="alert alert-danger alert-dismissible fade show print-error-msg" role="alert">
             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert">
             </button>
             <ul>
-               @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-               @endforeach
+               <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+               <li><?php echo e($error); ?></li>
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
          </div>
-         @endif
-         <form method="post" action="{{route('rack.store')}}">
-            @csrf
+         <?php endif; ?>
+         <form method="post" action="<?php echo e(route('rack.store')); ?>">
+            <?php echo csrf_field(); ?>
             <div class="row">
                <div class="col-md-3">
                   <div class="position-relative mb-3">
@@ -68,7 +68,7 @@ Manage Warehouse Racks
                <div class="col-md-3">
                   <div class="position-relative mb-3">
                      <label for="examplePassword11" class="form-label">&nbsp;</label>
-                     <input type="hidden" name="warehouse" value="{{$warehouse}}" />
+                     <input type="hidden" name="warehouse" value="<?php echo e($warehouse); ?>" />
                      <input name="submit" type="submit" value="Save"class="form-control btn btn-dark">
                   </div>
                </div>
@@ -96,55 +96,55 @@ Manage Warehouse Racks
                </tr>
             </thead>
             <tbody>
-               @php 
+               <?php 
                $i=1;
-               @endphp 
-               @foreach( $racks as $u )
+               ?> 
+               <?php $__currentLoopData = $racks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $u): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                <tr>
-                  <td>{{$i}}</td>
-                  <td>{{$u->rowtitle}}</td>
-                  <td>{{$u->format}}</td>
-                  <td>{{$u->length}}</td>
+                  <td><?php echo e($i); ?></td>
+                  <td><?php echo e($u->rowtitle); ?></td>
+                  <td><?php echo e($u->format); ?></td>
+                  <td><?php echo e($u->length); ?></td>
                   <td style="text-align:center;">
                      
 
                      <div role="group" class="btn-group-lg btn-group btn-group-toggle">
-                      <!--   <a href="{{ route('binlabels', $u->id) }}">
+                      <!--   <a href="<?php echo e(route('binlabels', $u->id)); ?>">
                            <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Print Label">
                               <i class="lnr-printer icon-gradient bg-grow-early"></i>
                            </div>
                         </a> -->
-                         <a href="{{ route('print', $u->id) }}" class="print-link">
+                         <a href="<?php echo e(route('print', $u->id)); ?>" class="print-link">
                             <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Print Label">
                                 <i class="lnr-printer icon-gradient bg-grow-early"></i>
                             </div>
                         </a>
-                        <a href="{{ route('rack.show', $u->id) }}">
+                        <a href="<?php echo e(route('rack.show', $u->id)); ?>">
                            <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="View or Update BarCode">
                               <i class="lnr-eye icon-gradient bg-grow-early"></i>
                            </div>
                         </a>
-                        <a href="{{ route('rack.edit', $u->id) }}">
+                        <a href="<?php echo e(route('rack.edit', $u->id)); ?>">
                            <div class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Edit">
                               <i class="lnr-pencil icon-gradient bg-grow-early"></i>
                            </div>
                         </a>
-                        @if(binstatusforrack($u->id)==$u->length)
-                        <form class="delete" method="POST" action="{{ route('rack.destroy', $u->id) }}">
-                           @csrf
-                           @method("DELETE")
+                        <?php if(binstatusforrack($u->id)==$u->length): ?>
+                        <form class="delete" method="POST" action="<?php echo e(route('rack.destroy', $u->id)); ?>">
+                           <?php echo csrf_field(); ?>
+                           <?php echo method_field("DELETE"); ?>
                            <button type="submit" class="font-icon-wrapper font-icon-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete">
                            <i class="lnr-trash icon-gradient bg-amy-crisp"></i>
                            </button>
                         </form>
-                        @endif
+                        <?php endif; ?>
                      </div>
                   </td>
                </tr>
-               @php 
+               <?php 
                $i++;
-               @endphp
-               @endforeach
+               ?>
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
             <tfoot>
                <tr>
@@ -159,8 +159,8 @@ Manage Warehouse Racks
       </div>
    </div>
 </div>
-@endsection
-@section('footer')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
 <script>
    $(document).ready(function() {
      // Attach a submit event handler to the form
@@ -200,4 +200,5 @@ Manage Warehouse Racks
     });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/racks/index.blade.php ENDPATH**/ ?>

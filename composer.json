@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "clegginabox/pdf-merger": "dev-master",
         "codedge/laravel-fpdf": "^1.9",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",

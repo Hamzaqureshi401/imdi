@@ -230,6 +230,7 @@ Route::get('/get-rack-info-wr/{warehouseId?}', [TransferController::class, 'getR
 Route::get('/get-bin-location-rc/{rackId?}',  [TransferController::class, 'getBinLocation'])->name('get.bin.rc');
 
 Route::get('confirmpo/{id}/{user}', [PickorderController::class, 'confirmpickorderweb'])->name('confirm.pick.order');
+Route::get('print/{id}/{print?}', [RackController::class, 'print'])->name('print');
 
 
 
