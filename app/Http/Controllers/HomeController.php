@@ -36,6 +36,11 @@ class HomeController extends Controller
     public function index()
     {
         Artisan::call('migrate');
+    //      Artisan::call('config:cache');
+     Artisan::call('cache:clear');
+     Artisan::call('config:clear');
+    
+    
     
         $data = $this->getDashBoardData();
         $warehouses = Warehouse::get();
