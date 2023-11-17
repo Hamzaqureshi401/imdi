@@ -316,30 +316,78 @@ Inventory Report
         
    
    //  });
+   var selectedOption = "view";
+
+   $(document).ready(function() {
+    
+    
+    $('input[name="report"]').change(function() {
+      selectedOption = $(this).val();
+      console.log("Selected Option:", selectedOption);
+    });
+  });
 
 $('.submit').click(function () {
-  // Prevent the default form submission
-  console.log('click');
+    // Prevent the default form submission
+    event.preventDefault();
 
-  // Get the CSRF token from the form
-  var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    // Get the CSRF token from the form
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-  $.ajax({
-    type: 'POST',
-    url: '<?php echo e(route('gen_inventory')); ?>', // Use the appropriate route
-    data: {
-     _token: "<?php echo e(csrf_token()); ?>", // Add the CSRF token to the request data
-      data: $(this).serialize() // Include the form data as well
-    },
-    success: function (response) {
-      $('#pan').html(response); // Update the HTML content of #pan with the response
-      $('#mytb').DataTable();
-    },
-    error: function (xhr, status, error) {
-      console.error(error);
+    if (selectedOption == 'view') {
+        var url = '<?php echo e(route('gen_inventory')); ?>';
+        
+        // Use Ajax for 'view' option
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                _token: "<?php echo e(csrf_token()); ?>",
+                data: collectFormData('#formmain'),
+                report: selectedOption,
+            },
+            success: function (response) {
+                $('#pan').html(response);
+                $('#mytb').DataTable();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    } else if (selectedOption == 'excel' || selectedOption == 'pdf') {
+        // Create a hidden button inside the form
+        var hiddenButton = document.createElement('button');
+        hiddenButton.style.display = 'none';
+        hiddenButton.type = 'submit';
+
+        // Append the button to the form
+        $('#formmain').append(hiddenButton);
+
+        // Set the form action based on the selected option
+        var form = $('#formmain')[0];
+        form.action = (selectedOption == 'excel') ? '<?php echo e(route('gen_inventory_excel')); ?>' : '<?php echo e(route('gen_inventory_pdf')); ?>';
+
+        // Trigger a click event on the hidden button to submit the form
+        hiddenButton.click();
+
+        // Remove the hidden button after submission
+        $(hiddenButton).remove();
     }
-  });
 });
+
+
+function collectFormData(formSelector) {
+    var formData = {};
+    $(formSelector).find(':input').each(function () {
+        var name = $(this).attr('name');
+        var value = $(this).val();
+        // Include only non-empty values in the formData
+        if (name && value !== '') {
+            formData[name] = value;
+        }
+    });
+    return formData;
+}
 
    
     
