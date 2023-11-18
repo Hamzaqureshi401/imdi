@@ -31,7 +31,7 @@ Register New Pick Order
                </button>
                <ul>
                   <li>Please Use Only Excel file </li>
-                  <li>Download <b><a href="<?php echo e(asset('pickorder_template.xls')); ?>">Template</a></b> From here and use that for further proceed</li>
+                  <li>Download <b><a href="<?php echo e(url('public/pickorder_template.xls')); ?>">Template</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
             <div class="row">
@@ -48,6 +48,7 @@ Register New Pick Order
                   </div>
                </div>
             </div>
+
          </form>
          <form class="" id="formmain" method="post" action="<?php echo e(route('pick.store')); ?>">
             <?php echo csrf_field(); ?>
@@ -77,6 +78,8 @@ Register New Pick Order
                            </select>
                         </div>
                      </div>
+                    
+
                      <div class="col-md-2">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Unit(s)</label>
@@ -93,6 +96,40 @@ Register New Pick Order
                         <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
                         <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                      </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-3">
+                         
+                        
+                           <label for="exampleEmail11" class="form-label d-block">Master Case</label>
+                           <select  id="mastercase_id" name="mastercase_id" class="form-control multiselect-dropdown">
+                              <option value="">Select Master Case</option>
+                              <?php $__currentLoopData = $ms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($p->id); ?>"><?php echo e($p->name); ?></option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                           </select>
+                        
+                     
+
+                     
+                  </div>
+                  <div class="col-md-2">
+                        <div class="position-relative mb-3">
+                           <label for="exampleEmail11" class="form-label d-block">Master Case Qty</label>
+                           <input  id="mcqty" placeholder="Enter Quantity" name="mc_qty" type="number" min=1 class="form-control" >
+                        </div>
+                     </div>
+                     <div class="col-md-2">
+                        <div class="position-relative mb-3">
+                           <label class="form-label d-block">Master Case Invoice no.</label>
+                           <input  id="mc_inv-no" name="mc_invoice_no" placeholder="Enter Invoice No." type="number" min=1 class="form-control" >
+                        </div>
+                     </div>
+                     
+                  <div class="col-md-3">
+                     <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
+                     <a class="btn btn-dark search_ms">Search By Master Case</a> </div>
+                     
                   </div>
                   <br>
                   <div class="col-ms-12">
@@ -162,10 +199,10 @@ Register New Pick Order
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('footer'); ?>
-<script type="text/javascript" src="<?php echo e(asset('admin/js/form-components/input-select.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('admin/js/sweet-alerts.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(url('public/admin/js/form-components/input-select.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
 <script>
@@ -227,6 +264,8 @@ Register New Pick Order
              
         }
         $("#psave").click(function(){
+
+         console.log(11);
             var pro=$("#pro").val();
             var pqty=$("#pqty").val();
             var inv_no=$("#inv-no").val();
@@ -405,6 +444,63 @@ Register New Pick Order
    
     });
    
+   $(".search_ms").click(function(){
+      var mastercase_id = $('#mastercase_id').val();
+      var mcqty = $('#mcqty').val();
+      var mc_inv_no = $('#mc_inv-no').val();
+      if(mastercase_id == ""){
+         alert('Please Select Mastercase')
+      }
+      var url = '<?php echo e(route('pick.store')); ?>';
+
+      $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+        _token: "<?php echo e(csrf_token()); ?>",
+       mastercase_id: mastercase_id,
+    qty: mcqty,
+    mc_inv_no: mc_inv_no,
+    },
+    success: function (req) {
+      console.log(req.status );
+        if(req.status=='Successful')
+                {
+                    //var json = JSON.parse(req.output);
+                    
+                    
+                    $("#stocktable tbody").empty();
+                    $('#stocktable tbody').append(req.output);
+                    
+                  
+                    // if($.isEmptyObject(json.error)){
+                    //     $(".print-error-msg").css('display','none');
+                    //     $("#formmain")[0].reset();
+                    // }
+                    // else{
+                      
+                    //     $(".print-error-msg").find("ul").html('');
+                    //     $(".print-error-msg").css('display','block');
+                    //     $.each( json.error, function( key, value ) {
+                    //         $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+                    //     });
+                    // }
+                }
+                else
+                {
+                  
+                    Swal.fire({ 
+                    text: "There is something Wrong Please Cross Check",
+                    title:"Error",
+                    type: "question",
+                        });
+                }
+    },
+    error: function (xhr, status, error) {
+        console.error(error);
+    }
+   });
+});
     
 </script>
 <?php $__env->stopSection(); ?>

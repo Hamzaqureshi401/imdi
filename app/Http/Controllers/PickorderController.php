@@ -9,6 +9,7 @@ use App\Models\Permission;
 use App\Imports\PO_Pro_imp;
 use App\Models\Binlocation;
 use App\Models\PalletLabel;
+use App\Models\Mastercase;
 use Illuminate\Http\Request;
 
 use App\Models\Mastercaseproduct;
@@ -133,7 +134,9 @@ class PickorderController extends ApiController
 
         $product=Product::get();
         $wh=Warehouse::where('is_active','1')->get();
-        return view('admin.pickorders.create',compact('product','wh')); 
+        $ms=Mastercase::get();
+
+        return view('admin.pickorders.create',compact('product','wh' , 'ms')); 
     }
 
     /** 
@@ -144,12 +147,32 @@ class PickorderController extends ApiController
      */
     public function store(Request $request)
     {
-        //
-        $result = Mastercaseproduct::select('mcid')
+        //dd($request->all());
+        if(!empty($request->mastercase_id)){
+            $result = Mastercaseproduct::join('mastercases as mc', 'mastercaseproducts.mcid', '=', 'mc.id')
+        ->where('mcid', $request->mastercase_id)
+        ->where('qty' , $request->qty)
+        ->distinct()
+        ->select('mcid')
+        ->get();
+        }else{
+            $result = Mastercaseproduct::select('mcid')
         ->join('mastercases as mc', 'mastercaseproducts.mcid', '=', 'mc.id')
         ->whereIn('pid', $request->pid)
         ->distinct()
         ->get();
+        }
+
+        //dd($result , $request->all());
+
+
+
+       
+        
+
+        
+
+
         //$result = Binlocation::whereIn('mcid', $result)->where('status','1')->get();
         $result =  Binlocation::select('rc.arr_date','rc.warehouse', 'pl.mc_id', 'rcid', 'pl.avl_qty', 'pl.mc_qty','binlocations.id As id','name', 'labelid')
         ->join('pallet_labels as pl', 'pl.palletno', '=', 'binlocations.labelid')
@@ -161,9 +184,10 @@ class PickorderController extends ApiController
         ->whereNotNull('pl.avl_qty') 
         ->where('pl.avl_qty', '>', 0);
 
-        if($request->warehouse=="" || $request->warehouse=="All")
+        //if($request->warehouse=="" || $request->warehouse=="All")
+        if(empty($request->warehouse)) 
         {
-
+            $result = $result;
         }
         else{
             $result=$result->where('rc.warehouse',$request->warehouse);
@@ -195,6 +219,8 @@ class PickorderController extends ApiController
         else{
             $output.='<tr><td colspan="6" style="text-align:center;" class="text-danger"><b>There is No Record Found!</b></td></tr>';
         }
+
+        //dd($output);
         return response()->json(['status'=>'Successful','message'=>'Record is Created','error'=>'','output'=>$output]);
     
             }
