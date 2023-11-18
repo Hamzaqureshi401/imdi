@@ -150,8 +150,8 @@ class PickorderController extends ApiController
         //dd($request->all());
         if(!empty($request->mastercase_id)){
             $result = Mastercaseproduct::join('mastercases as mc', 'mastercaseproducts.mcid', '=', 'mc.id')
-        ->where('mcid', $request->mastercase_id)
-        ->where('qty' , $request->qty)
+        ->whereIn('mcid', $request->mastercase_id)
+        //->where('qty' , $request->qty)
         ->distinct()
         ->select('mcid')
         ->get();

@@ -15,6 +15,11 @@ Check In
          </div>
       </div>
       <div class="card-body">
+         <form action="{{ route('confirm.multiple.checkin') }}" method="POST">
+            @csrf
+         <!-- Add this outside your table to create a Confirm button -->
+<button id="confirmBtn" type="submit" class="btn btn-sm btn-success">Confirm Check In</button>
+
          <table style="width: 100%;" id="mytb" class="table table-hover table-striped table-bordered">
             <thead>
                <tr>
@@ -59,7 +64,9 @@ Check In
                   </td>
                   <td style="text-align:center;">
                     @if(empty($u->palletLabel->checkin_date))
+                     <input type="checkbox" class="confirm-checkbox" name="ids[]" value="{{ $u->id }}"/>
                     <a href="{{ route('checkin.edit' , $u->id) }}" class="btn btn-sm btn-dark">Check In Confirm</a>
+                 </form>
                     @endif
                      @if(empty($pl->checkin_status) || $pl->checkin_status==0)
                      <div role="group" class="btn-group-lg btn-group btn-group-toggle">
@@ -77,6 +84,7 @@ Check In
               
                @endforeach
             </tbody>
+           
            <!--  <tfoot>
                <tr>
                   <th>Sr #</th>

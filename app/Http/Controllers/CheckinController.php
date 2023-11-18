@@ -211,4 +211,23 @@ class CheckinController extends ApiController
         $bin->update();
         return redirect()->back()->with('message', 'UnAllocatied Successfully');
     }
+
+    public function confirmMultipleCheckin(Request $request){
+       // dd($request->all());
+
+        if(empty($request->ids)){
+            return redirect()->back()->with('message' , 'Please Select at Least 1 checkbox!'); 
+        }
+
+
+        foreach($request->ids as $id){
+            $bin = Binlocation::where('id' , $id)->first();
+            $response = $this->checkedin($bin->labelid,Auth::id());
+        }
+        if($response->getStatusCode() === 200){
+            return redirect()->back()->with('message' , 'Updated Successfully!');
+        }else{
+          return redirect()->back()->with('message' , 'Something Went Wrong');  
+        }
+    }
 }
