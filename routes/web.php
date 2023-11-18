@@ -231,6 +231,8 @@ Route::get('/get-bin-location-rc/{rackId?}',  [TransferController::class, 'getBi
 
 Route::get('confirmpo/{id}/{user}', [PickorderController::class, 'confirmpickorderweb'])->name('confirm.pick.order');
 Route::get('print/{id}/{print?}', [RackController::class, 'print'])->name('print');
+Route::post('confirmMultipleCheckin', [CheckinController::class, 'confirmMultipleCheckin'])->name('confirm.multiple.checkin');
+
 
 
 
