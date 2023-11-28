@@ -181,10 +181,10 @@ Manage Warehouse Racks
             e.preventDefault();
 
             // Show a prompt to get user input
-            var numberOfPrints = prompt("How many prints do you want? (Maximum: 10)");
+            var numberOfPrints = prompt("How many prints do you want? (Maximum: 3)");
 
             // Check if the user entered a value and it's a positive integer within the range
-            if (numberOfPrints !== null && !isNaN(numberOfPrints) && numberOfPrints > 0 && numberOfPrints <= 10) {
+            if (numberOfPrints !== null && !isNaN(numberOfPrints) && numberOfPrints > 0 && numberOfPrints <= 3) {
                 // Get the href attribute from the clicked link
                 var printUrl = $(this).attr('href');
 
@@ -194,7 +194,7 @@ Manage Warehouse Racks
                 // Redirect to the print route with the user input
                 window.location.href = printUrl;
             } else {
-                alert("Please enter a valid number between 1 and 10.");
+                alert("Please enter a valid number between 1 and 3.");
             }
         });
     });
