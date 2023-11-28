@@ -177,12 +177,14 @@ class PickorderController extends ApiController
         $result =  Binlocation::select('rc.arr_date','rc.warehouse', 'pl.mc_id', 'rcid', 'pl.avl_qty', 'pl.mc_qty','binlocations.id As id','name', 'labelid')
         ->join('pallet_labels as pl', 'pl.palletno', '=', 'binlocations.labelid')
         ->join('receiveds as rc', 'rc.id', '=', 'pl.rc_id')
-        ->where('binlocations.status', 1)
+        //->where('binlocations.status', 1)
         ->whereIn('binlocations.mcid', $result)
         ->orderBy('rc.arr_date')
         ->orderBy('pl.avl_qty')
         ->whereNotNull('pl.avl_qty') 
-        ->where('pl.avl_qty', '>', 0);
+        //->where('pl.avl_qty', '>', 0);
+
+        //dd($result->pluck('rcid')->toArray());
 
         //if($request->warehouse=="" || $request->warehouse=="All")
         if(empty($request->warehouse)) 
