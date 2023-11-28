@@ -31,10 +31,11 @@ Register New Pick Order
                </button>
                <ul>
                   <li>Please Use Only Excel file </li>
-                  <li>Download <b><a href="<?php echo e(url('public/pickorder_template.xls')); ?>">Template</a></b> From here and use that for further proceed</li>
+                  <!-- <li>Download <b><a href="<?php echo e(url('public/pickorder_template.xls')); ?>">Download Template for product</a></b> From here and use that for further proceed</li> -->
+                  <li>Download <b><a href="<?php echo e(url('public/pickorder_template_ms.xls')); ?>">Download Template for Master Case</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
-            <div class="row">
+           <!--  <div class="row">
                <div class="col-md-8">
                   <div class="position-relative mb-3">
                      <label for="exampleEmail11" class="form-label">Pleas Select Excel File To Import Products</label>
@@ -47,14 +48,27 @@ Register New Pick Order
                      <input name="submit" type="submit" Value="Import" class="form-control btn btn-dark" required>
                   </div>
                </div>
+            </div> -->
+            <div class="row">
+               <div class="col-md-8">
+                  <div class="position-relative mb-3">
+                     <label for="exampleEmail11" class="form-label">Pleas Select Excel File To Import Master Case</label>
+                     <input name="file" id="excel_file_ms"  type="file"class="form-control" required>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="position-relative mb-3">
+                     <label for="examplePassword11" class="form-label"> &nbsp</label>
+                    <a class="btn btn-sm btn-dark import_ms form-control">Import Master Case</a>
+                  </div>
+               </div>
             </div>
-
          </form>
          <form class="" id="formmain" method="post" action="<?php echo e(route('pick.store')); ?>">
             <?php echo csrf_field(); ?>
             <div class="row">
                <div class="col-md-12">
-                  <div class="row">
+                <!--   <div class="row">
                      <div class="col-md-4">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Warehouse</label>
@@ -78,8 +92,6 @@ Register New Pick Order
                            </select>
                         </div>
                      </div>
-                    
-
                      <div class="col-md-2">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Unit(s)</label>
@@ -96,24 +108,18 @@ Register New Pick Order
                         <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
                         <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                      </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                      <div class="col-md-3">
-                         
-                        
-                           <label for="exampleEmail11" class="form-label d-block">Master Case</label>
-                           <select  id="mastercase_id" name="mastercase_id" class="form-control multiselect-dropdown">
-                              <option value="">Select Master Case</option>
-                              <?php $__currentLoopData = $ms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($p->id); ?>"><?php echo e($p->name); ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                           </select>
-                        
-                     
-
-                     
-                  </div>
-                  <div class="col-md-2">
+                        <label for="exampleEmail11" class="form-label d-block">Master Case</label>
+                        <select  id="mastercase_id" name="mastercase_id" class="form-control multiselect-dropdown">
+                           <option value="">Select Master Case</option>
+                           <?php $__currentLoopData = $ms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <option value="<?php echo e($p->name); ?>+<?php echo e($p->upc); ?>+<?php echo e($p->id); ?>"><?php echo e($p->name); ?></option>
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                     </div>
+                     <div class="col-md-2">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Master Case Qty</label>
                            <input  id="mcqty" placeholder="Enter Quantity" name="mc_qty" type="number" min=1 class="form-control" >
@@ -125,14 +131,13 @@ Register New Pick Order
                            <input  id="mc_inv-no" name="mc_invoice_no" placeholder="Enter Invoice No." type="number" min=1 class="form-control" >
                         </div>
                      </div>
-                     
-                  <div class="col-md-3">
-                     <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
-                     <a class="btn btn-dark search_ms">Search By Master Case</a> </div>
-                     
+                     <div class="col-md-3">
+                        <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
+                        <a class="btn btn-dark search_ms">Search By Master Case</a> 
+                     </div>
                   </div>
                   <br>
-                  <div class="col-ms-12">
+                <!--   <div class="col-ms-12">
                      <table id="protable" class="mb-0 table table-bordered">
                         <thead>
                            <tr>
@@ -148,10 +153,30 @@ Register New Pick Order
                         <tfoot>
                         </tfoot>
                      </table>
-                  </div>
+                  </div> -->
                </div>
             </div>
             <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/>
+         </form>
+         <form id="msForm">
+            <div class="col-ms-12">
+               <table id="mstable" class="mb-0 table table-bordered">
+                  <thead>
+                     <tr>
+                        <th>Master Case UPC</th>
+                        <th>Master Case</th>
+                        <th>Qty(s)</th>
+                        <th>Invoice No.</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                  <tfoot>
+                  </tfoot>
+               </table>
+               <a class="btn btn-sm btn-dark submit_ms">Search By Master Case</a>
+            </div>
          </form>
       </div>
    </div>
@@ -252,7 +277,7 @@ Register New Pick Order
     
    
         function addTableRow(data) {
-
+   
             console.log('123' , data);
             var newRow = '<tr id="'+data.upc+'">\
             <th scope="row"><input type="hidden" name="pid[]" value="'+ data.id +'"/>'+ data.upc + '</th>\
@@ -264,12 +289,12 @@ Register New Pick Order
              
         }
         $("#psave").click(function(){
-
+   
          console.log(11);
             var pro=$("#pro").val();
             var pqty=$("#pqty").val();
             var inv_no=$("#inv-no").val();
-
+   
             if(pqty==""|| pqty<=0)
             alert("quantity can not be empty or less than 1");
             else
@@ -359,7 +384,7 @@ Register New Pick Order
         });
    
         $("#form_import").submit(function (e) {
-
+   
             console.log('hamza');
             e.preventDefault(); // Prevent the default form submission behavior
    
@@ -411,26 +436,17 @@ Register New Pick Order
                                     customTableHTML += '<th><input type="hidden" name="pid[]" value="'+so[2]+'">' + jsonData[j][0] + '</th>';
                                     customTableHTML += "<td>" + so[0] + "</td>";
                                     customTableHTML += '<td><input type="hidden" name="pqty[]" value="'+jsonData[j][2]+'">' + jsonData[j][2] + '</td>';
-
+   
                                     customTableHTML += '<td><input type="hidden" name="inv_no[]" value="'+jsonData[j][3]+'">' + jsonData[j][3] + '</td>';
-
-
+   
+   
                                     customTableHTML += '<td><a class="remove btn btn-dark">Remove</a></td>';
                                     customTableHTML += "</tr>";
                                     s=0;
                                }
-                                   
-                               
-                                   
-                               
-                        
                           
-                         }
-                        
+                         }   
                     }
-   
-                    
-   
                     // Display the custom table in the container
                     $("#protable tbody").empty();
                     $("#protable tbody").append(customTableHTML);
@@ -444,63 +460,173 @@ Register New Pick Order
    
     });
    
-   $(".search_ms").click(function(){
-      var mastercase_id = $('#mastercase_id').val();
-      var mcqty = $('#mcqty').val();
-      var mc_inv_no = $('#mc_inv-no').val();
-      if(mastercase_id == ""){
-         alert('Please Select Mastercase')
-      }
-      var url = '<?php echo e(route('pick.store')); ?>';
-
-      $.ajax({
-    type: 'POST',
-    url: url,
-    data: {
-        _token: "<?php echo e(csrf_token()); ?>",
-       mastercase_id: mastercase_id,
-    qty: mcqty,
-    mc_inv_no: mc_inv_no,
-    },
-    success: function (req) {
-      console.log(req.status );
-        if(req.status=='Successful')
-                {
-                    //var json = JSON.parse(req.output);
-                    
-                    
-                    $("#stocktable tbody").empty();
-                    $('#stocktable tbody').append(req.output);
-                    
-                  
-                    // if($.isEmptyObject(json.error)){
-                    //     $(".print-error-msg").css('display','none');
-                    //     $("#formmain")[0].reset();
-                    // }
-                    // else{
-                      
-                    //     $(".print-error-msg").find("ul").html('');
-                    //     $(".print-error-msg").css('display','block');
-                    //     $.each( json.error, function( key, value ) {
-                    //         $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-                    //     });
-                    // }
-                }
-                else
-                {
-                  
-                    Swal.fire({ 
+   $(".submit_ms").click(function () {
+    var form = $('#msForm');
+    console.log();
+    var url = '<?php echo e(route('pick.store')); ?>';
+   
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: form.serialize() + "&_token=<?php echo e(csrf_token()); ?>", // Include the CSRF token
+        success: function (req) {
+            console.log(req.status);
+            if (req.status == 'Successful') {
+                $("#stocktable tbody").empty();
+                $('#stocktable tbody').append(req.output);
+            } else {
+                Swal.fire({
                     text: "There is something Wrong Please Cross Check",
-                    title:"Error",
+                    title: "Error",
                     type: "question",
-                        });
-                }
-    },
-    error: function (xhr, status, error) {
-        console.error(error);
-    }
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
    });
-});
+   
+   $(document).ready(function(){
+                var newRowDatams = {
+                upc: 0,
+                name:"0",
+                qty:0,
+                id:0
+   
+            };
+   
+             function addTableRowms(data) {
+   
+            console.log('123' , data);
+            var newRow = '<tr id="'+data.upc+'">\
+            <th scope="row"><input type="hidden" name="mastercase_id[]" value="'+ data.id +'"/>'+ data.upc + '</th>\
+            <td>'+ data.name + '</td>\
+            <td><input type="hidden" name="mqty[]" value="'+ data.qty +'"/>'+ data.qty + '</td>\
+            <td><input type="hidden" name="mqty[]" value="'+ data.inv_no +'"/>'+ data.inv_no + '</td>\
+            <td><a class="remove btn btn-dark" >Remove</a></td></tr>';
+            $('#mstable tbody').append(newRow);
+             
+        }
+   $(".search_ms").click(function(){
+   
+         console.log(11);
+            var pro=$("#mastercase_id").val();
+            var pqty=$("#mcqty").val();
+            var inv_no=$("#mc_inv-no").val();
+   
+            
+            if(pqty==""|| pqty<=0)
+            alert("Master case quantity can not be empty or less than 1");
+            else
+            { 
+            var myArray = pro.split('+');
+            newRowDatams.upc=myArray[1];
+            newRowDatams.name=myArray[0];
+            newRowDatams.id=myArray[2];
+            newRowDatams.qty=pqty;
+            newRowDatams.inv_no=inv_no;
+            var targetRow = $("#mstable tbody").find("tr#"+myArray[1]);
+            if(targetRow.length==0)
+            {
+            addTableRowms(newRowDatams);
+            var tq=$('#total_qty').text();
+            tq=parseInt(tq)+parseInt(pqty);
+            $('#total_qty').text(tq);
+            }
+            else{
+                var prev=targetRow.find("td").eq(1).text();
+                var newval=parseInt(prev)+parseInt(pqty);
+                targetRow.find("td").eq(1).html('<td><input type="hidden" name="mqty[]" value="'+ newval +'"/>'+ newval + '</td>');
+                var tq=$('#total_qty').text();
+                tq=parseInt(tq)+parseInt(pqty);
+                $('#total_qty').text(tq); 
+            }
+            $("#pqty").val("");
+              
+   
+            }
+            
+        });
+   });
+
+
+   //$("#form_import").submit(function (e) {
+
+      $(".import_ms").click(function(e){
+   
+            console.log('hamza');
+            e.preventDefault(); // Prevent the default form submission behavior
+   
+            var fileInput = $("#excel_file_ms")[0]; // Get the file input DOM element
+            var file = fileInput.files[0];
+            var so,s=0;
+            if (file) {
+                var reader = new FileReader();
+   
+                reader.onload = function (e) {
+                    var data = new Uint8Array(e.target.result);
+                    var workbook = XLSX.read(data, { type: "array" });
+                    var sheetName = workbook.SheetNames[0];
+                    var sheet = workbook.Sheets[sheetName];
+                    var jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+   
+                    // Create your custom table based on jsonData
+                    var customTableHTML = "<table>";
+                    customTableHTML += "<thead><tr>";
+   
+                    // Assuming the first row contains headers
+                    for (var i = 0; i < jsonData[0].length; i++) {
+                        customTableHTML += "<th>" + jsonData[0][i] + "</th>";
+                    }
+   
+                    customTableHTML += "</tr></thead><tbody>";
+                    customTableHTML="";
+   
+                    // Start from the second row for data
+                    for (var j = 1; j < jsonData.length; j++) {
+                        
+                        if (jsonData[j].length>0)
+                         {
+                           
+   
+                           
+                                $("#mastercase_id option").each(function() {
+                                        var optionValue = $(this).val();
+                                        if (optionValue.includes(jsonData[j][0])) {
+                                            so = optionValue.split('+');
+                                            s=1;
+                                        return false; // Exit the loop when a match is found
+                                        }
+                                    });
+                                console.log(jsonData);
+                               if(s==1)
+                               {
+                                    customTableHTML += '<tr id="'+ jsonData[j][0] +'">';
+                                    customTableHTML += '<th><input type="hidden" name="mastercase_id[]" value="'+so[2]+'">' + jsonData[j][0] + '</th>';
+                                    customTableHTML += "<td>" + so[0] + "</td>";
+                                    customTableHTML += '<td><input type="hidden" name="mqty[]" value="'+jsonData[j][2]+'">' + jsonData[j][2] + '</td>';
+   
+                                    customTableHTML += '<td><input type="hidden" name="m_inv_no[]" value="'+jsonData[j][3]+'">' + jsonData[j][3] + '</td>';
+   
+   
+                                    customTableHTML += '<td><a class="remove btn btn-dark">Remove</a></td>';
+                                    customTableHTML += "</tr>";
+                                    s=0;
+                               }
+                          
+                         }   
+                    }
+                    // Display the custom table in the container
+                    $("#mstable tbody").empty();
+                    $("#mstable tbody").append(customTableHTML);
+                };
+   
+                reader.readAsArrayBuffer(file);
+            }
+   
+        });
     
 </script>
 <?php $__env->stopSection(); ?>

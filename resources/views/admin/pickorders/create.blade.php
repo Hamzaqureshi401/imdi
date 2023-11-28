@@ -30,11 +30,11 @@ Register New Pick Order
                </button>
                <ul>
                   <li>Please Use Only Excel file </li>
-                  <li>Download <b><a href="{{url('public/pickorder_template.xls')}}">Download Template for product</a></b> From here and use that for further proceed</li>
+                  <!-- <li>Download <b><a href="{{url('public/pickorder_template.xls')}}">Download Template for product</a></b> From here and use that for further proceed</li> -->
                   <li>Download <b><a href="{{url('public/pickorder_template_ms.xls')}}">Download Template for Master Case</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
-            <div class="row">
+           <!--  <div class="row">
                <div class="col-md-8">
                   <div class="position-relative mb-3">
                      <label for="exampleEmail11" class="form-label">Pleas Select Excel File To Import Products</label>
@@ -47,7 +47,7 @@ Register New Pick Order
                      <input name="submit" type="submit" Value="Import" class="form-control btn btn-dark" required>
                   </div>
                </div>
-            </div>
+            </div> -->
             <div class="row">
                <div class="col-md-8">
                   <div class="position-relative mb-3">
@@ -67,7 +67,7 @@ Register New Pick Order
             @csrf
             <div class="row">
                <div class="col-md-12">
-                  <div class="row">
+                <!--   <div class="row">
                      <div class="col-md-4">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Warehouse</label>
@@ -107,7 +107,7 @@ Register New Pick Order
                         <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
                         <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                      </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                      <div class="col-md-3">
                         <label for="exampleEmail11" class="form-label d-block">Master Case</label>
@@ -136,7 +136,7 @@ Register New Pick Order
                      </div>
                   </div>
                   <br>
-                  <div class="col-ms-12">
+                <!--   <div class="col-ms-12">
                      <table id="protable" class="mb-0 table table-bordered">
                         <thead>
                            <tr>
@@ -152,7 +152,7 @@ Register New Pick Order
                         <tfoot>
                         </tfoot>
                      </table>
-                  </div>
+                  </div> -->
                </div>
             </div>
             <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/>
