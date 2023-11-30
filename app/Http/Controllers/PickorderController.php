@@ -181,7 +181,7 @@ class PickorderController extends ApiController
         ->whereIn('binlocations.mcid', $result)
         ->orderBy('rc.arr_date')
         ->orderBy('pl.avl_qty')
-        ->whereNotNull('pl.avl_qty') 
+        ->whereNotNull('pl.avl_qty');
         //->where('pl.avl_qty', '>', 0);
 
         //dd($result->pluck('rcid')->toArray());

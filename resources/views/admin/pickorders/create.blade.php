@@ -155,7 +155,7 @@ Register New Pick Order
                   </div> -->
                </div>
             </div>
-            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/>
+            <!-- <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/> -->
          </form>
          <form id="msForm">
             <div class="col-ms-12">

@@ -59,9 +59,9 @@
                                              <td>{{getmastercase($pld->mc_id)}}</td>
                                              <td>{{$u->p_pl_no}}</td>
                                              <td>{{getwarehouse($u->p_warehouse)}}</td>
-                                             <td>{{$pbin->name}}</td>
+                                             <td>{{$pbin->name ?? '--'}}</td>
                                              <td>{{getwarehouse($u->n_warehouse)}}</td>
-                                             <td>{{$nbin->name}}</td>
+                                             <td>{{$nbin->name ?? '--'}}</td>
                                              <td>{{ $u->created_at->format('Y-m-d h:i:s a') }}</td> 
                                             
                                              
