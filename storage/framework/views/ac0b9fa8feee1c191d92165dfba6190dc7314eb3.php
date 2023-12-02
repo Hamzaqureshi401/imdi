@@ -5,6 +5,13 @@
 Register New Pick Order
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+<?php $__env->startPush('styles'); ?>
+<style type="text/css">
+   a{
+   color: white;
+   }
+</style>
+<?php $__env->stopPush(); ?>
 <div class="tabs-animation">
    <?php if(session('message')): ?>
    <div class="alert alert-success">
@@ -35,7 +42,7 @@ Register New Pick Order
                   <li>Download <b><a href="<?php echo e(url('public/pickorder_template_ms.xls')); ?>">Download Template for Master Case</a></b> From here and use that for further proceed</li>
                </ul>
             </div>
-           <!--  <div class="row">
+            <!--  <div class="row">
                <div class="col-md-8">
                   <div class="position-relative mb-3">
                      <label for="exampleEmail11" class="form-label">Pleas Select Excel File To Import Products</label>
@@ -48,7 +55,7 @@ Register New Pick Order
                      <input name="submit" type="submit" Value="Import" class="form-control btn btn-dark" required>
                   </div>
                </div>
-            </div> -->
+               </div> -->
             <div class="row">
                <div class="col-md-8">
                   <div class="position-relative mb-3">
@@ -59,7 +66,7 @@ Register New Pick Order
                <div class="col-md-4">
                   <div class="position-relative mb-3">
                      <label for="examplePassword11" class="form-label"> &nbsp</label>
-                    <a class="btn btn-sm btn-dark import_ms form-control">Import Master Case</a>
+                     <a class="btn btn-sm btn-dark import_ms form-control">Import Master Case</a>
                   </div>
                </div>
             </div>
@@ -68,7 +75,7 @@ Register New Pick Order
             <?php echo csrf_field(); ?>
             <div class="row">
                <div class="col-md-12">
-                <!--   <div class="row">
+                  <!--   <div class="row">
                      <div class="col-md-4">
                         <div class="position-relative mb-3">
                            <label for="exampleEmail11" class="form-label d-block">Warehouse</label>
@@ -108,7 +115,7 @@ Register New Pick Order
                         <label for="exampleEmail11" class="form-label d-block">&nbsp;</label>
                         <input name="psave" id="psave" value="Add Product" type="button" class="form-control btn btn-dark" >
                      </div>
-                  </div> -->
+                     </div> -->
                   <div class="row">
                      <div class="col-md-3">
                         <label for="exampleEmail11" class="form-label d-block">Master Case</label>
@@ -137,7 +144,7 @@ Register New Pick Order
                      </div>
                   </div>
                   <br>
-                <!--   <div class="col-ms-12">
+                  <!--   <div class="col-ms-12">
                      <table id="protable" class="mb-0 table table-bordered">
                         <thead>
                            <tr>
@@ -153,10 +160,10 @@ Register New Pick Order
                         <tfoot>
                         </tfoot>
                      </table>
-                  </div> -->
+                     </div> -->
                </div>
             </div>
-            <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/>
+            <!-- <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Search"/> -->
          </form>
          <form id="msForm">
             <div class="col-ms-12">
@@ -187,11 +194,10 @@ Register New Pick Order
             Available Master Case Details  
          </div>
       </div>
-      <div class="card-body">
+       <div id="p_ms_detail"></div>
+      <!--<div class="card-body">
          <div style="display:none;" class="alert alert-danger alert-dismissible fade show print-error-msg" role="alert">
-            </button>
-            <ul>
-            </ul>
+           
          </div>
          <form class="" id="formpick" method="post" action="<?php echo e(route('pickorder')); ?>">
             <?php echo csrf_field(); ?>
@@ -219,7 +225,7 @@ Register New Pick Order
             </div>
             <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Confirm Pick"/>
          </form>
-      </div>
+      </div> -->
    </div>
 </div>
 <?php $__env->stopSection(); ?>
@@ -253,27 +259,7 @@ Register New Pick Order
            
         });
    
-        $("#stocktable tbody").on("keyup", ".pick-qty", function() {
-           
-            var index = $(this).closest("tr").index();
-            var productData = $(this).closest("tr").find(".mcp").html();
-          
-            var pq =  $(this).closest("tr").find(".pick-qty").val();
-            productData=productData.replace(/<b>.*?<\/b>/g, "");
-            var md = productData.replace(/\[(\d+)\]/g, function(match, value) {
-                
-            return '<span class="text-danger"><b>(' + value * pq + ')</b></span>';
-        });
-            $(this).closest("tr").find(".product-quantity").html(md);
-           
-           
-            
-           // $row.find('.product-quantity').html(productsText);
-           
-          
-            
-           
-        });
+       
     
    
         function addTableRow(data) {
@@ -348,6 +334,7 @@ Register New Pick Order
           
             
             complete: function (req) {
+
                if(req.status==200)
                 {
                     var json = JSON.parse(req.responseText);
@@ -470,17 +457,10 @@ Register New Pick Order
         url: url,
         data: form.serialize() + "&_token=<?php echo e(csrf_token()); ?>", // Include the CSRF token
         success: function (req) {
-            console.log(req.status);
-            if (req.status == 'Successful') {
-                $("#stocktable tbody").empty();
-                $('#stocktable tbody').append(req.output);
-            } else {
-                Swal.fire({
-                    text: "There is something Wrong Please Cross Check",
-                    title: "Error",
-                    type: "question",
-                });
-            }
+            //console.log(req.status);
+            $('#p_ms_detail').html(req);
+            $('.mytb').DataTable();
+           
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -550,10 +530,10 @@ Register New Pick Order
             
         });
    });
-
-
+   
+   
    //$("#form_import").submit(function (e) {
-
+   
       $(".import_ms").click(function(e){
    
             console.log('hamza');

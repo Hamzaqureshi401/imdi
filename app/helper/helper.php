@@ -83,7 +83,7 @@ function checkrolestatus($role)
 function getwarehouse($id)
 {
 $w=Warehouse::where('id',$id)->first();
-return $w->warehouse;
+return $w->warehouse ?? '--';
 }
 
 function get_total_ccl($cc)
@@ -198,7 +198,7 @@ function get_mc_pro_wise($mcid,$qty)
 	}
 	$data = [
 		'res' => $res,
-		'total' => $total,
+		'total' => $total ?? 0,
 	];
 	return $data;
 }

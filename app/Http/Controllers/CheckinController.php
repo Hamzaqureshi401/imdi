@@ -126,7 +126,8 @@ class CheckinController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
+        //chk
         $l=PalletLabel::where('palletno',$request->labelid)->first();
       
         $rc=getrcdetails($l->rc_id);
@@ -155,6 +156,7 @@ class CheckinController extends ApiController
      */
     public function show($id)
     {
+        
         $label=PalletLabel::where('rc_id',$id)->get();
         $rc=Received::where('id',$id)->first();
         $rows=Rackinfo::where('warehouse',$rc->warehouse)->get();

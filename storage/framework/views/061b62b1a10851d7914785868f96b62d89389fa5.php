@@ -35,8 +35,6 @@
         <link rel="stylesheet" href="<?php echo e(asset('admin/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css')); ?>">
 
         <link href="<?php echo e(asset('admin/styles/css/base.css')); ?>" rel="stylesheet">
-         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
         <style>
         td{
             color:black;
