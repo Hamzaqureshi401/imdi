@@ -26,5 +26,9 @@ class PalletLabel extends Model
      public function user(){
          return $this->belongsTo(User::class,'checkin_by');
      }
+     public function stockPlacement(){
+
+        return $this->hasMany(StockPlacement::class , 'label_id');
+     }
 
 }

@@ -194,10 +194,12 @@ class PickorderController extends ApiController
             $result=$result->where('rc.warehouse',$request->warehouse)->get();
         }
 
+        $pl = PalletLabel::whereIn('mc_id' , $request->mastercase_id)->get();
+
         //dd($result->first());
         
         
-       return view('admin.pickorders.product-mastercase-details' , compact('result'));    
+       return view('admin.pickorders.product-mastercase-details' , compact('result' , 'pl'));    
             }
 
     public function pickorder(Request $request)
