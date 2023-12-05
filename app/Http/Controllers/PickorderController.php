@@ -11,6 +11,8 @@ use App\Models\Binlocation;
 use App\Models\PalletLabel;
 use App\Models\Mastercase;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CheckinController;
+
 
 use App\Models\Mastercaseproduct;
 use Illuminate\Support\Facades\Auth;
@@ -171,11 +173,11 @@ class PickorderController extends ApiController
         //dd($result , $request->all());
         //$result = Binlocation::whereIn('mcid', $result)->where('status','1')->get();
         $result =  Binlocation::select('rc.arr_date','rc.warehouse', 'pl.mc_id', 'rcid', 'pl.avl_qty', 'pl.mc_qty','binlocations.id As id','name', 'labelid' , 'binlocations.status')
-        ->leftJoin('pallet_labels as pl', 'pl.palletno', '=', 'binlocations.labelid')
-        ->leftJoin('receiveds as rc', 'rc.id', '=', 'pl.rc_id')
-        //->where('binlocations.status', 1)
-        ->whereIn('binlocations.mcid', $result)
-        ->orWhereIn('binlocations.id', $bl)
+        ->Join('pallet_labels as pl', 'pl.palletno', '=', 'binlocations.labelid')
+        ->Join('receiveds as rc', 'rc.id', '=', 'pl.rc_id')
+        ->where('binlocations.status', 1)
+        ->whereIn('binlocations.mcid', $request->mastercase_id)
+        //->orWhereIn('binlocations.id', $bl)
         ->orderBy('rc.arr_date')
         ->orderBy('pl.avl_qty')
         ->whereNotNull('pl.avl_qty')
@@ -204,7 +206,51 @@ class PickorderController extends ApiController
 
     public function pickorder(Request $request)
     {
-        $l=100000+ rand(1,99999);
+        //dd($request->all());
+        $this->handUnallocatedPallet($request);
+        $this->completePickOrder($request);
+       
+        return redirect()->back()->with('message', 'Pick Order Saved Successfully');
+
+    }
+
+    public function handUnallocatedPallet($request){
+
+        if(!empty(isset($request->un_pq))) {
+            foreach($request->id as $key => $pl){
+                if(!empty($request->un_pq[$key])){
+                   $pallet = PalletLabel::where('id' , $pl)->first();
+                   $binlocation = Binlocation::whereIn('row_id' , $pallet->receiveds->rackInfo->pluck('id')->toArray())->where('status' , 0)->first();
+                   if(!empty($binlocation)){
+                   $sendCheckinRequest = new Request([
+                    'labelid' => $pallet->palletno,
+                    'rowid'   => $binlocation->id
+                   ]);
+                   $checkinClass = new CheckinController();
+                   $GetCashPaidhistory = $checkinClass->store($sendCheckinRequest);             
+                    $data['lb'][]        = $request->un_lb[$key];
+                    $data['pq'][]        = $request->un_pq[$key];
+                    $data['bid'][]       = $binlocation->id;
+                    $data['invoice'][]   = $request->un_invoice[$key];
+               }
+               $sendCompltePOrder = new Request($data);
+                }
+            }
+            //dd($sendCompltePOrder->all() , $data);
+           if(!empty($sendCompltePOrder)){
+            $this->completePickOrder($sendCompltePOrder);
+           }
+            
+        }
+
+
+    }
+
+    public function completePickOrder($request){
+
+        //dd($request->all());
+
+         $l=100000+ rand(1,99999);
         $tran_no=date("ymd").$l;
         for($i=0; $i<count($request->lb); $i++)
             {
@@ -234,13 +280,13 @@ class PickorderController extends ApiController
                 
                 
             } 
-        return redirect()->back()->with('message', 'Pick Order Saved Successfully');
-
     }
 
     public function storebk(Request $request)
     {
         //
+
+
         $result = Mastercaseproduct::select('pid', 'mcid','mc.name as mc_name', 'mc.upc as mc_upc', 'p.name as p_name', 'p.upc as p_upc','pl.palletno as plno')
         ->join('mastercases as mc', 'mastercaseproducts.mcid', '=', 'mc.id')
         ->join('pallet_labels as pl', 'mastercaseproducts.mcid', '=', 'pl.mc_id')

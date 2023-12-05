@@ -6,7 +6,7 @@
         <div class="card-body">
             <h1>Unallocated Pallets</h1>
         
-     <table class="table table-bordered mytb" >
+     <table class="table table-bordered mytb" > 
         <thead>
             <tr>
                               <th>Arrival Date</th>
@@ -34,12 +34,13 @@
                         </td>
                         <td>{{ $r->wareHouse->warehouse }}</td>
                         <td>
-                            <input type="hidden" name="lb[]" value="{{ $r->palletno }}"/>
-                            <input type="hidden" name="bid[]" value="{{ $r->id }}"/>
+                            <input type="hidden" name="id[]" value="{{ $r->id }}">
+                            <input type="hidden" name="un_lb[]" value="{{ $r->palletno }}"/>
+                            <input type="hidden" name="un_bid[]" value="{{ $r->id }}"/>
                             <b>{{ $r->palletno }}</b>
                         </td>
-                        <td><input name="invoice[]" id="invoice" type="text" class="form-control pick-inv" /></td>
-                        <td><input name="pq[]" id="t" type="number" min=1 max="{{ $r->avl_qty }}" class="form-control pick-qty" /></td>
+                        <td><input name="un_invoice[]" id="invoice" type="text" class="form-control pick-inv" /></td>
+                        <td><input name="un_pq[]" id="t" type="number" min=1 max="{{ $r->avl_qty }}" class="form-control pick-qty" /></td>
                         <td class="product-quantity"></td>
                     </tr>
                     @endif

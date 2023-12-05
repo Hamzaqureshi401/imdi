@@ -6,7 +6,7 @@
         <div class="card-body">
             <h1>Unallocated Pallets</h1>
         
-     <table class="table table-bordered mytb" >
+     <table class="table table-bordered mytb" > 
         <thead>
             <tr>
                               <th>Arrival Date</th>
@@ -20,22 +20,30 @@
                            </tr>
         </thead>
         <tbody>
-            <?php if($result->count() > 0): ?>
-                <?php $__currentLoopData = $result->where('status' , 0); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($pl->count() > 0): ?>
+                <?php $__currentLoopData = $pl; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($r->stockPlacement->count() == 0): ?>
                     <tr>
-                        <td><?php echo e($r->arr_date); ?></td>
-                        <td><?php echo e(getmastercase($r->mc_id)); ?><br>Available Quantity(s): <b><?php echo e($r->avl_qty); ?></b></td>
-                        <td class="mcp"><?php echo implode(', ', get_mc_pro_wise($r->mc_id, $r->avl_qty)); ?></td>
-                        <td><?php echo e(getwarehouse($r->warehouse)); ?></td>
-                        <td>
-                            <input type="hidden" name="lb[]" value="<?php echo e($r->labelid); ?>"/>
-                            <input type="hidden" name="bid[]" value="<?php echo e($r->id); ?>"/>
-                            <b><?php echo e($r->labelid); ?><br><?php echo e($r->name); ?></b>
+                        <td><?php echo e($r->created_at); ?></td>
+                        <td><?php echo e($r->mastercase->name); ?><br>Available Quantity(s): <b><?php echo e($r->avl_qty); ?></b></td>
+                        <td class="mcp">
+                            <?php $__currentLoopData = $r->mastercase->mastercaseproduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <?php echo e($pr->product->name); ?> / 
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            
                         </td>
-                        <td><input name="invoice[]" id="invoice" type="text" class="form-control pick-inv" /></td>
-                        <td><input name="pq[]" id="t" type="number" min=1 max="<?php echo e($r->avl_qty); ?>" class="form-control pick-qty" /></td>
+                        <td><?php echo e($r->wareHouse->warehouse); ?></td>
+                        <td>
+                            <input type="hidden" name="id[]" value="<?php echo e($r->id); ?>">
+                            <input type="hidden" name="un_lb[]" value="<?php echo e($r->palletno); ?>"/>
+                            <input type="hidden" name="un_bid[]" value="<?php echo e($r->id); ?>"/>
+                            <b><?php echo e($r->palletno); ?></b>
+                        </td>
+                        <td><input name="un_invoice[]" id="invoice" type="text" class="form-control pick-inv" /></td>
+                        <td><input name="un_pq[]" id="t" type="number" min=1 max="<?php echo e($r->avl_qty); ?>" class="form-control pick-qty" /></td>
                         <td class="product-quantity"></td>
                     </tr>
+                    <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php else: ?>
                 <tr>

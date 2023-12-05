@@ -31,4 +31,8 @@ class PalletLabel extends Model
         return $this->hasMany(StockPlacement::class , 'label_id');
      }
 
+     public function receiveds(){
+        return $this->belongsTo(Received::class , 'rc_id');
+     }
+
 }

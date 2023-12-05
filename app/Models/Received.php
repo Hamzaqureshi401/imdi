@@ -24,8 +24,10 @@ class Received extends Model
         
      ];
 
-     public function binlocation()
-    {
+    public function binlocation(){
         return $this->hasMany(Binlocation::class,'rcid','id');
+    }
+    public function rackInfo(){
+        return $this->hasMany(Rackinfo::class , 'warehouse' , 'warehouse');
     }
 }

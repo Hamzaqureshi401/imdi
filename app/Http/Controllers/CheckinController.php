@@ -140,7 +140,7 @@ class CheckinController extends ApiController
             'status'=>'1',
             'rcid'=>$l->rc_id,
             'labelid'=>$l->palletno,
-            'mcid'=>$rc->mcid,
+            'mcid'=>$l->receiveds->mcid,
         ]);
         PalletLabel::where('id',$l->id)->update([
             'status'=>'1',
