@@ -249,6 +249,7 @@ class PickorderController extends ApiController
     public function completePickOrder($request){
 
         //dd($request->all());
+        if(!empty(isset($request->pq))){
 
          $l=100000+ rand(1,99999);
         $tran_no=date("ymd").$l;
@@ -280,6 +281,7 @@ class PickorderController extends ApiController
                 
                 
             } 
+    }
     }
 
     public function storebk(Request $request)

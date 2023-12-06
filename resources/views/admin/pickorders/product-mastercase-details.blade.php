@@ -22,7 +22,7 @@
         <tbody>
             @if ($pl->count() > 0)
                 @foreach ($pl as $r)
-                @if($r->stockPlacement->count() == 0)
+                @if($r->stockPlacement->count() == 0 && !empty($r->receiveds->id))
                     <tr>
                         <td>{{ $r->created_at }}</td>
                         <td>{{ $r->mastercase->name }}<br>Available Quantity(s): <b>{{ $r->avl_qty }}</b></td>
