@@ -389,4 +389,17 @@ class PickorderController extends ApiController
         }
         
     }
+     public function confirmMultiplePendingPickOrder(Request $request){
+       // dd($request->all());
+
+        if(empty($request->ids)){
+            return redirect()->back()->with('message' , 'Please Select at Least 1 checkbox!'); 
+        }
+
+
+        foreach($request->ids as $id){
+            $response = $this->confirmpickorder($id, Auth::id());
+        }
+         return redirect()->back()->with('message', 'Pick order confirmed successfully.');
+    }
 }
