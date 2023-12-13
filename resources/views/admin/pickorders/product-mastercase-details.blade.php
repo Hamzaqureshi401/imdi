@@ -100,7 +100,7 @@
     </div>
     </div>
 </div>
- <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Confirm Pick"/>
+ <a id="create"  class="mt-2 btn btn-dark" >Confirm Pick</a> 
          </form>
 
 <script type="text/javascript">
@@ -127,4 +127,12 @@
             
            
         });
+
+      $('#create').click(function() {
+        // Select all checkboxes in the DataTable
+        $('.mytb').DataTable().page.len(-1).draw();
+        
+        // Submit the form
+        $('#formpick').submit();
+    });
 </script>

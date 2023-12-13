@@ -22,7 +22,7 @@
         <tbody>
             <?php if($pl->count() > 0): ?>
                 <?php $__currentLoopData = $pl; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($r->stockPlacement->count() == 0): ?>
+                <?php if($r->stockPlacement->count() == 0 && !empty($r->receiveds->id)): ?>
                     <tr>
                         <td><?php echo e($r->created_at); ?></td>
                         <td><?php echo e($r->mastercase->name); ?><br>Available Quantity(s): <b><?php echo e($r->avl_qty); ?></b></td>
@@ -100,7 +100,7 @@
     </div>
     </div>
 </div>
- <input type="submit" id="create"  class="mt-2 btn btn-dark" value="Confirm Pick"/>
+ <a id="create"  class="mt-2 btn btn-dark" >Confirm Pick</a> 
          </form>
 
 <script type="text/javascript">
@@ -127,5 +127,13 @@
             
            
         });
+
+      $('#create').click(function() {
+        // Select all checkboxes in the DataTable
+        $('.mytb').DataTable().page.len(-1).draw();
+        
+        // Submit the form
+        $('#formpick').submit();
+    });
 </script>
 <?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/pickorders/product-mastercase-details.blade.php ENDPATH**/ ?>
