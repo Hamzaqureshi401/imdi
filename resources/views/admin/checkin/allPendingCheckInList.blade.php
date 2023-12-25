@@ -18,7 +18,7 @@ Check In
          <form action="{{ route('confirm.multiple.checkin') }}" method="POST">
             @csrf
          <!-- Add this outside your table to create a Confirm button -->
-<button id="confirmBtn" type="submit" class="btn btn-sm btn-success">Confirm Check In</button> 
+<button id="confirmBtn" type="submit" class="btn btn-sm btn-success">Confirm Check In</button>
 
          <table style="width: 100%;" id="mytb" class="table table-hover table-striped table-bordered">
             <thead>

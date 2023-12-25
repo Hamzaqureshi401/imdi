@@ -176,12 +176,7 @@ return $w;
 function getwarehouse_rc($id)
 {
 $w=Received::where('id',$id)->first();
-if(!empty($w)){
-$w=getwarehouse($w->warehouse);    
-}else{
-    $w = '--';
-}
-
+$w=getwarehouse($w->warehouse);
 return $w;
 }
 
