@@ -50,7 +50,7 @@ Manage Check In
                   <td>{{$u->created_at}}</td>
                   <td>{{$u->order_no}}</td>
                   <td>{{$u->order_no}}</td>
-                  <td>{{$u->binlocation->first()->name}}</td>
+                  <td>{{$u->binlocation->first()?->name}}</td>
                   <th>{{getmastercase($u->mcid)}}</th>
                   <td>{{$u->mc_quantity}}</td>
                   <td>{{$pc}}</td>

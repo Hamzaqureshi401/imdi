@@ -54,7 +54,15 @@ class RoleController extends Controller
     public function create()
     {
         //
-        $permissions = [
+
+        $permissions = $this->getPermissions();
+        
+        return view('admin.roles.create',compact('permissions'));
+    }
+
+    public function getPermissions(){
+
+        return [
             ['value' => 1, 'permission' => 'User'],
             ['value' => 2, 'permission' => 'Warehouse'],
             ['value' => 3, 'permission' => 'Role'],
@@ -70,7 +78,6 @@ class RoleController extends Controller
             ['value' => 13, 'permission' => 'Reports'],
             // You can add more elements here
         ];
-        return view('admin.roles.create',compact('permissions'));
     }
 
     /**
@@ -130,23 +137,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
-        $permissions = [
-            ['value' => 1, 'permission' => 'User'],
-            ['value' => 2, 'permission' => 'Warehouse'],
-            ['value' => 3, 'permission' => 'Role'],
-            ['value' => 4, 'permission' => 'Product'],
-            ['value' => 5, 'permission' => 'Mastercase'],
-            ['value' => 6, 'permission' => 'Receiving'],
-            ['value' => 7, 'permission' => 'Checkin'],
-            ['value' => 8, 'permission' => 'Pick Order'],
-            ['value' => 9, 'permission' => 'Cycle Count'],
-            ['value' => 10, 'permission' => 'Transfer'],
-            ['value' => 11, 'permission' => 'Return'],
-            ['value' => 12, 'permission' => 'App'],
-            ['value' => 13, 'permission' => 'Reports'],
-
-            // You can add more elements here
-        ];
+        $permissions = $this->getPermissions();
         $role=Role::find($id);
         $permission=Permission::where('role_id',$id)->get();
 

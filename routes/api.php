@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\PickorderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +73,12 @@ Route::get('returns/{id?}', [ApiController::class, 'returnlist']);
 Route::get('return/confirmed/{id?}', [ApiController::class, 'getconfirmedreturn']);
     
 Route::get('pendingreturn', [ReturnController::class, 'pendingreturn']);
+
+Route::get('getMasterCase', [PickorderController::class, 'getMasterCase']);
+Route::post('/pickorder/find-location', [PickorderController::class, 'apiFindlocation']);
+Route::post('/pickorder/unallocated-new-pick-order', [PickorderController::class, 'apiUnallocatedNewPickOrder']);
+
+
 });
 });
 

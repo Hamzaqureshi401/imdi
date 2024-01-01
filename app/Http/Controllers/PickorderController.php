@@ -150,6 +150,102 @@ class PickorderController extends ApiController
     public function store(Request $request)
     {
         //dd($request->all());
+       
+        $data = $this->findBinlocations($request);
+        $result = $data[0];
+        $pl = $data[1];
+
+       return view('admin.pickorders.product-mastercase-details' , compact('result' , 'pl'));    
+    }
+
+
+    public function apiFindlocation(Request $request)
+    {
+
+        $mastercase_id = json_decode($request->mastercase_id, true);
+        $rq = new Request([
+            'mastercase_id' => $mastercase_id
+        ]);
+        $data = $this->findBinlocations($rq);
+
+        $dataNew['unallocatedData'] = $this->findUnallocatedData($data);
+        $dataNew['allocatedData'] = $this->findAllocatedData($data);
+
+         return response()->json([
+            'code'=>200,
+            'status'=>'Successful',
+            'message'=>'Record Fetch Successful',
+            'output'=>$dataNew
+            ]);
+    }
+
+
+    public function findUnallocatedData($data){
+
+        $unallocatedData = [];
+
+        foreach ($data[1] as $r) {
+            if ($r->stockPlacement->count() == 0 && !empty($r->receiveds->id)) {
+                $unallocatedData[] = [
+                    'master_case' => [
+                        'name' => $r->mastercase->name,
+                        'available_quantity' => $r->avl_qty,
+                        'products' => $r->mastercase->mastercaseproduct->map(function ($pr) {
+                            return $pr->product->name;
+                        })
+                    ],
+                    'warehouse' => $r->wareHouse->warehouse,
+                    'pallet' => [
+                        'id' => $r->id,
+                        'un_lb' => $r->palletno,
+                        'un_bid' => $r->id,
+                        'max_un_pq' => $r->avl_qty
+                    ],
+                ];
+            }
+        }
+
+        return $unallocatedData;
+    }
+
+    public function getMasterCase(){
+
+        return response()->json([
+            'code'=>200,
+            'status'=>'Successful',
+            'message'=>'Record Fetch Successful',
+            'output'=>Mastercase::get()
+            ]);
+    }
+
+    public function findAllocatedData($data){
+    $allocatedData = [];
+        $data = $data[0];
+        foreach ($data->where('status', 1) as $r) {
+            $allocatedData[] = [
+                'arrival_date' => $r->arr_date,
+                'master_case' => [
+                    'name' => getmastercase($r->mc_id),
+                    'available_quantity' => $r->avl_qty,
+                    'products' => implode(', ', get_mc_pro_wise($r->mc_id, $r->avl_qty))
+                ],
+                'warehouse' => getwarehouse($r->warehouse),
+                'label_bin' => [
+                    'lb' => $r->labelid,
+                    'bid' => $r->id,
+                    'label_name' => $r->labelid . '<br>' . $r->name
+                ],
+            ];
+        }
+
+        return $allocatedData;
+    }
+
+
+
+
+    public function findBinlocations($request){
+
         if(!empty($request->mastercase_id)){
             $result = Mastercaseproduct::join('mastercases as mc', 'mastercaseproducts.mcid', '=', 'mc.id')
         ->whereIn('mcid', $request->mastercase_id)
@@ -181,13 +277,7 @@ class PickorderController extends ApiController
         ->orderBy('rc.arr_date')
         ->orderBy('pl.avl_qty')
         ->whereNotNull('pl.avl_qty')
-
-        //dd($result->count());
         ->where('pl.avl_qty', '>', 0);
-
-        //dd($result->pluck('rcid')->toArray());
-
-        //if($request->warehouse=="" || $request->warehouse=="All")
         if(empty($request->warehouse)) 
         {
             $result = $result->get();
@@ -195,14 +285,9 @@ class PickorderController extends ApiController
         else{
             $result=$result->where('rc.warehouse',$request->warehouse)->get();
         }
-
         $pl = PalletLabel::whereIn('mc_id' , $request->mastercase_id)->get();
-
-        //dd($result->first());
-        
-        
-       return view('admin.pickorders.product-mastercase-details' , compact('result' , 'pl'));    
-            }
+        return [$result , $pl];
+    }
 
     public function pickorder(Request $request)
     {
@@ -214,8 +299,49 @@ class PickorderController extends ApiController
 
     }
 
+    public function apiUnallocatedNewPickOrder(Request $request){
+
+        if(!empty($request->un_pq)){
+            $id         = json_decode($request->id, true);
+            $un_pq      = json_decode($request->un_pq, true);
+            $un_lb      = json_decode($request->un_lb, true);
+            $un_invoice = json_decode($request->un_invoice, true);  
+
+            $un_rq = new Request([
+                'id' => $id,
+                'un_pq' => $un_pq,
+                'un_lb' => $un_lb,
+                'un_invoice' => $un_invoice
+            ]);  
+            $this->handUnallocatedPallet($un_rq);
+        
+        }
+
+        if(!empty($request->pq)){
+            $pq      = json_decode($request->pq, true);
+            $lb      = json_decode($request->lb, true);
+            $invoice = json_decode($request->invoice, true);
+
+            $al_rq = new Request([
+                'id' => $id,
+                'pq' => $pq,
+                'lb' => $lb,
+                'invoice' => $invoice
+            ]);
+            $this->completePickOrder($al_rq);
+       
+        }
+
+        return redirect()->back()->with('message', 'Pick Order Saved Successfully');
+        
+        
+
+    }
+
     public function handUnallocatedPallet($request){
 
+
+        //dd($request->all());
         if(!empty(isset($request->un_pq))) {
             foreach($request->id as $key => $pl){
                 if(!empty($request->un_pq[$key])){
@@ -231,7 +357,7 @@ class PickorderController extends ApiController
                     $data['lb'][]        = $request->un_lb[$key];
                     $data['pq'][]        = $request->un_pq[$key];
                     $data['bid'][]       = $binlocation->id;
-                    $data['invoice'][]   = $request->un_invoice[$key];
+                   //$data['invoice'][]   = $request->un_invoice[$key];
                }
                $sendCompltePOrder = new Request($data);
                 }
@@ -262,7 +388,7 @@ class PickorderController extends ApiController
                    
                     $po = new Pickorder();
                     $po->trans_no=$tran_no;
-                    $po->invoice_no=$request->invoice[$i];
+                    $po->invoice_no=$request->invoice[$i] ?? null;
                     $po->label_id=$l_id->id;
                     $po->label_no=$request->lb[$i];
                     $po->mc_id=$b->mcid;

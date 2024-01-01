@@ -1,13 +1,11 @@
-@extends('layouts.admin.app')
+<?php $__env->startSection('header'); ?>
 
-@section('header')
-
-@endsection
-@section('title')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
  Edit User
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="tabs-animation">
                          
                          
@@ -34,13 +32,13 @@
                                              <div class="col-md-6">
                                                  <div class="position-relative mb-3">
                                                      <label for="exampleEmail11" class="form-label">Email / Username</label>
-                                                     <input value="{{$user->email}}" name="Email" id="email" placeholder="Enter Email / username" type="text" class="form-control" required>
+                                                     <input value="<?php echo e($user->email); ?>" name="Email" id="email" placeholder="Enter Email / username" type="text" class="form-control" required>
                                                  </div>
                                              </div>
                                              <div class="col-md-6">
                                                  <div class="position-relative mb-3">
                                                      <label for="examplePassword11" class="form-label"> Full Name</label>
-                                                     <input name="Employee_name" value="{{$user->name}}" id="ename" placeholder="Enter Full Name" type="text" class="form-control" required>
+                                                     <input name="Employee_name" value="<?php echo e($user->name); ?>" id="ename" placeholder="Enter Full Name" type="text" class="form-control" required>
                                                  </div>
                                              </div>
                                          </div>
@@ -49,13 +47,13 @@
                                              <div class="col-md-6">
                                                  <div class="position-relative mb-3">
                                                      <label for="exampleEmail11" class="form-label">Contact No</label>
-                                                     <input name="contact" value="{{$user->contact}}" id="contact" placeholder="Enter Contact No" type="text" class="form-control" required>
+                                                     <input name="contact" value="<?php echo e($user->contact); ?>" id="contact" placeholder="Enter Contact No" type="text" class="form-control" required>
                                                  </div>
                                              </div>
                                              <div class="col-md-6">
                                                  <div class="position-relative mb-3">
                                                      <label for="examplePassword11" class="form-label"> Address</label>
-                                                     <input name="address" value="{{$user->address}}" id="address" placeholder="Enter Address" type="text" class="form-control" required>
+                                                     <input name="address" value="<?php echo e($user->address); ?>" id="address" placeholder="Enter Address" type="text" class="form-control" required>
                                                  </div>
                                              </div>
                                          </div>
@@ -85,11 +83,12 @@
         <div class="input-group">
             <select name="role" id="role" class="form-select" required>
                 <option value="">Select Role</option>
-                @foreach ($roles as $role)
-                    <option value="{{ $role->id }}" @if ($user->role == $role['id']) selected @endif>
-                        {{ $role['role'] }}
+                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($role->id); ?>" <?php if($user->role == $role['id']): ?> selected <?php endif; ?>>
+                        <?php echo e($role['role']); ?>
+
                     </option>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
     </div>
@@ -103,11 +102,11 @@
                          </div>
                         
  </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
-<script type="text/javascript" src="{{url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/admin/js/sweet-alerts.js')}}"></script>
+<?php $__env->startSection('footer'); ?>
+<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
     <script>
        $(document).ready(function(){
             $("#generate").click(function(){
@@ -135,7 +134,7 @@
                 
                 $.ajax({
                     type: "put",
-                    url: "{{route('user.update',$user->id)}}",
+                    url: "<?php echo e(route('user.update',$user->id)); ?>",
                     data:{
                             '_token': "<?php echo csrf_token() ?>",
                             email:email,
@@ -178,4 +177,5 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/edit.blade.php ENDPATH**/ ?>

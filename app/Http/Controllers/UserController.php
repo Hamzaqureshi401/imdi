@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserController extends RoleController
 {
      /**
      * Create a new controller instance.
@@ -131,7 +131,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::where('id',$id)->first();
-        return view('admin.edit',compact('user'));
+        $roles = Role::get();
+        return view('admin.edit',compact('user' , 'roles'));
     }
 
     /**
@@ -149,6 +150,7 @@ class UserController extends Controller
             'name' => 'required|string',
             'contact' => 'required|string',
             'address' => 'required|string',
+            'role'    => 'required'
             
         ]);
 
