@@ -77,6 +77,10 @@ Route::get('pendingreturn', [ReturnController::class, 'pendingreturn']);
 Route::get('getMasterCase', [PickorderController::class, 'getMasterCase']);
 Route::post('/pickorder/find-location', [PickorderController::class, 'apiFindlocation']);
 Route::post('/pickorder/unallocated-new-pick-order', [PickorderController::class, 'apiUnallocatedNewPickOrder']);
+Route::get('getPalletlable', [ApiController::class, 'getPalletlable']);
+Route::get('getPalletlable', [ApiController::class, 'getPalletlable']);
+Route::post('findPalletlable', [ApiController::class, 'findPalletlable']);
+
 
 
 });

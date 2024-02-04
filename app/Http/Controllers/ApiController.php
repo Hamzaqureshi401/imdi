@@ -386,7 +386,7 @@ class ApiController extends Controller
                 "unassigned"=>$q-$c,
                 "pending"=>$pend,
                 "completed"=>$comp,
-                "location_name" => $u->binlocation->first()->name,
+                "location_name" => $u->binlocation->first()?->name,
             ];
              $resultArray[] = $tempArray;
         }
@@ -818,6 +818,33 @@ class ApiController extends Controller
        
 
     return response()->json($mcp, 200);
+   }
+
+
+   public function getPalletlable(){
+
+    return response()->json([
+                'code' => '200' , 
+                'status'=>'success' , 
+                'message'=>'Data Fetch Successfully!' , 
+                'data' => PalletLabel::get()
+            ]);
+   }
+    public function findPalletlable(Request $request){
+
+     $pallet = PalletLabel::where('palletno' , $request->palletno)
+     ->with('wareHouse',
+            'mastercase',
+            'user',
+            'stockPlacement',
+            'receiveds')
+     ->first();
+     return response()->json([
+                'code' => '200' , 
+                'status'=>'success' , 
+                'message'=>'Data Fetch Successfully!' , 
+                'data' => $pallet
+            ]);
    }
 
 

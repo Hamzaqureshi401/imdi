@@ -238,6 +238,7 @@ class ReportController extends Controller
     {
         
         //dd($request->all());
+        $request = new Request($request['data']);
         
         $result = PalletLabel::select(
             'pallet_labels.id', 
