@@ -1,13 +1,11 @@
-@extends('layouts.admin.app')
+<?php $__env->startSection('header'); ?>
 
-@section('header')
+<?php $__env->stopSection(); ?>
 
-@endsection
-
-@section('title')
+<?php $__env->startSection('title'); ?>
 Manage Master Case
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
     <div class="tabs-animation">
                          
@@ -29,21 +27,21 @@ Manage Master Case
                                                     </ul>
                                                     
                                                 </div>
-                                        <form class="" id="formmain" method="post" action="{{route('mastercase.update',$mc->id)}}">
-                                        @method('PUT')
-                                        @csrf
+                                        <form class="" id="formmain" method="post" action="<?php echo e(route('mastercase.update',$mc->id)); ?>">
+                                        <?php echo method_field('PUT'); ?>
+                                        <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="col-md-12">
                                                         <div class="position-relative mb-3">
                                                             <label for="exampleEmail11" class="form-label">Master Case UPC</label>
-                                                            <input name="upc" id="upc" value="{{$mc->upc ?? '--'}}" placeholder="Enter MasterCase UPC" type="text" class="form-control" required>
+                                                            <input name="upc" id="upc" value="<?php echo e($mc->upc); ?>" placeholder="Enter MasterCase UPC" type="text" class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="position-relative mb-3">
                                                             <label for="examplePassword11" class="form-label"> Master Case Name</label>
-                                                            <input name="name" id="pname" value="{{$mc->name}}" placeholder="Enter MasterCase Name" type="text" class="form-control" required>
+                                                            <input name="name" id="pname" value="<?php echo e($mc->name); ?>" placeholder="Enter MasterCase Name" type="text" class="form-control" required>
                                                         </div>
                                                     </div>
 
@@ -51,19 +49,19 @@ Manage Master Case
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Length (In.)</label>
-                                                                <input name="length" id="length" value="{{$mc->length}}" placeholder="Enter Length" type="text" class="form-control" required>
+                                                                <input name="length" id="length" value="<?php echo e($mc->length); ?>" placeholder="Enter Length" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Height (In.)</label>
-                                                                <input name="height" id="height" value="{{$mc->height}}" placeholder="Enter Height" type="text" class="form-control" required>
+                                                                <input name="height" id="height" value="<?php echo e($mc->height); ?>" placeholder="Enter Height" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Width (In.)</label>
-                                                                <input name="width" id="width" value="{{$mc->width}}" placeholder="Enter Width" type="text" class="form-control" required>
+                                                                <input name="width" id="width" value="<?php echo e($mc->width); ?>" placeholder="Enter Width" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -72,20 +70,20 @@ Manage Master Case
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Weight (lbs)</label>
-                                                                <input name="weight" id="weight" value="{{$mc->weight}}" placeholder="Enter Weight" type="text" class="form-control" required>
+                                                                <input name="weight" id="weight" value="<?php echo e($mc->weight); ?>" placeholder="Enter Weight" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Ti</label>
-                                                                <input name="ti" id="ti" placeholder="Enter Ti" value="{{$mc->ti}}" type="text" class="form-control" required>
+                                                                <input name="ti" id="ti" placeholder="Enter Ti" value="<?php echo e($mc->ti); ?>" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Hi</label>
-                                                                <input name="hi" id="hi" placeholder="Enter Hi" value="{{$mc->hi}}" type="text" class="form-control" required>
+                                                                <input name="hi" id="hi" placeholder="Enter Hi" value="<?php echo e($mc->hi); ?>" type="text" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,7 +92,7 @@ Manage Master Case
                                                         <div class="col-md-12">
                                                             <div class="position-relative mb-3">
                                                                 <label for="examplePassword11" class="form-label"> Alert Quantity</label>
-                                                                <input name="alert_quantity" id="alert_quantity" value="{{$mc->alert_quantity}}" placeholder="Enter Quantity" type="number" value="0" min=0 class="form-control" required>
+                                                                <input name="alert_quantity" id="alert_quantity" value="<?php echo e($mc->alert_quantity); ?>" placeholder="Enter Quantity" type="number" value="0" min=0 class="form-control" required>
                                                             </div>
                                                         </div>
                                                        
@@ -104,7 +102,7 @@ Manage Master Case
                                                     <div class="col-md-12">
                                                         <div class="position-relative mb-3">
                                                             <label for="exampleEmail11" class="form-label">Description</label>
-                                                            <textarea name="description"  id="desc"class="form-control">{{$mc->description}}</textarea>
+                                                            <textarea name="description"  id="desc"class="form-control"><?php echo e($mc->description); ?></textarea>
                                                         </div>
                                                     </div>
 
@@ -118,9 +116,9 @@ Manage Master Case
 
                                                                 <select  id="pro" class="form-control multiselect-dropdown" >
                                                                 <option value="">Select Product</option>
-                                                                    @foreach($product as $p)
-                                                                    <option value="{{$p->name}}+{{$p->upc}}+{{$p->id}}">{{$p->name}} ({{$p->upc}})</option>
-                                                                    @endforeach
+                                                                    <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($p->name); ?>+<?php echo e($p->upc); ?>+<?php echo e($p->id); ?>"><?php echo e($p->name); ?> (<?php echo e($p->upc); ?>)</option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     
                                                                 </select>
                                                             </div>
@@ -153,28 +151,26 @@ Manage Master Case
                                                                  </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @php
+                                                                <?php
                                                                 $t=0;
-                                                                @endphp
-                                                                @foreach($mcp as $m)
-                                                                @php
+                                                                ?>
+                                                                <?php $__currentLoopData = $mcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <?php
                                                                     $pr=getproduct($m->pid);
                                                                     $t=$t+$m->qty;
 
-                                                                @endphp
-                                                                @if(!empty($pr))
-                                                                <tr id="{{$pr->upc ?? '--'}}">
-                                                                    <th scope="row"><input type="hidden" name="pid[]" value="{{$pr->id}}"/>{{$pr->upc}}</th>
-                                                                    <td>{{$pr->name}}</td><td><input type="hidden" name="pqty[]" value="{{$m->qty}}"/>{{$m->qty}}</td>
+                                                                ?>
+                                                                <tr id="<?php echo e($pr->upc); ?>">
+                                                                    <th scope="row"><input type="hidden" name="pid[]" value="<?php echo e($pr->id); ?>"/><?php echo e($pr->upc); ?></th>
+                                                                    <td><?php echo e($pr->name); ?></td><td><input type="hidden" name="pqty[]" value="<?php echo e($m->qty); ?>"/><?php echo e($m->qty); ?></td>
                                                                     <td><a class="remove btn btn-dark" >Remove</a></td>
                                                                 </tr>
-                                                                @endif
-                                                                @endforeach
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 
                                                                 
                                                             </tbody>
                                                             <tfoot>
-                                                            <th colspan=4><h3>Total Unit(s) : <b><span id="total_qty">{{$t}}</span></b></h3></th>
+                                                            <th colspan=4><h3>Total Unit(s) : <b><span id="total_qty"><?php echo e($t); ?></span></b></h3></th>
                                                             </tfoot>
                                                         </table>
                                                     </div>
@@ -194,13 +190,13 @@ Manage Master Case
                            
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
-<script type="text/javascript" src="{{url('public/admin/js/form-components/input-select.js')}}"></script>
-<script type="text/javascript" src="{{url('public/admin/vendors/select2/dist/js/select2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/admin/js/sweet-alerts.js')}}"></script>
+<?php $__env->startSection('footer'); ?>
+<script type="text/javascript" src="<?php echo e(url('public/admin/js/form-components/input-select.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(url('public/admin/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(url('public/admin/vendors/sweetalert2/dist/sweetalert2.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(url('public/admin/js/sweet-alerts.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script>
        $(document).ready(function(){
@@ -313,4 +309,5 @@ Manage Master Case
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\imdi\resources\views/admin/mastercase/edit.blade.php ENDPATH**/ ?>

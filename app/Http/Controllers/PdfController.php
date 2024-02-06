@@ -10,6 +10,8 @@ use App\Models\PalletLabel;
 use Illuminate\Http\Request;
 use App\Models\Mastercaseproduct;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PdfController extends Controller
 {
@@ -26,12 +28,19 @@ class PdfController extends Controller
 
     public function mclabel($id)
     {
+      
+
+
+
+
         $mc=Mastercase::where('id',$id)->first();
         $result = DB::table('mastercaseproducts as m')
         ->join('products as p', 'm.pid', '=', 'p.id')
         ->select('p.upc', DB::raw("CONCAT('(', m.qty, ') ', p.name) AS qty_p_name"))
         ->where('m.mcid',$id)
         ->get();
+
+
        $this->fpdf->AddPage('P', [120,170]);
 
         $this->fpdf->SetFont('Arial','',12);
@@ -54,6 +63,19 @@ class PdfController extends Controller
             $data[] = array($row->upc, $qtyPName);
         }
         $this->fpdf->FancyTable($header,$data);
+
+        $data['label'] = $mc->upc;
+        $data['upc'] = $data[0][0];
+        $data['name'] = $data[0][1];
+        $data['master_case'] = $mc->name;
+         view()->share('data',$data);
+         $pdf = Pdf::loadView('admin.mastercase.pdf');
+
+     // return view('admin.mastercase.pdf' , compact('data'));
+         
+       return $pdf->download('pdf_file.pdf');
+
+        dd($mc->upc , $result , $header,$data);
         
         
         

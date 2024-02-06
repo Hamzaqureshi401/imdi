@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\PickorderController;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Rackinfo;
@@ -28,6 +29,15 @@ use App\Mail\lowInventoryMail;
 
 class ApiController extends Controller
 {
+
+
+
+    public $pickorderController;
+
+    public function __construct()
+    {
+        $this->pickorderController = new PickorderController();
+    }
     //
     function login(Request $request)
     {
@@ -830,22 +840,41 @@ class ApiController extends Controller
                 'data' => PalletLabel::get()
             ]);
    }
-    public function findPalletlable(Request $request){
+   public function findPalletlable(Request $request){
+    $pallet = PalletLabel::where('palletno', $request->palletno)->first()?->mastercase->id;
 
-     $pallet = PalletLabel::where('palletno' , $request->palletno)
-     ->with('wareHouse',
-            'mastercase',
-            'user',
-            'stockPlacement',
-            'receiveds')
-     ->first();
-     return response()->json([
-                'code' => '200' , 
-                'status'=>'success' , 
-                'message'=>'Data Fetch Successfully!' , 
-                'data' => $pallet
-            ]);
-   }
+    // Convert $pallet to an array and then to JSON
+    $req = new Request(['mastercase_id' => [$pallet]]);
+
+    $data = $this->pickorderController->findBinlocations($req);
+
+    $unallocatedData = $this->pickorderController->findUnallocatedData($data);
+    $allocatedData = $this->pickorderController->findAllocatedData($data);
+
+    // Filter the unallocatedData array to include only the record with "231024153782"
+    $filteredUnallocatedData = array_filter($unallocatedData, function ($item) use ($request) {
+        return isset($item['pallet']['un_lb']) && $item['pallet']['un_lb'] === $request->palletno;
+    });
+
+    // Filter the allocatedData array to include only the record with "231024153782"
+    $filteredAllocatedData = array_filter($allocatedData, function ($item) use ($request) {
+        return isset($item['label_bin']['lb']) && $item['label_bin']['lb'] === $request->palletno;
+    });
+
+    $dataNew['unallocatedData'] = $filteredUnallocatedData;
+    $dataNew['allocatedData'] = $filteredAllocatedData;
+
+    //dd($dataNew);
+
+    return response()->json([
+        'code' => '200',
+        'status' => 'success',
+        'message' => 'Data Fetch Successfully!',
+        'data' => $dataNew
+    ]);
+}
+
+
 
 
 

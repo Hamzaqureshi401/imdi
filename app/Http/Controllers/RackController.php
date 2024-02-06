@@ -7,7 +7,7 @@ use App\Models\Permission;
 use App\Models\Binlocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
- use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RackController extends Controller
 {
@@ -59,10 +59,9 @@ class RackController extends Controller
         $data['label'] = Binlocation::where('row_id', $id)->get();
 
         $data['print_range'] = $print;
-     view()->share('data',$data);
-      $pdf = Pdf::loadView('admin.racks.print');
-      // download PDF file with download method
-      
+         view()->share('data',$data);
+         $pdf = Pdf::loadView('admin.racks.print');
+         
       return $pdf->download('pdf_file.pdf');
         
         

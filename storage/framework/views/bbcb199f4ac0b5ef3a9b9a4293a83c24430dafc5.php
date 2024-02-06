@@ -31,14 +31,22 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <div class="barcode-container d-inline-block">
-                    <?php echo DNS1D::getBarcodeHTML($l->barcode, 'PHARMA'); ?>
+                    <?php echo DNS1D::getBarcodeHTML($l->barcode, 'PHARMA', 3, 60); ?>
 
                 </div>
-                <div class="text-center"><strong><?php echo e($l->barcode); ?></strong></div>
+                <div class="text-center"><strong style="font-size: 40px"><?php echo e($l->barcode); ?></strong></div>
                 <div class="brd-top"></div> <!-- Centered border -->
-                <div class="text-center"><strong><?php echo e($l->name); ?></strong></div>
+                <div class="text-center"><strong style="font-size: 40px"><?php echo e($l->name); ?></strong></div>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
          <?php
         $counter = $counter + 1;
         ?>
