@@ -63,11 +63,13 @@ class PdfController extends Controller
             $data[] = array($row->upc, $qtyPName);
         }
         $this->fpdf->FancyTable($header,$data);
+        $data['upcName'] = $data;
 
         $data['label'] = $mc->upc;
-        $data['upc'] = $data[0][0];
-        $data['name'] = $data[0][1];
+
         $data['master_case'] = $mc->name;
+
+        //dd($data);
          view()->share('data',$data);
          $pdf = Pdf::loadView('admin.mastercase.pdf');
 

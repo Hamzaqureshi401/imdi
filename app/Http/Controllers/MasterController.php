@@ -479,6 +479,8 @@ class MasterController extends Controller
             'weight' => 'numeric|nullable|min:0',
             'hi' => 'numeric|min:0',
             'ti' => 'numeric|min:0',
+            'pid' => 'required|array',  // Ensure pid is an array
+            'pid.*' => 'required',  
             
         ]);
 

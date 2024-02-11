@@ -25,7 +25,7 @@
             <div class="col-12 text-center brd mt-3">
     <div class="barcode-container d-inline-block">
         <br>
-        {!! DNS1D::getBarcodeHTML($data['label'], 'PHARMA', 3, 60) !!}
+        {!! DNS1D::getBarcodeHTML($data['label'], 'PHARMA', 2, 60) !!}
     </div>
     <div class="text-center"><strong style="font-size: 40px">{{ $data['label'] }}</strong></div>
 </div>
@@ -41,10 +41,12 @@
             <td><strong style="font-size: 20px">UPC</strong></td>
             <td><strong style="font-size: 20px">Product</strong></td>
         </tr>
+        @foreach($data['upcName'] as $d )
         <tr>
-            <td style="word-wrap: break-word; max-width: 200px;">{{ $data['upc'] }}</td>
-            <td style="word-wrap: break-word; max-width: 200px;">{{ $data['name'] }}</td>
+            <td style="word-wrap: break-word; max-width: 200px;">{{ $d[0] }}</td>
+            <td style="word-wrap: break-word; max-width: 200px;">{{ $d[1] }}</td>
         </tr>
+        @endforeach
     </table>
     
 </div>
