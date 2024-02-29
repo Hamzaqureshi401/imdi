@@ -25,7 +25,7 @@
             <div class="col-12 text-center brd mt-3">
     <div class="barcode-container d-inline-block">
         <br>
-        <?php echo DNS1D::getBarcodeHTML($data['label'], 'PHARMA', 3, 60); ?>
+        <?php echo DNS1D::getBarcodeHTML($data['label'], 'PHARMA', 2, 60); ?>
 
     </div>
     <div class="text-center"><strong style="font-size: 40px"><?php echo e($data['label']); ?></strong></div>
@@ -42,10 +42,12 @@
             <td><strong style="font-size: 20px">UPC</strong></td>
             <td><strong style="font-size: 20px">Product</strong></td>
         </tr>
+        <?php $__currentLoopData = $data['upcName']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td style="word-wrap: break-word; max-width: 200px;"><?php echo e($data['upc']); ?></td>
-            <td style="word-wrap: break-word; max-width: 200px;"><?php echo e($data['name']); ?></td>
+            <td style="font-size: 18px; word-wrap: break-word; max-width: 200px;"><?php echo e($d[0]); ?></td>
+            <td style="font-size: 18px; word-wrap: break-word; max-width: 200px;"><?php echo e($d[1]); ?></td>
         </tr>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>
     
 </div>

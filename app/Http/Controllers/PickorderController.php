@@ -320,19 +320,26 @@ class PickorderController extends ApiController
         if(!empty($request->pq)){
             $pq      = json_decode($request->pq, true);
             $lb      = json_decode($request->lb, true);
+            $bid      = json_decode($request->bid, true);
             $invoice = json_decode($request->invoice, true);
 
             $al_rq = new Request([
-                'id' => $id,
+                // 'id' => $id,
                 'pq' => $pq,
                 'lb' => $lb,
+                'bid' => $bid,
                 'invoice' => $invoice
             ]);
             $this->completePickOrder($al_rq);
        
         }
 
-        return redirect()->back()->with('message', 'Pick Order Saved Successfully');
+        return response()->json([
+            'code'=>200,
+            'status'=>'Successful',
+            'message'=>'Pickorder Completed Successful',
+            'data'=> ''
+            ]);
         
         
 

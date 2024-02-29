@@ -43,8 +43,8 @@
         </tr>
         @foreach($data['upcName'] as $d )
         <tr>
-            <td style="word-wrap: break-word; max-width: 200px;">{{ $d[0] }}</td>
-            <td style="word-wrap: break-word; max-width: 200px;">{{ $d[1] }}</td>
+            <td style="font-size: 20px; word-wrap: break-word; max-width: 200px;">{{ $d[0] }}</td>
+            <td style="font-size: 20px; word-wrap: break-word; max-width: 200px;">{{ $d[1] }}</td>
         </tr>
         @endforeach
     </table>
