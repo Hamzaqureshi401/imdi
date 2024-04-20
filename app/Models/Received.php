@@ -30,4 +30,7 @@ class Received extends Model
     public function rackInfo(){
         return $this->hasMany(Rackinfo::class , 'warehouse' , 'warehouse');
     }
+    public function getWarehouse(){
+         return $this->belongsTo(Warehouse::class,'warehouse','id');
+    }
 }

@@ -31,4 +31,7 @@ class Pickorder extends Model
      public function binlocation(){
          return $this->hasOne(Binlocation::class,'id','bin_id');
      }
+     public function received(){
+         return $this->belongsTo(Received::class,'rc_id','id');
+     }
 }

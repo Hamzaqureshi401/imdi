@@ -840,7 +840,8 @@ class ApiController extends Controller
                 'data' => PalletLabel::get()
             ]);
    }
-   public function findPalletlable(Request $request){
+  public function findPalletlable(Request $request)
+{
     $pallet = PalletLabel::where('palletno', $request->palletno)->first()?->mastercase->id;
 
     // Convert $pallet to an array and then to JSON
@@ -861,18 +862,19 @@ class ApiController extends Controller
         return isset($item['label_bin']['lb']) && $item['label_bin']['lb'] === $request->palletno;
     });
 
-    $dataNew['unallocatedData'] = $filteredUnallocatedData;
-    $dataNew['allocatedData'] = $filteredAllocatedData;
+    $dataNew['unallocatedData'] = array_values($filteredUnallocatedData);
+    $dataNew['allocatedData'] = array_values($filteredAllocatedData);
 
-    //dd($dataNew);
+    // dd($dataNew);
 
     return response()->json([
         'code' => '200',
         'status' => 'success',
         'message' => 'Data Fetch Successfully!',
-        'data' => $dataNew
+        'data' => $dataNew,
     ]);
 }
+
 
 
 

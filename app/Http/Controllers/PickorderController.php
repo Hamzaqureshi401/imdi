@@ -301,6 +301,47 @@ class PickorderController extends ApiController
 
     public function apiUnallocatedNewPickOrder(Request $request){
 
+        $unallocatedValidationRules = [
+        'id' => 'required',
+        'un_pq' => 'required',
+        'un_lb' => 'required',
+        //'un_invoice' => 'required|array',
+    ];
+
+    $allocatedValidationRules = [
+        'bid' => 'required',
+        'pq' => 'required',
+        'lb' => 'required',
+        //'invoice' => 'required|array',
+    ];
+
+    // Validate unallocated pick order data
+    if (!empty($request->un_pq)) {
+        $validator = validator($request->all(), $unallocatedValidationRules);
+        if ($validator->fails()) {
+            return response()->json([
+                'code' => 400,
+                'status' => 'Validation Error',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()->all(),
+            ], 400);
+        }
+    }
+
+    // Validate allocated pick order data
+    if (!empty($request->pq)) {
+        $validator = validator($request->all(), $allocatedValidationRules);
+        if ($validator->fails()) {
+            return response()->json([
+                'code' => 400,
+                'status' => 'Validation Error',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()->all(),
+            ], 400);
+        }
+    }
+
+
         if(!empty($request->un_pq)){
             $id         = json_decode($request->id, true);
             $un_pq      = json_decode($request->un_pq, true);
@@ -313,7 +354,7 @@ class PickorderController extends ApiController
                 'un_lb' => $un_lb,
                 'un_invoice' => $un_invoice
             ]);  
-            $this->handUnallocatedPallet($un_rq);
+            $output = $this->handUnallocatedPallet($un_rq);
         
         }
 
@@ -330,7 +371,7 @@ class PickorderController extends ApiController
                 'bid' => $bid,
                 'invoice' => $invoice
             ]);
-            $this->completePickOrder($al_rq);
+            $output = $this->completePickOrder($al_rq);
        
         }
 
@@ -338,7 +379,7 @@ class PickorderController extends ApiController
             'code'=>200,
             'status'=>'Successful',
             'message'=>'Pickorder Completed Successful',
-            'data'=> ''
+            'data'=> $output
             ]);
         
         
@@ -390,14 +431,14 @@ class PickorderController extends ApiController
             {
                 if(isset($request->pq[$i]))
                 {
-                    $l_id=getlabelinfo($request->lb[$i]);
+                    $l_id=getlabelinfo(strval($request->lb[$i]));
                     $b=getbindetail($request->bid[$i]); 
                    
                     $po = new Pickorder();
                     $po->trans_no=$tran_no;
                     $po->invoice_no=$request->invoice[$i] ?? null;
                     $po->label_id=$l_id->id;
-                    $po->label_no=$request->lb[$i];
+                    $po->label_no=strval($request->lb[$i]);
                     $po->mc_id=$b->mcid;
                     $po->rc_id=$b->rcid;
                     $po->bin_id=$request->bid[$i];
@@ -414,6 +455,7 @@ class PickorderController extends ApiController
                 
                 
             } 
+            return $po;
     }
     }
 
